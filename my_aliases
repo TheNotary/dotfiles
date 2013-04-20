@@ -1,0 +1,21 @@
+alias r='rails'
+# To properly test, make sure you're running 'spork' in another terminal window
+alias test='bundle exec rspec --drb spec/'
+alias bundle-install='bundle install --without development test'
+alias be='bundle exec'
+alias ber='bundle exec rake'
+
+# git stuff
+# Git Root:  Go to the root of the project directory
+alias gr='cd "$(git rev-parse --show-toplevel)"'
+alias gpl='git pull origin' 
+alias gps='git push origin'
+alias gsnm='git branch --no-merged'
+alias glg="git log --branches --tags --graph --oneline --decorate"
+alias gdf="git diff --color"
+
+# Ammend git commits (reuse the commit message for additional changes) by this
+# $  git commit --allow-empty -m "cool message"
+# $  git commit -a --amend
+
+
