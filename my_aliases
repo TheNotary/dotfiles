@@ -21,4 +21,5 @@ alias gdf="git diff --color"
 # $  git commit --allow-empty -m "cool message"
 # $  git commit -a --amend
 
-
+#mongodb aliases
+alias mongoshell="mongo --shell --host $MONGODB_DEVELOPMENT_HOST --port $MONGODB_DEVELOPMENT_PORT -u $MONGODB_DEVELOPMENT_USERNAME -p $MONGODB_DEVELOPMENT_PASSWORD $MONGODB_DEVELOPMENT_DB"
