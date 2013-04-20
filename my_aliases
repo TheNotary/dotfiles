@@ -1,3 +1,6 @@
+# focus on specific tasks...
+alias focus="cd ~/"
+
 alias r='rails'
 # To properly test, make sure you're running 'spork' in another terminal window
 alias test='bundle exec rspec --drb spec/'
