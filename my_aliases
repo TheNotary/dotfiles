@@ -1,5 +1,10 @@
 # focus on specific tasks...
-alias focus="cd ~/"
+alias focus="cd ~/dev/rails/scroll-forge"
+
+# instant web server in the current directory
+#python -m SimpleHTTPServer
+alias rhttp='ruby -run -e httpd'
+
 
 alias r='rails'
 # To properly test, make sure you're running 'spork' in another terminal window
@@ -20,6 +25,10 @@ alias gdf="git diff --color"
 # Ammend git commits (reuse the commit message for additional changes) by this
 # $  git commit --allow-empty -m "cool message"
 # $  git commit -a --amend
+
+# hub aliases
+alias hubshow='cat ~/.config/hub'
+alias hubclear='rm ~/.config/hub'
 
 #mongodb aliases
 alias mongoshell="mongo --shell --host $MONGODB_DEVELOPMENT_HOST --port $MONGODB_DEVELOPMENT_PORT -u $MONGODB_DEVELOPMENT_USERNAME -p $MONGODB_DEVELOPMENT_PASSWORD $MONGODB_DEVELOPMENT_DB"

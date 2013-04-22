@@ -1,4 +1,5 @@
-. $HOME/.my_aliases
+source $HOME/.mongodbrc
+source $HOME/.my_aliases
 
 # setup git to use vim and not NANO
 export VISUAL=vim
