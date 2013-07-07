@@ -1,11 +1,17 @@
 # focus on specific tasks...
-alias focus="cd ~/dev/rails/scroll-forge"
+alias focus="cd ~/dev/ruby/lmpm"
+#alias focus="cd ~/dev/rails/ruby_reloaded"
 
 # instant web server in the current directory
 #python -m SimpleHTTPServer
 # this is so clever...  ruby -r un requires the 'un' library... which
 # provides the command 'httpd' which is a wrapper for using weBrick
 alias rhttp='ruby -run -e httpd'
+
+# Linux specific aliases
+alias latest-installs='grep " install " /var/log/dpkg.*'
+alias latest-upgrades='grep " upgrade " /var/log/dpkg.*'
+alias latest-removes='grep " remove " /var/log/dpkg.*'
 
 
 alias r='rails'
@@ -17,12 +23,19 @@ alias ber='bundle exec rake'
 
 # git stuff
 # Git Root:  Go to the root of the project directory
+alias gis="git status"
+alias ga="git add"
+alias gcm="git commit -m"
 alias gr='cd "$(git rev-parse --show-toplevel)"'
 alias gpl='git pull origin' 
 alias gps='git push origin'
 alias gsnm='git branch --no-merged'
+# graphical commit history/log
 alias glg="git log --branches --tags --graph --oneline --decorate"
 alias gdf="git diff --color"
+alias gdfh="git diff --color HEAD"
+# delete file from git repo without deleting
+# git rm --cached mylogfile.log
 
 # Ammend git commits (reuse the commit message for additional changes) by this
 # $  git commit --allow-empty -m "cool message"
