@@ -49,6 +49,9 @@ alias gdfh="git diff --color HEAD"
 alias hubshow='cat ~/.config/hub'
 alias hubclear='rm ~/.config/hub'
 
+#mongodb aliases
+alias mongoshell="mongo --shell --host $MONGODB_DEVELOPMENT_HOST --port $MONGODB_DEVELOPMENT_PORT -u $MONGODB_DEVELOPMENT_USERNAME -p $MONGODB_DEVELOPMENT_PASSWORD $MONGODB_DEVELOPMENT_DB"
+
 ##############
 # Linux user #
 ##############
@@ -69,6 +72,12 @@ alias latest-installs='grep " install " /var/log/dpkg.*'
 alias latest-upgrades='grep " upgrade " /var/log/dpkg.*'
 alias latest-removes='grep " remove " /var/log/dpkg.*'
 
+# Email Related
+# http://forums.cpanel.net/f5/strange-bandwidth-usage-user-pop3-100161.html
+# Get's a picture of how much data this user is downloading in there mail per 3 days or so
+grep user-name@excelsiorcarpetone.com /var/log/maillog | grep retr= | awk {'print $7" "$1" "$2" "$3" "$11'} | grep -v retr=0
+# This one sums all the bytes 
+grep philonthe.net /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'
 
-#mongodb aliases
-alias mongoshell="mongo --shell --host $MONGODB_DEVELOPMENT_HOST --port $MONGODB_DEVELOPMENT_PORT -u $MONGODB_DEVELOPMENT_USERNAME -p $MONGODB_DEVELOPMENT_PASSWORD $MONGODB_DEVELOPMENT_DB"
+
+
