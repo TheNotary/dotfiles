@@ -8,9 +8,19 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
-files="bashrc vimrc vim my_aliases gemrc"    # list of files/folders to symlink in homedir
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )  # Get current directory of script
+files="$(ls $DIR)"                   # list of files/folders to symlink in homedir
+
 
 ##########
+
+# Make sure the directory's name is dotfiles... otherwise the user could be getting more than he or she barginned for
+if [ "$( cd $DIR && echo ${PWD##*/} )" != "dotfiles" ]
+then
+  echo "The folder you ran this script from isn't named 'dotfiles'... so the script \nhas been blocked from to prevent you from accidentally creating a bunch of symlinks you don't actually want"
+  echo "Symlinks that would have been made:  $files"
+  exit 1
+fi
 
 # create dotfiles_old in homedir
 echo "Creating $olddir for backup of any existing dotfiles in ~"
@@ -24,6 +34,17 @@ echo "...done"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
+  
+  #######################################
+  # skip the README.md and make.sh file #
+  #######################################
+  if [ "$file" = "README.md" ] || [ "$file" = "make.sh" ]
+  then
+   echo "skipping $file"
+   continue      # Skip rest of this particular loop iteration.
+  fi
+
+
 	echo "Moving any existing dotfiles from ~ to $olddir"
 	mv ~/.$file ~/dotfiles_old/
 		echo "Creating symlink to $file in home directory."
