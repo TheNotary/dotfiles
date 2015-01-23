@@ -1,4 +1,6 @@
-source $HOME/.mongodbrc
+export WINEARCH=win32
+
+[ -e $HOME/.mongodbrc ] && source $HOME/.mongodbrc
 source $HOME/.my_aliases
 
 # setup git to use vim and not NANO

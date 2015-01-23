@@ -1,21 +1,22 @@
 # focus on specific tasks...
 #alias focus="cd ~/dev/ruby/lmpm"
 #alias focus="cd ~/dev/rails/"
-#alias focus="cd ~/dev/rails/xpd3"
-alias focus="cd ~/dev/cpp/ruby_one_click"
+alias f="cd ~/dev/rails/xpd3"
+#alias focus="cd ~/dev/cpp/ruby_one_click"
 #alias focus="cd ~/dev/rails/ruby_reloaded"
+
+
+
+
+#############
+# Developer #
+#############
 
 # instant web server in the current directory
 #python -m SimpleHTTPServer
 # this is so clever...  ruby -r un requires the 'un' library... which
 # provides the command 'httpd' which is a wrapper for using weBrick
 alias rhttp='rvmsudo ruby -run -e httpd'
-
-# Linux specific aliases
-alias latest-installs='grep " install " /var/log/dpkg.*'
-alias latest-upgrades='grep " upgrade " /var/log/dpkg.*'
-alias latest-removes='grep " remove " /var/log/dpkg.*'
-
 
 alias r='rails'
 # To properly test, make sure you're running 'spork' in another terminal window
@@ -47,6 +48,27 @@ alias gdfh="git diff --color HEAD"
 # hub aliases
 alias hubshow='cat ~/.config/hub'
 alias hubclear='rm ~/.config/hub'
+
+##############
+# Linux user #
+##############
+# Package Maintenance
+alias latest-installs='grep " install " /var/log/dpkg.*'
+alias latest-upgrades='grep " upgrade " /var/log/dpkg.*'
+alias latest-removes='grep " remove " /var/log/dpkg.*'
+
+# Backups
+alias sync-files-to-backup="rsync -avrh /media/kentos/f39c6a7b-0c94-4489-953b-dccb16f1037c/home/john john@192.168.0.56:/storage/backups/2014-9-19-bops-part/home/john"
+
+############
+# sysadmin #
+############
+
+# Linux specific aliases
+alias latest-installs='grep " install " /var/log/dpkg.*'
+alias latest-upgrades='grep " upgrade " /var/log/dpkg.*'
+alias latest-removes='grep " remove " /var/log/dpkg.*'
+
 
 #mongodb aliases
 alias mongoshell="mongo --shell --host $MONGODB_DEVELOPMENT_HOST --port $MONGODB_DEVELOPMENT_PORT -u $MONGODB_DEVELOPMENT_USERNAME -p $MONGODB_DEVELOPMENT_PASSWORD $MONGODB_DEVELOPMENT_DB"
