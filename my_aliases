@@ -60,12 +60,20 @@ alias latest-installs='grep " install " /var/log/dpkg.*'
 alias latest-upgrades='grep " upgrade " /var/log/dpkg.*'
 alias latest-removes='grep " remove " /var/log/dpkg.*'
 
+# Get Gateway
+# netstat -rn | grep -e '^0\.0\.0\.0 \s*[0-9]*\.[0-9]*\.[0-9]\.[0-9].*[ew].*[0-9]*$' |awk '{print $2}'
+get-gateway() { netstat -rn | grep -e '^0\.0\.0\.0 \s*[0-9]*\.[0-9]*\.[0-9]\.[0-9].*[ew].*[0-9]*$' |awk '{print $2}'; }
+
+
 # Backups
 alias sync-files-to-backup="rsync -avrh /media/kentos/f39c6a7b-0c94-4489-953b-dccb16f1037c/home/john john@192.168.0.56:/storage/backups/2014-9-19-bops-part/home/john"
 
 ############
 # sysadmin #
 ############
+
+# Define a bash function 
+say-hello() { echo "hello ${1}" ;}
 
 # Linux specific aliases
 alias latest-installs='grep " install " /var/log/dpkg.*'
@@ -75,9 +83,13 @@ alias latest-removes='grep " remove " /var/log/dpkg.*'
 # Email Related
 # http://forums.cpanel.net/f5/strange-bandwidth-usage-user-pop3-100161.html
 # Get's a picture of how much data this user is downloading in there mail per 3 days or so
-grep user-name@excelsiorcarpetone.com /var/log/maillog | grep retr= | awk {'print $7" "$1" "$2" "$3" "$11'} | grep -v retr=0
+# grep user-name@domain.com /var/log/maillog | grep retr= | awk {'print $7" "$1" "$2" "$3" "$11'} | grep -v retr=0
+scan-mail() { grep user-name@domain.com /var/log/maillog | grep retr= | awk {'print $7" "$1" "$2" "$3" "$11'} | grep -v retr=0; }
+#alias scan-mail="grep user-name@domain-name.com /var/log/maillog | grep retr= | awk {'print $7\" \"$1\" \"$2\" \"$3\" \"$11'} | grep -v retr=0"
 # This one sums all the bytes 
-grep philonthe.net /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'
+#grep domain-name.net /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'
+# pass in domain.com as parameter
+scan-mail-sum() { grep 1 /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'; }
 
 
 
