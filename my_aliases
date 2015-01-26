@@ -68,12 +68,64 @@ get-gateway() { netstat -rn | grep -e '^0\.0\.0\.0 \s*[0-9]*\.[0-9]*\.[0-9]\.[0-
 # Backups
 alias sync-files-to-backup="rsync -avrh /media/kentos/f39c6a7b-0c94-4489-953b-dccb16f1037c/home/john john@192.168.0.56:/storage/backups/2014-9-19-bops-part/home/john"
 
+# File System
+fs-rename-files-to-linux-style() {
+  ls | while read -r FILE
+  do
+    mv -v "$FILE" `echo $FILE | tr ' ' '_' | tr -d '[{}(),\!]' | tr -d "\'" | tr '[A-Z]' '[a-z]' | sed 's/_-_/_/g'`
+    done ;
+}
+
+
+
 ############
 # sysadmin #
 ############
 
 # Define a bash function 
 say-hello() { echo "hello ${1}" ;}
+
+
+# Database
+# http://stackoverflow.com/questions/6861355/mysqldump-launched-by-cron-and-password-security
+# Pass in username and name of database to dump
+mysql-backup() { mysqldump -u ${1} -p ${2} > ${2}.sql; }
+
+# Pass in Username and database name
+# Run in folder with a *.sql file, database name must equal .sql file's name too...
+mysql-restore() { 
+  stty -echo;
+  read -p "Password: " passw; echo
+  stty echo;
+  mysql-temp-store-pw ${1} $passw
+  # if mysql --defaults-extra-file=mysql_helper_from_script$$ -e "create database ${2}" ; then 
+  if mysql -u${1} -p"$passw" -e "create database ${2}" ; then
+    echo "created new db"
+  else
+    read -p "Delete existing database? [y,n]", should_delete_db
+    if [ $should_delete_db == "y" ] ; then
+      mysql -u${1} -p"$passw" -e "drop database ${2};create database ${2}"
+      #mysql --defaults-extra-file=mysql_helper_from_script -e "drop database ${2}" &&
+      #mysql --defaults-extra-file=mysql_helper_from_script -e "create database ${2}" 
+    else
+      echo "No Action Performed"
+      return 1
+      #exit 1
+    fi
+  fi
+
+  mysql -u${1} -p"$passw" ${2} < ${2}.sql; 
+  #mysql --defaults-extra-file=mysql_helper_from_script < ${2} < ${2}.sql
+
+  #mysql -u${1} -p -e "create database ${2}" &&
+  #mysql -u${1} -p ${2} < ${2}.sql; 
+  mysql-temp-clear-pw
+}
+
+mysql-rm-database() { mysql -u${1} -p -e "drop database ${2}"; }
+
+mysql-temp-store-pw() { echo -e "[client]\nuser=${1}\npassword=${2}" > mysql_helper_from_script$$; }
+mysql-temp-clear-pw() { rm mysql_helper_from_script$$; }
 
 # Linux specific aliases
 alias latest-installs='grep " install " /var/log/dpkg.*'
