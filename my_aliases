@@ -27,17 +27,25 @@ alias ber='bundle exec rake'
 
 # git stuff
 # Git Root:  Go to the root of the project directory
-alias gis="git status"
+# Committing
 alias ga="git add"
 alias gcm="git commit -m"
 alias gr='cd "$(git rev-parse --show-toplevel)"'
 alias gpl='git pull origin' 
 alias gps='git push origin'
-alias gsnm='git branch --no-merged'
 # graphical commit history/log
+alias gis="git status"
+alias gsnm='git branch --no-merged' # show branches you need to merge still
 alias glg="git log --branches --tags --graph --oneline --decorate"
 alias gdf="git diff --color"
 alias gdfh="git diff --color HEAD"
+# tags
+alias gat="git tag -a 'v1.0.0' -m 'this version works well'"
+alias gct="git checkout -t" # checkout specific tag
+# Merging
+alias gir="git rebase" # puts all your commits (in your current branch) ontop of the branch specified
+alias gmr="git merge" # merges the specified branch onto the current branch.. creating a mrege commit
+
 # delete file from git repo without deleting
 # git rm --cached mylogfile.log
 
