@@ -16,7 +16,7 @@ alias f="cd ~/dev/rails/xpd3"
 #python -m SimpleHTTPServer
 # this is so clever...  ruby -r un requires the 'un' library... which
 # provides the command 'httpd' which is a wrapper for using weBrick
-alias rhttp='rvmsudo ruby -run -e httpd'
+alias rhttp='rvmsudo ruby -run -e httpd .'
 
 alias r='rails'
 # To properly test, make sure you're running 'spork' in another terminal window
@@ -25,19 +25,37 @@ alias bundle-install='bundle install --without development test'
 alias be='bundle exec'
 alias ber='bundle exec rake'
 
-# git stuff
-# Git Root:  Go to the root of the project directory
+###
+# Git Stuff
+###
+# Basics:
 alias gis="git status"
-alias ga="git add"
+alias ga="git add -au" # adds all files and removed files to staging
 alias gcm="git commit -m"
+# Git Root:  Go to the root of the project directory
 alias gr='cd "$(git rev-parse --show-toplevel)"'
 alias gpl='git pull origin' 
 alias gps='git push origin'
-alias gsnm='git branch --no-merged'
+alias vilocalignor='vi .git/info/exclude' # a .gitignore that isn't shared on the public repo
+
+alias gundo-last-commit-retain-progress='git stash && git reset --hard && git stash pop'
+alias gundo-commit-on-remote='git push origin :master'
+
+# Monitoring:
+alias gsnm='git branch --no-merged'  # view branches that still need to be merged
 # graphical commit history/log
 alias glg="git log --branches --tags --graph --oneline --decorate"
-alias gdf="git diff --color"
-alias gdfh="git diff --color HEAD"
+alias gdf="git diff"
+alias gdfh="git diff HEAD"
+
+# Research:
+alias gdump="git log --oneline -p > /tmp/git/huge" # dump out contents of every file at each commit.  Allows searching 
+alias gago="git whatchanged --since='1 year ago'" # Looks at the diff since a year ago
+ghp() { git checkout $(git rev-list HEAD..master | tail -n 1); } #incriment HEAD, the opposit of git checkout HEAD^
+alias ghm="git checkout HEAD^"  # Git Head Minus 
+
+
+
 # delete file from git repo without deleting
 # git rm --cached mylogfile.log
 
@@ -48,6 +66,7 @@ alias gdfh="git diff --color HEAD"
 # hub aliases
 alias hubshow='cat ~/.config/hub'
 alias hubclear='rm ~/.config/hub'
+alias hubmk='hub create' # creates a remote repo
 
 #mongodb aliases
 alias mongoshell="mongo --shell --host $MONGODB_DEVELOPMENT_HOST --port $MONGODB_DEVELOPMENT_PORT -u $MONGODB_DEVELOPMENT_USERNAME -p $MONGODB_DEVELOPMENT_PASSWORD $MONGODB_DEVELOPMENT_DB"
@@ -59,6 +78,14 @@ alias mongoshell="mongo --shell --host $MONGODB_DEVELOPMENT_HOST --port $MONGODB
 alias latest-installs='grep " install " /var/log/dpkg.*'
 alias latest-upgrades='grep " upgrade " /var/log/dpkg.*'
 alias latest-removes='grep " remove " /var/log/dpkg.*'
+
+# http://ubuntuforums.org/showthread.php?t=564301
+use-network-apt-cacher() { echo 'Acquire::http::Proxy "http://hostname:3142";' | sudo tee /etc/apt/apt.conf.d/01proxy; }
+use-direct-apt-querying() { echo 'Acquire::http::Proxy "http://";' | sudo tee /etc/apt/apt.conf.d/01proxy; }
+
+# Service management
+alias s='sudo service'
+
 
 # Get Gateway
 # netstat -rn | grep -e '^0\.0\.0\.0 \s*[0-9]*\.[0-9]*\.[0-9]\.[0-9].*[ew].*[0-9]*$' |awk '{print $2}'
