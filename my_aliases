@@ -1,4 +1,5 @@
 # focus on specific tasks...
+alias t="screen -r"
 #alias focus="cd ~/dev/ruby/lmpm"
 #alias focus="cd ~/dev/rails/"
 alias f="cd ~/dev/rails/xpd3"
@@ -30,23 +31,23 @@ alias ber='bundle exec rake'
 ###
 # Basics:
 alias gis="git status"
+# Committing
 alias ga="git add -au" # adds all files and removed files to staging
 alias gcm="git commit -m"
+alias gundo-last-commit-retain-progress='git stash && git reset --hard && git stash pop'
+alias gundo-commit-on-remote='git push origin :master'
+alias vilocalignor='vi .git/info/exclude' # a .gitignore that isn't shared on the public repo
 # Git Root:  Go to the root of the project directory
 alias gr='cd "$(git rev-parse --show-toplevel)"'
 alias gpl='git pull origin' 
 alias gps='git push origin'
-alias vilocalignor='vi .git/info/exclude' # a .gitignore that isn't shared on the public repo
-
-alias gundo-last-commit-retain-progress='git stash && git reset --hard && git stash pop'
-alias gundo-commit-on-remote='git push origin :master'
 
 # Monitoring:
 alias gsnm='git branch --no-merged'  # view branches that still need to be merged
 # graphical commit history/log
+alias gis="git status"
+alias gsnm='git branch --no-merged' # show branches you need to merge still
 alias glg="git log --branches --tags --graph --oneline --decorate"
-alias gdf="git diff"
-alias gdfh="git diff HEAD"
 
 # Research:
 alias gdump="git log --oneline -p > /tmp/git/huge" # dump out contents of every file at each commit.  Allows searching 
@@ -54,7 +55,14 @@ alias gago="git whatchanged --since='1 year ago'" # Looks at the diff since a ye
 ghp() { git checkout $(git rev-list HEAD..master | tail -n 1); } #incriment HEAD, the opposit of git checkout HEAD^
 alias ghm="git checkout HEAD^"  # Git Head Minus 
 
-
+alias gdf="git diff --color"
+alias gdfh="git diff --color HEAD"
+# tags
+alias gat="git tag -a 'v1.0.0' -m 'this version works well'"
+alias gct="git checkout -t" # checkout specific tag
+# Merging
+alias gir="git rebase" # puts all your commits (in your current branch) ontop of the branch specified
+alias gmr="git merge" # merges the specified branch onto the current branch.. creating a mrege commit
 
 # delete file from git repo without deleting
 # git rm --cached mylogfile.log
