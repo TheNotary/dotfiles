@@ -1,4 +1,5 @@
 # focus on specific tasks...
+alias t="screen -r"
 #alias focus="cd ~/dev/ruby/lmpm"
 #alias focus="cd ~/dev/rails/"
 alias f="cd ~/dev/rails/xpd3"
