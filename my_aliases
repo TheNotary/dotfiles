@@ -36,7 +36,6 @@ alias ga="git add -au" # adds all files and removed files to staging
 alias gcm="git commit -m"
 alias gundo-last-commit-retain-progress='git stash && git reset --hard && git stash pop'
 alias gundo-commit-on-remote='git push origin :master'
-alias vilocalignor='vi .git/info/exclude' # a .gitignore that isn't shared on the public repo
 # Git Root:  Go to the root of the project directory
 alias gr='cd "$(git rev-parse --show-toplevel)"'
 alias gpl='git pull origin' 
@@ -63,6 +62,15 @@ alias gct="git checkout -t" # checkout specific tag
 # Merging
 alias gir="git rebase" # puts all your commits (in your current branch) ontop of the branch specified
 alias gmr="git merge" # merges the specified branch onto the current branch.. creating a mrege commit
+
+# Ignoring Files
+
+# A .gitignore that isn't shared on the public repo
+alias vilocalignor='vi .git/info/exclude' 
+# This tells all repos on your machine to ignore the files listed in 
+# .gitignore_global
+# https://help.github.com/articles/ignoring-files/#create-a-global-gitignore
+alias git-ignore-awesome="git config --global core.excludesfile ~/.gitignore_global"
 
 # delete file from git repo without deleting
 # git rm --cached mylogfile.log
@@ -101,16 +109,22 @@ get-gateway() { netstat -rn | grep -e '^0\.0\.0\.0 \s*[0-9]*\.[0-9]*\.[0-9]\.[0-
 
 
 # Backups
-alias sync-files-to-backup="rsync -avrh /media/kentos/f39c6a7b-0c94-4489-953b-dccb16f1037c/home/john john@192.168.0.56:/storage/backups/2014-9-19-bops-part/home/john"
+sync-files-to-backup() { 
+  rsync -avrh /media/kentos/f39c6a7b-0c94-4489-953b-dccb16f1037c/home/phill phill@192.168.0.56:/storage/backups/tesla/home/phill ; 
+}
 
 # File System
 fs-rename-files-to-linux-style() {
   ls | while read -r FILE
   do
     mv -v "$FILE" `echo $FILE | tr ' ' '_' | tr -d '[{}(),\!]' | tr -d "\'" | tr '[A-Z]' '[a-z]' | sed 's/_-_/_/g'`
-    done ;
+  done ;
 }
 
+# DL a file from another machine via ssh
+# dl-ssh() { scp server:/file.txt . }
+
+#  ssh-copy-id -i identity_file remote_host 
 
 
 ############
