@@ -121,6 +121,9 @@ fs-rename-files-to-linux-style() {
   done ;
 }
 
+# Write raspbian to memory card 
+# dd bs=4M if=2015-02-16-raspbian-wheezy.img of=/dev/mmcblk0
+
 # DL a file from another machine via ssh
 # dl-ssh() { scp server:/file.txt . }
 
