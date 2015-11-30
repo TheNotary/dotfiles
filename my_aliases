@@ -2,7 +2,7 @@
 alias t="screen -r"
 #alias focus="cd ~/dev/ruby/lmpm"
 #alias focus="cd ~/dev/rails/"
-alias f="cd ~/dev/rails/xpd3"
+alias f="cd ~/dev/work/web/oc"
 #alias focus="cd ~/dev/cpp/ruby_one_click"
 #alias focus="cd ~/dev/rails/ruby_reloaded"
 
@@ -13,11 +13,18 @@ alias f="cd ~/dev/rails/xpd3"
 # Developer #
 #############
 
+# Kills all instances of ruby
+function kill-ruby { ps -A|grep ruby |awk '{print $1}' | xargs kill -s 9 ; }
+
+
 # instant web server in the current directory
 #python -m SimpleHTTPServer
 # this is so clever...  ruby -r un requires the 'un' library... which
 # provides the command 'httpd' which is a wrapper for using weBrick
 alias rhttp='rvmsudo ruby -run -e httpd .'
+
+# Use this cmd to dl a web page and it's css/js file if you're not sure where a string comes from
+alias dl_resources_for_grepping='wget -p -k http://localhost:3000'
 
 alias r='rails'
 # To properly test, make sure you're running 'spork' in another terminal window
@@ -47,6 +54,7 @@ alias gsnm='git branch --no-merged'  # view branches that still need to be merge
 alias gis="git status"
 alias gsnm='git branch --no-merged' # show branches you need to merge still
 alias glg="git log --branches --tags --graph --oneline --decorate"
+alias gdn='git diff --name-only'
 
 # Research:
 alias gdump="git log --oneline -p > /tmp/git/huge" # dump out contents of every file at each commit.  Allows searching 
@@ -59,9 +67,13 @@ alias gdfh="git diff --color HEAD"
 # tags
 alias gat="git tag -a 'v1.0.0' -m 'this version works well'"
 alias gct="git checkout -t" # checkout specific tag
+# git push --tags
+# git push origin :refs/tags/tag_name_deleted
 # Merging
 alias gir="git rebase" # puts all your commits (in your current branch) ontop of the branch specified
 alias gmr="git merge" # merges the specified branch onto the current branch.. creating a mrege commit
+# This will delete any locally tracked remote branches if they're removed from origin
+alias gbc="git fetch origin --prune"
 
 # Ignoring Files
 
@@ -90,14 +102,27 @@ alias mongoshell="mongo --shell --host $MONGODB_DEVELOPMENT_HOST --port $MONGODB
 ##############
 # Linux user #
 ##############
+#
+# Privacy
+alias anongo='sudo service openvpn start; sudo ufw enable;'
+alias anonstop='sudo service openvpn stop; sudo ufw disable;'
 # Package Maintenance
 alias latest-installs='grep " install " /var/log/dpkg.*'
 alias latest-upgrades='grep " upgrade " /var/log/dpkg.*'
 alias latest-removes='grep " remove " /var/log/dpkg.*'
 
+alias minecraft="java -jar ~/bin/minecraft/minecraft.jar &"
+
 # http://ubuntuforums.org/showthread.php?t=564301
 use-network-apt-cacher() { echo 'Acquire::http::Proxy "http://hostname:3142";' | sudo tee /etc/apt/apt.conf.d/01proxy; }
 use-direct-apt-querying() { echo 'Acquire::http::Proxy "http://";' | sudo tee /etc/apt/apt.conf.d/01proxy; }
+
+# re-format and partition SDCARD
+# gparted
+
+# compress file
+alias compress-file-with-zip='zip my.zip file'
+alias decompress-file-with-zip='unzip my.zip'
 
 # Service management
 alias s='sudo service'
@@ -109,6 +134,7 @@ get-gateway() { netstat -rn | grep -e '^0\.0\.0\.0 \s*[0-9]*\.[0-9]*\.[0-9]\.[0-
 
 
 # Backups
+# Don't use this, see the script backup_self
 sync-files-to-backup() { 
   rsync -avrh /media/kentos/f39c6a7b-0c94-4489-953b-dccb16f1037c/home/phill phill@192.168.0.56:/storage/backups/tesla/home/phill ; 
 }
@@ -136,6 +162,11 @@ fs-rename-files-to-linux-style() {
 
 # Define a bash function 
 say-hello() { echo "hello ${1}" ;}
+
+# convert unix line endings to dos
+# awk 'sub("$", "\r")' unixfile.txt > winfile.txt
+# All .js files in directory
+# find . -name *.js |xargs dos2unix
 
 
 # Database
