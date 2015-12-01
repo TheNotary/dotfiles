@@ -160,6 +160,9 @@ fs-rename-files-to-linux-style() {
 # sysadmin #
 ############
 
+# restore a burp backup to a file
+alias burp_restore="burp -C obelisk -a r -d /storage/dumps_of_burp/obelisk"
+
 # Define a bash function 
 say-hello() { echo "hello ${1}" ;}
 
