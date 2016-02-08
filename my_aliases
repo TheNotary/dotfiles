@@ -31,7 +31,7 @@ alias dl_resources_for_grepping='wget -p -k http://localhost:3000'
 
 alias r='rails'
 # To properly test, make sure you're running 'spork' in another terminal window
-alias test='bundle exec rspec --drb spec/'
+alias test-rails='bundle exec rspec --drb spec/'
 alias bundle-install='bundle install --without development test'
 alias be='bundle exec'
 alias ber='bundle exec rake'
