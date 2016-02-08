@@ -1,8 +1,9 @@
 # focus on specific tasks...
-alias t="screen -r"
+# These should go in .this_machine
+#alias t="screen -r"
 #alias focus="cd ~/dev/ruby/lmpm"
 #alias focus="cd ~/dev/rails/"
-alias f="cd ~/dev/work/web/oc"
+#alias f="cd ~/dev/work/web/oc"
 #alias focus="cd ~/dev/cpp/ruby_one_click"
 #alias focus="cd ~/dev/rails/ruby_reloaded"
 
@@ -16,6 +17,8 @@ alias f="cd ~/dev/work/web/oc"
 # Kills all instances of ruby
 function kill-ruby { ps -A|grep ruby |awk '{print $1}' | xargs kill -s 9 ; }
 
+# tests if a page is being cached by showing you headers
+alias tcache="curl -svo /dev/null "
 
 # instant web server in the current directory
 #python -m SimpleHTTPServer
@@ -32,6 +35,9 @@ alias test='bundle exec rspec --drb spec/'
 alias bundle-install='bundle install --without development test'
 alias be='bundle exec'
 alias ber='bundle exec rake'
+
+# Run a single cucumber test
+# cucumber features/users/create_content.feature --require features
 
 ###
 # Git Stuff
@@ -55,6 +61,7 @@ alias gis="git status"
 alias gsnm='git branch --no-merged' # show branches you need to merge still
 alias glg="git log --branches --tags --graph --oneline --decorate"
 alias gdn='git diff --name-only'
+# $  git diff --color-words
 
 # Research:
 alias gdump="git log --oneline -p > /tmp/git/huge" # dump out contents of every file at each commit.  Allows searching 
@@ -90,6 +97,16 @@ alias git-ignore-awesome="git config --global core.excludesfile ~/.gitignore_glo
 # Ammend git commits (reuse the commit message for additional changes) by this
 # $  git commit --allow-empty -m "cool message"
 # $  git commit -a --amend
+
+# Colaborating
+
+# Bring lagging origin up to state of upstream
+# $  git fetch upstream
+# $  git reset --hard upstream/master
+
+# Pull in pull request so it can be merged with out an annoying blank commit
+# $  
+
 
 # hub aliases
 alias hubshow='cat ~/.config/hub'
@@ -209,6 +226,12 @@ mysql-rm-database() { mysql -u${1} -p -e "drop database ${2}"; }
 
 mysql-temp-store-pw() { echo -e "[client]\nuser=${1}\npassword=${2}" > mysql_helper_from_script$$; }
 mysql-temp-clear-pw() { rm mysql_helper_from_script$$; }
+
+# Create database user and grant full access
+#
+# $  su; su postgres; psql
+#
+# > CREATE USER jack WITH PASSWORD 'password' CREATEDB SUPERUSER;
 
 # Linux specific aliases
 alias latest-installs='grep " install " /var/log/dpkg.*'

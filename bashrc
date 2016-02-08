@@ -3,9 +3,9 @@ export WINEARCH=win32
 [ -e $HOME/.this_machine ] && source $HOME/.this_machine
 [ -e $HOME/.mongodbrc ] && source $HOME/.mongodbrc
 [ -e $HOME/.rails_secrets ] && source $HOME/.rails_secrets
+source $HOME/.my_aliases
 
 export PATH="$PATH:$HOME/.npm-packages/bin"
-source $HOME/.my_aliases
 #
 ## setup git to use vim and not NANO
 export VISUAL=vim
@@ -32,3 +32,6 @@ if [ -d "$HOME/.rvm/bin" ] ; then
 fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
+
+# added by travis gem
+[ -f /home/john/.travis/travis.sh ] && source /home/john/.travis/travis.sh
