@@ -1,0 +1,12 @@
+[user]
+  email = no@email.plz
+  name = TheNotary
+[push]
+  default = matching
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
