@@ -4,7 +4,7 @@ These are my dotfiles.  Some of them are handy aliases, some of them serve mostl
 ##To deploy the configs on a new machine
 
 
-    $ cd $
+    $ cd ~
     
     # With write access to my repo...
     $ git clone git@github.com:TheNotary/dotfiles.git
