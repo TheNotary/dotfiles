@@ -1,4 +1,8 @@
 export WINEARCH=win32
+
+# Chance this to 'server' to get the bash prompt to look different
+bash_display_style=normal
+
 #
 [ -e $HOME/.this_machine ] && source $HOME/.this_machine
 [ -e $HOME/.mongodbrc ] && source $HOME/.mongodbrc
@@ -99,6 +103,9 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
+    if [ "$bash_display_style" = "server" ]; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;35m\]\u [\h]\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
+    fi
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
