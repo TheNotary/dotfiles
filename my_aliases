@@ -2,9 +2,7 @@
 # These should go in .this_machine
 #alias t="screen -r"
 #alias focus="cd ~/dev/ruby/lmpm"
-#alias focus="cd ~/dev/rails/"
 #alias f="cd ~/dev/work/web/oc"
-alias f="cd ~/dev/work/web/eff_fab"
 #alias focus="cd ~/dev/cpp/ruby_one_click"
 #alias focus="cd ~/dev/rails/ruby_reloaded"
 
@@ -143,6 +141,9 @@ use-direct-apt-querying() { echo 'Acquire::http::Proxy "http://";' | sudo tee /e
 # compress file
 alias compress-file-with-zip='zip my.zip file'
 alias decompress-file-with-zip='unzip my.zip'
+
+# compress image
+alias compress-image-file='jpegoptim -m70'
 
 # Service management
 alias s='sudo service'
