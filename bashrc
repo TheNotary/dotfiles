@@ -1,6 +1,7 @@
 export WINEARCH=win32
 
 # Chance this to 'server' to get the bash prompt to look different
+# do this in .this_machine if you're clever
 bash_display_style=normal
 
 #
