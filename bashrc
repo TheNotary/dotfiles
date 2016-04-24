@@ -16,6 +16,9 @@ export PATH="$PATH:$HOME/.npm-packages/bin"
 export VISUAL=vim
 export EDITOR=vim
 
+# makes it so you don't need sudo to install npm packages
+NPM_PACKAGES="$HOME/.npm-packages"
+
 # put java in path
 #PATH=$PATH:/usr/lib/jvm/jre1.8.0_45/bin
 #export JAVA_HOME=/usr/lib/jvm/jre1.8.0_45/bin
