@@ -184,6 +184,16 @@ fs-rename-files-to-linux-style() {
 # restore a burp backup to a file
 alias burp_restore="burp -C obelisk -a r -d /storage/dumps_of_burp/obelisk"
 
+# Network monitoring
+#
+# darkstat -i wlan0 ;  lynx 127.0.0.1:667
+#
+# sudo netstat -tpn wlan0
+#
+# sudo nload wlan0
+#
+# http://serverfault.com/questions/407968/how-find-out-what-or-who-is-using-my-bandwidth
+
 # Define a bash function 
 say-hello() { echo "hello ${1}" ;}
 
