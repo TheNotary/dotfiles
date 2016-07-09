@@ -181,16 +181,26 @@ fs-rename-files-to-linux-style() {
 # sysadmin #
 ############
 
+# launch_vpnd
+alias vpnd="docker run --volumes-from $OVPN_DATA -p 1194:1194/udp --privileged -e DEBUG=1 kylemanna/openvpn"
+
 # restore a burp backup to a file
 alias burp_restore="burp -C obelisk -a r -d /storage/dumps_of_burp/obelisk"
 
+# To backup
+alias burp_backup="sudo burp -a b"
+
 # Network monitoring
 #
-# darkstat -i wlan0 ;  lynx 127.0.0.1:667
+# sudo darkstat -i wlan0 ;  lynx 127.0.0.1:667
 #
 # sudo netstat -tpn wlan0
 #
 # sudo nload wlan0
+#
+# # throttle bandwidth
+# sudo wondershaper wlan0 256 128
+# sudo wondershaper clear wlan0
 #
 # http://serverfault.com/questions/407968/how-find-out-what-or-who-is-using-my-bandwidth
 
