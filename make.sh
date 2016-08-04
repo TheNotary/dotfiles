@@ -13,7 +13,7 @@
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/dotfiles_old             # old dotfiles backup directory
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )  # Get current directory of script
-files="$(ls $DIR)"                   # list of files/folders to symlink in homedir
+files="$(ls $DIR)"                # list of files/folders to symlink in homedir
 
 
 ###############################
@@ -43,7 +43,7 @@ echo "...done"
 for file in $files; do
   
   # skip the README.md and make.sh file #
-  if [ "$file" = "README.md" ] || [ "$file" = "make.sh" ]
+  if [ "$file" = "README.md" ] || [ "$file" = "make.sh" ] || [ "$file" = "fresh_install_script" ]
   then
    echo "skipping $file"
    continue      # Skip rest of this particular loop iteration.
