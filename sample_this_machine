@@ -1,0 +1,26 @@
+# ~/.this_machine
+# 
+# This is a file where you you place all bash commands you want to run
+# that are specific to this current machine.  Good candidates for things
+# to add here are any passwords/ sensative datas or just special things 
+# that are specific to this machine
+
+# Just type `f` to get to a project folder you're currently working on
+alias f='cd ~/dev/web/'
+
+
+# This enables golang
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/dev/go
+export PATH=$PATH:$GOPATH/bin
+export MAC="d4:be:d9:6d:5e:02"
+
+
+# Enables android development/ java
+# export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+export ANDROID_HOME=/home/john/Android/Sdk
+export PATH=$PATH:"/home/john/Android/Sdk/platform-tools"
+export PATH=$PATH:"/home/john/Android/Sdk/tools"
+
+

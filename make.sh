@@ -43,7 +43,7 @@ echo "...done"
 for file in $files; do
   
   # skip the README.md and make.sh file #
-  if [ "$file" = "README.md" ] || [ "$file" = "make.sh" ] || [ "$file" = "fresh_install_script" ]
+  if [ "$file" = "README.md" ] || [ "$file" = "make.sh" ] || [ "$file" = "fresh_install_script" ] || [ "$file" = "sample_this_machine" ]
   then
    echo "skipping $file"
    continue      # Skip rest of this particular loop iteration.
