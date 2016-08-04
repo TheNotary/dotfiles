@@ -26,6 +26,10 @@ alias bundle-install='bundle install --without development test'
 alias be='bundle exec'
 alias ber='bundle exec rake'
 
+# http://collectiveidea.com/blog/archives/2014/02/18/a-simple-pair-programming-setup-with-ssh-and-tmux/
+alias pairing-session-start='tmux new-session -s pair'
+alias pairing-session-join='tmux attach -t pair'
+
 # Run a single cucumber test
 # cucumber features/users/create_content.feature --require features
 
