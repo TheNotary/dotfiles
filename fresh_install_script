@@ -7,17 +7,31 @@
 
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install -y xbindkeys xbindkeys-config xautomation nbtscan grdesktop xcalib ekiga vim xclip dconf-tools tree youtube-dl
-sudo apt-get install -y docky keepassx virtualbox
-sudo apt-get install -y build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf mysql-server mysql-client libmysqlclient15-dev
+
+# OS UX
+sudo apt-get install -y docky xbindkeys xbindkeys-config xautomation nbtscan grdesktop xcalib ekiga 
+
+# CLI Tools
+sudo apt-get install -y tree vim xclip dconf-tools youtube-dl
+
+# Business Applications
+sudo apt-get install -y keepassx virtualbox 
+
+# Software Development Utilities
+sudo apt-get install -y mysql-server mysql-client sqlite3 
+
+# Software Development Libraries
+sudo apt-get install -y build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev libxml2-dev libxslt-dev autoconf libmysqlclient15-dev
 
 # Install ruby
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 \curl -sSL https://get.rvm.io | bash -s stable --ruby
 
+
 #
 # Install node
 #
+
 # Not stable enough to script yet =P
 # https://nodejs.org/en/download/
 
