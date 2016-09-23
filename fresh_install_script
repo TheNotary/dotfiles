@@ -18,7 +18,7 @@ sudo apt-get install -y tree vim xclip dconf-tools youtube-dl
 sudo apt-get install -y keepassx virtualbox 
 
 # Software Development Utilities
-sudo apt-get install -y mysql-server mysql-client sqlite3 
+sudo apt-get install -y mysql-server mysql-client sqlite3 graphviz
 
 # Software Development Libraries
 sudo apt-get install -y build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev libxml2-dev libxslt-dev autoconf libmysqlclient15-dev
@@ -32,8 +32,8 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB8
 # Install node
 #
 
-# Not stable enough to script yet =P
-# https://nodejs.org/en/download/
+# Use nvm!
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
 
 #
 # Install docker... too important not to script

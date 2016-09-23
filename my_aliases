@@ -41,6 +41,7 @@ alias pairing-session-join='tmux attach -t pair'
 alias gis="git status"
 # Committing
 alias ga="git add -au" # adds all files and removed files to staging
+alias gam="git add -A; git commit --amend"
 alias gcm="git commit -m"
 alias gundo-last-commit-retain-progress='git stash && git reset --hard && git stash pop'
 alias gundo-commit-on-remote='git push origin :master'
