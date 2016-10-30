@@ -3,6 +3,9 @@
 #############
 
 alias vs="vagrant ssh"
+alias vm-list="vboxmanage list vms -l | awk '/^Name:  / || /^State: / {if (\$1 ==\"State:\") print \"  - \" \$2 \" \" \$3; else print \$2; }'"
+alias vm-list-hdds="vboxmanage list hdds | awk '/^Location:  / || /^Capacity: / {if (\$1 ==\"Capacity:\") {printf \"  -$1 \"; printf \$2 \" \";} print \$3}'"
+alias vm-start="vboxmanage startvm --type headless"
 
 # Kills all instances of ruby
 function kill-ruby { ps -A|grep ruby |awk '{print $1}' | xargs kill -s 9 ; }
