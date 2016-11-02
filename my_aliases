@@ -119,6 +119,9 @@ alias mongoshell="mongo --shell --host $MONGODB_DEVELOPMENT_HOST --port $MONGODB
 # Linux user #
 ##############
 
+# Video
+
+
 # Privacy
 alias anongo='sudo service openvpn start; sudo ufw enable;'
 alias anonstop='sudo service openvpn stop; sudo ufw disable;'
