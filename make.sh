@@ -91,3 +91,5 @@ for folder in $folders; do
   done
 
 done
+
+exit
