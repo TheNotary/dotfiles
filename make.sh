@@ -87,7 +87,7 @@ for folder in $folders; do
 	  mv ~/.${folder}/$file ${olddir}/complex/${folder}/${file}
 
 	  echo "Creating symlink to ~/.${folder}/${file}"
-    ln -s ${PWD}/${file} ~/.${folder}/${file}
+    [ -e ~/.${folder}/ ] && ln -s ${PWD}/${file} ~/.${folder}/${file}
   done
 
 done
