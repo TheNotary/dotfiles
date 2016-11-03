@@ -51,7 +51,7 @@ for file in $files; do
 
 
 	echo "Moving any existing dotfiles from ~ to $olddir"
-	mv ${HOME}/.$file ${HOME}/dotfiles_old/
+	[ -e ${HOME}/.${file} ] && mv ${HOME}/.${file} ${HOME}/dotfiles_old/
 	echo "Creating symlink to $file in home directory."
 	ln -s $dir/$file ${HOME}/.$file
 done
@@ -84,7 +84,7 @@ for folder in $folders; do
   complex_files="$(ls ${PWD})"
   for file in ${complex_files}; do
     echo "Making backup of ${file} in ${olddir}/complex/${folder}/${file}"
-	  mv ${HOME}/.${folder}/$file ${olddir}/complex/${folder}/${file}
+	  [ -e ${HOME}/.${folder}/${file} ] && mv ${HOME}/.${folder}/${file} ${olddir}/complex/${folder}/${file}
 
 	  echo "Creating symlink to ~/.${folder}/${file}"
     [ -e ${HOME}/.${folder}/ ] && ln -s ${PWD}/${file} ${HOME}/.${folder}/${file}
