@@ -10,8 +10,8 @@
 #          Variables          #
 ###############################
 
-dir=~/dotfiles                    # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
+dir=${HOME}/dotfiles                    # dotfiles directory
+olddir=${HOME}/dotfiles_old             # old dotfiles backup directory
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )  # Get current directory of script
 files="$(ls $DIR)"                # list of files/folders to symlink in homedir
 
@@ -51,9 +51,9 @@ for file in $files; do
 
 
 	echo "Moving any existing dotfiles from ~ to $olddir"
-	mv ~/.$file ~/dotfiles_old/
+	mv ${HOME}/.$file ${HOME}/dotfiles_old/
 	echo "Creating symlink to $file in home directory."
-	ln -s $dir/$file ~/.$file
+	ln -s $dir/$file ${HOME}/.$file
 done
 
 # Complex Phase
@@ -84,10 +84,10 @@ for folder in $folders; do
   complex_files="$(ls ${PWD})"
   for file in ${complex_files}; do
     echo "Making backup of ${file} in ${olddir}/complex/${folder}/${file}"
-	  mv ~/.${folder}/$file ${olddir}/complex/${folder}/${file}
+	  mv ${HOME}/.${folder}/$file ${olddir}/complex/${folder}/${file}
 
 	  echo "Creating symlink to ~/.${folder}/${file}"
-    [ -e ~/.${folder}/ ] && ln -s ${PWD}/${file} ~/.${folder}/${file}
+    [ -e ${HOME}/.${folder}/ ] && ln -s ${PWD}/${file} ${HOME}/.${folder}/${file}
   done
 
 done
