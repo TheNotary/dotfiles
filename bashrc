@@ -96,13 +96,15 @@ purple='\e[0;35m'
 cyan='\e[0;36m'
 white='\e[0;37m'
 
+# ⚡ ♢ ◊ ❰❱ ℵ ∴ ♠ ∫
+
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
     if [ "$bash_display_style" = "server" ]; then
         PS1='${debian_chroot:+($debian_chroot)}\[\033[01;35m\]\u [\h]\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
     fi
     if [ "$bash_display_style" = "prototype" ]; then
-        PS1="\[${blue}\]\u\[${purple}\]::\[${blue}\][\h] \w \[${color_off}\]\[${yellow}\]λ \[${color_off}\]"
+        PS1="\[${blue}\]\u[\h]\[${purple}\] ♢\[${blue}\] \w \[${color_off}\]\[${yellow}\]λ \[${color_off}\]"
     fi
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
