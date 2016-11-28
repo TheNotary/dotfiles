@@ -122,7 +122,9 @@ alias mongoshell="mongo --shell --host $MONGODB_DEVELOPMENT_HOST --port $MONGODB
 # Video
 # DL all videos of a youtube playlist BY PLAYLIST ID (eg PL0zVEGEvSaeFSwPn06GKArptSxiP1Gff8)
 dl-playlist-by-id() { youtube-dl -cit -f best https://www.youtube.com/watch?list=${1};}
-
+# Parse a web page's source for all it's embedded youtube vids and return a list of it's video ids
+# parse-page-for-embeds source.txt | xargs -n1 youtube-dl
+parse-page-for-embeds() { grep -oP 'https:\/\/www.youtube.com([^"]*)' ${1} | sed  's/https\:\/\/www\.youtube\.com\/embed\///'; }
 
 # Privacy
 alias anongo='sudo service openvpn start; sudo ufw enable;'
