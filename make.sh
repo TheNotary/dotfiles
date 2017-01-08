@@ -6,14 +6,22 @@
 # dotfiles in ~/dotfiles                                              #
 #######################################################################
 
+
 ###############################
 #          Variables          #
 ###############################
 
-dir=${HOME}/dotfiles                    # dotfiles directory
-olddir=${HOME}/dotfiles_old             # old dotfiles backup directory
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )  # Get current directory of script
-files="$(ls $DIR)"                # list of files/folders to symlink in homedir
+# old dotfiles backup directory
+backup_dir=${HOME}/dotfiles_backups/dotfiles_$(date +"%Y-%m-%d_%H-%M-%S")
+
+# Get current directory of script
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+# list of files/folders to symlink in homedir
+files="$(ls $DIR)"
+
+# dotfiles directory
+dir=${HOME}/dotfiles
 
 
 ###############################
@@ -30,8 +38,8 @@ then
 fi
 
 # create dotfiles_old in homedir
-echo "Creating ${olddir} for backup of any existing dotfiles in ~"
-mkdir -p ${olddir}/complex
+echo "Creating ${backup_dir} for backup of any existing dotfiles in ~"
+mkdir -p ${backup_dir}/complex
 echo "...done"
 
 # change to the dotfiles directory
@@ -50,7 +58,7 @@ for file in $files; do
   fi
 
 
-  echo "Moving any existing dotfiles from ~ to $olddir"
+  echo "Moving any existing dotfiles from ~ to $backup_dir"
   [ -e ${HOME}/.${file} ] && mv ${HOME}/.${file} ${HOME}/dotfiles_old/
   echo "Creating symlink to $file in home directory."
   ln -s $dir/$file ${HOME}/.$file
@@ -60,8 +68,8 @@ done
 #
 #   The primary configuration file for Atom is `~/.atom/config.cson`
 # We don't want to version control anything else, and we don't want anything in
-# that folder removed when we run `~/.make.sh`  other than a few specific 
-# config files.  So we can drop the config files in `~/dotfiles/complex/atom/` 
+# that folder removed when we run `~/.make.sh`  other than a few specific
+# config files.  So we can drop the config files in `~/dotfiles/complex/atom/`
 # to have them directly installed into the proper place...
 
 # change to the dotfiles directory
@@ -73,17 +81,13 @@ folders="$(ls ${PWD})"
 for folder in $folders; do
   echo "folder name: ${folder}"
 
-  # Making backup of entire directory was to heavy...
-  #echo "Making a copy of existing config folders at ~/ to ${olddir}/complex"
-  #cp -R ~/.${folder} ${olddir}/complex/${folder}
-
   # cd into the folder
   cd $folder
   complex_files="$(ls ${PWD})"
   for file in ${complex_files}; do
-    echo "Making backup of ${file} in ${olddir}/complex/${folder}/${file}"
-    mkdir ${olddir}/complex/${folder}
-    [ -e ${HOME}/.${folder}/${file} ] && mv ${HOME}/.${folder}/${file} ${olddir}/complex/${folder}/${file}
+    echo "Making backup of ${file} in ${backup_dir}/complex/${folder}/${file}"
+    mkdir ${backup_dir}/complex/${folder}
+    [ -e ${HOME}/.${folder}/${file} ] && mv ${HOME}/.${folder}/${file} ${backup_dir}/complex/${folder}/${file}
 
     echo "Creating symlink to ~/.${folder}/${file}"
     [ -e ${HOME}/.${folder}/ ] && ln -s ${PWD}/${file} ${HOME}/.${folder}/${file}
