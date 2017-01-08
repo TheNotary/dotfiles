@@ -82,6 +82,7 @@ for folder in $folders; do
   complex_files="$(ls ${PWD})"
   for file in ${complex_files}; do
     echo "Making backup of ${file} in ${olddir}/complex/${folder}/${file}"
+    mkdir ${olddir}/complex/${folder}
     [ -e ${HOME}/.${folder}/${file} ] && mv ${HOME}/.${folder}/${file} ${olddir}/complex/${folder}/${file}
 
     echo "Creating symlink to ~/.${folder}/${file}"
