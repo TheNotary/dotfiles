@@ -40,8 +40,6 @@ alias pairing-session-join='tmux attach -t pair'
 # Git Stuff #
 #############
 
-# Basics:
-alias gis="git status"
 # Committing
 alias ga="git add -au" # adds all files and removed files to staging
 alias gam="git add -A; git commit --amend"
@@ -58,6 +56,7 @@ alias gsnm='git branch --no-merged'  # view branches that still need to be merge
 # graphical commit history/log
 alias c="git checkout"
 alias gis="git status"
+alias gts="git status"
 alias gsnm='git branch --no-merged' # show branches you need to merge still
 alias glg="git log --branches --tags --graph --oneline --decorate --remotes"
 alias gdn='git diff --name-only'
