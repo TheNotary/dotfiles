@@ -1,0 +1,45 @@
+###########################
+# xbindkeys configuration #
+###########################
+# Another way to specifie a key is to use 'xev' and set the 
+# keycode with c:nnn or the modifier with m:nnn where nnn is 
+# the keycode or the state returned by xev 
+#
+#keystate_scrolllock = enable
+#keystate_capslock = enable
+
+#Start Menu
+#"gnome-terminal"
+#    m:0x50 + c:133
+#    Mod2+Mod4 + Meta_L
+
+
+#Nemo
+	 # It seems that over time... the gnome terminal will become 'odd' and when 
+	 # you launch nemo from it, the nemo will be 'odd' (it visibly will not 
+	 # have the devices menu in the left pane). 
+	 # To get things right...  Close gnome terminal and start it up again (make
+	 # sure it isn't "odd") and then restart xbindkeys.  
+#"nemo -n ~/"     # april 9th, i'm noticing a bug where it can't do smb://name
+"nemo --no-desktop -n ~/"   
+    m:0x1c + c:26
+    Control+Alt + e 
+
+#Invert Screen Colors
+"xcalib -i -a"
+    Control+Alt + m
+
+#Tab Left
+"xte 'keydown Control_L' 'keydown Shift_L' 'key Tab' 'keyup Shift_L' 'keyup Control_L'"
+   b:6
+
+#Tab Right
+"xte 'keydown Control_L' 'key Tab' 'keyup Control_L'"
+   b:7
+
+
+
+#  set gnome terminal via gconf-editor to next tab = ctrl+shift+j/l
+
+#
+# End of xbindkeys configuration
