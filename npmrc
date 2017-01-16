@@ -1,1 +1,3 @@
-prefix=${HOME}/.npm-packages
+# nvm whines of not supporting prefix... deprecating... for now
+# prefix=${HOME}/.npm-packages
+
