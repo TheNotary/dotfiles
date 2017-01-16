@@ -37,7 +37,7 @@ then
   exit 1
 fi
 
-# create dotfiles_old in homedir
+# create backup_dir in homedir
 echo "Creating ${backup_dir} for backup of any existing dotfiles in ~"
 mkdir -p ${backup_dir}/complex
 echo "...done"
@@ -47,7 +47,7 @@ echo "Changing to the ${dir} directory"
 cd ${dir}
 echo "...done"
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
+# move any existing dotfiles in homedir to backup_dir directory, then create symlinks
 for file in $files; do
 
   # skip the README.md and make.sh file #
@@ -59,7 +59,7 @@ for file in $files; do
 
 
   echo "Moving any existing dotfiles from ~ to $backup_dir"
-  [ -e ${HOME}/.${file} ] && mv ${HOME}/.${file} ${HOME}/dotfiles_old/
+  [ -e ${HOME}/.${file} ] && mv ${HOME}/.${file} ${backup_dir}
   echo "Creating symlink to $file in home directory."
   ln -s $dir/$file ${HOME}/.$file
 done
@@ -86,7 +86,7 @@ for folder in $folders; do
   complex_files="$(ls ${PWD})"
   for file in ${complex_files}; do
     echo "Making backup of ${file} in ${backup_dir}/complex/${folder}/${file}"
-    mkdir ${backup_dir}/complex/${folder}
+    [ ! -e ${backup_dir}/complex/${folder} ] && mkdir ${backup_dir}/complex/${folder}
     [ -e ${HOME}/.${folder}/${file} ] && mv ${HOME}/.${folder}/${file} ${backup_dir}/complex/${folder}/${file}
 
     echo "Creating symlink to ~/.${folder}/${file}"
