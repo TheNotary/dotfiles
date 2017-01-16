@@ -9,19 +9,23 @@ sudo apt-get update
 sudo apt-get upgrade
 
 # OS UX
-sudo apt-get install -y docky xbindkeys xbindkeys-config xautomation nbtscan grdesktop xcalib ekiga 
+sudo apt-get install -y docky xbindkeys xbindkeys-config xautomation grdesktop xcalib ekiga
 
 # CLI Tools
-sudo apt-get install -y tree vim xclip dconf-tools youtube-dl
+sudo apt-get install -y tree vim xclip dconf-tools youtube-dl nbtscan
 
 # Business Applications
-sudo apt-get install -y keepassx virtualbox 
+sudo apt-get install -y keepassx virtualbox
 
 # Software Development Utilities
 sudo apt-get install -y mysql-server mysql-client sqlite3 graphviz
 
 # Software Development Libraries
-sudo apt-get install -y build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev libxml2-dev libxslt-dev autoconf libmysqlclient15-dev
+sudo apt-get install -y build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev libxml2-dev libxslt-dev autoconf 
+
+# volitile and dangerous dev deps:
+sudo apt-get install -y libmysqlclient15-dev libmysqlclient2-dev
+
 
 # Install ruby
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
