@@ -205,7 +205,8 @@ alias burp_backup="sudo burp -a b"
 # sudo nload wlan0
 #
 # # throttle bandwidth
-# sudo wondershaper wlan0 256 128
+# sudo wondershaper wlan0 256 128 # go hella slow
+# sudo wondershaper wlp8s0 20480 750 # allow uploading without shutting down internet 
 # sudo wondershaper clear wlan0
 #
 # http://serverfault.com/questions/407968/how-find-out-what-or-who-is-using-my-bandwidth
