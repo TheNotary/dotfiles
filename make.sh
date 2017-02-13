@@ -33,7 +33,7 @@ dir=${HOME}/dotfiles
 if [ "$( cd ${DIR} && echo ${PWD##*/} )" != "dotfiles" ]
 then
   echo "The folder you ran this script from isn't named 'dotfiles'... so the script \nhas been blocked from to prevent you from accidentally creating a bunch of symlinks you don't actually want"
-  echo "Symlinks that would have been made:  ${files}"
+  echo "Please clone the dotfiles repo to ~/dotfile and run `make.sh` from within that dir"
   exit 1
 fi
 
@@ -45,7 +45,7 @@ echo "...done"
 # change to the dotfiles directory
 echo "Changing to the ${dir} directory"
 cd ${dir}
-echo "...done"
+echo "  ...done"
 
 # move any existing dotfiles in homedir to backup_dir directory, then create symlinks
 for file in $files; do
@@ -74,15 +74,15 @@ done
 
 # change to the dotfiles directory
 echo "Changing to the $dir/complex directory"
-cd ${dir}/complex
-echo "...done"
+pushd ${dir}/complex
+echo ""
 
 folders="$(ls ${PWD})"
 for folder in $folders; do
   echo "folder name: ${folder}"
 
   # cd into the folder
-  cd $folder
+  pushd $folder
   complex_files="$(ls ${PWD})"
   for file in ${complex_files}; do
     echo "Making backup of ${file} in ${backup_dir}/complex/${folder}/${file}"
@@ -92,7 +92,11 @@ for folder in $folders; do
     echo "Creating symlink to ~/.${folder}/${file}"
     [ -e ${HOME}/.${folder}/ ] && ln -s ${PWD}/${file} ${HOME}/.${folder}/${file}
   done
+  popd
 
 done
+
+popd
+
 
 exit
