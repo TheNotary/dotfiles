@@ -13,7 +13,7 @@ fi
 # Source in additional resource files if they exist
 [ -e $HOME/.this_machine ] && source $HOME/.this_machine
 [ -e $HOME/.mongodbrc ] && source $HOME/.mongodbrc
-[ -e $HOME/.rails_secrets ] && source $HOME/.rails_secrets
+[ -e $HOME/.app_secrets ] && source $HOME/.app_secrets
 [ -e $HOME/.work_specific ] && source $HOME/.work_specific
 source $HOME/.my_aliases
 
