@@ -2,29 +2,32 @@
 # do this in .this_machine if you're clever
 bash_display_style=normal
 
+# FIXME: refactor this to b_completion_helper
+# enable bash completion in interactive shells
+if [ $(uname) == "Darwin" ]; then
+  [ -e $HOME/.git-completion.bash ] && source $HOME/.git-completion.bash
+else
+  [ -e /etc/bash_completion ] && . /etc/bash_completion
+fi
+
 # Source in additional resource files if they exist
 [ -e $HOME/.this_machine ] && source $HOME/.this_machine
 [ -e $HOME/.mongodbrc ] && source $HOME/.mongodbrc
 [ -e $HOME/.rails_secrets ] && source $HOME/.rails_secrets
+[ -e $HOME/.work_specific ] && source $HOME/.work_specific
 source $HOME/.my_aliases
 
-# enable bash completion in interactive shells
-if [ -f /etc/bash_completion ]; then
-  . /etc/bash_completion
-fi
 
+## Setup git
+# export GIT_AUTHOR_NAME=$MY_FULL_NAME
+# export GIT_AUTHOR_EMAIL=$MY_EMAIL
+# export GIT_COMMITTER_NAME=$MY_FULL_NAME
+# export GIT_COMMITTER_EMAIL=$MY_FULL_NAME
 
-#
 ## setup git to use vim and not NANO
 export VISUAL=vim
 export EDITOR=vim
 
-# setup colors I hope... this was for a vagrant box that was sucky to work with...
-
-
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -42,8 +45,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # Make it so you don't lose bash_history when multiple sessions are spun up
 #shopt -s histappend
@@ -92,22 +95,30 @@ fi
 # Custom Terminal Themes #
 ##########################
 
+# TODO:  if the latter colors don't mess up my screen in any way then delete the former duplicates since they're not needed
 color_off='\e[0m'
+color_off='\[\e[0m\]'
 black='\e[0;30m'
 red='\e[0;31m'
 green='\e[0;32m'
+green='\[\e[0;32m\]'
 yellow='\e[0;33m'
 blue='\e[0;34m'
+blue='\[\e[0;34m\]'
 purple='\e[0;35m'
+purple='\[\e[0;35m\]'
 cyan='\e[0;36m'
 white='\e[0;37m'
 
-# ⚡ ♢ ◊ ❰❱ ℵ ∴ ♠ ∫
+# ⚡ ♢ ◊ ❰❱ ℵ ∴ ♠ ∫ ❥ h
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
     if [ "$bash_display_style" = "server" ]; then
         PS1='${debian_chroot:+($debian_chroot)}\[\033[01;35m\]\u [\h]\[\033[00m\] \[\033[01;34m\]\w \$\[\033[00m\] '
+    fi
+    if [ "$bash_display_style" = "work" ]; then
+        PS1="${debian_chroot:+($debian_chroot)}${purple}\u ${blue}\w ${green} ❥ ${color_off}"
     fi
     if [ "$bash_display_style" = "prototype" ]; then
         PS1="\[${blue}\]\u[\h]\[${purple}\] ♢\[${blue}\] \w \[${color_off}\]\[${yellow}\]λ \[${color_off}\]"
@@ -176,4 +187,3 @@ if [ -d "$HOME/.rvm/bin" ] ; then
   PATH="$HOME/.rvm/bin:$PATH"
 fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-

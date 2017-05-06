@@ -7,6 +7,22 @@ alias vm-list="vboxmanage list vms -l | awk '/^Name:  / || /^State: / {if (\$1 =
 alias vm-list-hdds="vboxmanage list hdds | awk '/^Location:  / || /^Capacity: / {if (\$1 ==\"Capacity:\") {printf \"  -$1 \"; printf \$2 \" \";} print \$3}'"
 alias vm-start="vboxmanage startvm --type headless"
 
+# Beautify JSON objects
+# $  curl -s http://localhost:3000/publishing_houses | pj
+alias pj="python -m json.tool"
+
+# Use json syntax highlighting in vim
+#   :set syntax=json
+#   :color delek
+
+# Grep/ Find
+
+# Search through a directory for matches, show above and below 3 lines!
+# IE find within project!
+# grep -irn -C 3 "String to search for in directory" .
+function find-within-project { grep -irn -C 3 "$1" . ; }
+
+
 # Kills all instances of ruby
 function kill-ruby { ps -A|grep ruby |awk '{print $1}' | xargs kill -s 9 ; }
 
@@ -28,6 +44,7 @@ alias test-rails='bundle exec rspec --drb spec/'
 alias bundle-install='bundle install --without development test'
 alias be='bundle exec'
 alias ber='bundle exec rake'
+alias bec='bundle exec cucumber'
 
 # http://collectiveidea.com/blog/archives/2014/02/18/a-simple-pair-programming-setup-with-ssh-and-tmux/
 alias pairing-session-start='tmux new-session -s pair'
@@ -39,6 +56,13 @@ alias pairing-session-join='tmux attach -t pair'
 #############
 # Git Stuff #
 #############
+
+# Basics:
+alias gis="git status"
+# Show change set of a single commit
+#alias gs="git show"
+alias c="git checkout"
+__git_complete c _git_checkout  # auto-completion
 
 # Committing
 alias ga="git add -au" # adds all files and removed files to staging
@@ -53,11 +77,11 @@ alias gps='git push origin'
 
 # Monitoring:
 alias gsnm='git branch --no-merged'  # view branches that still need to be merged
-# graphical commit history/log
-alias c="git checkout"
+alias d="git diff"
+__git_complete d _git_diff  # auto-completion
 alias gis="git status"
-alias gts="git status"
 alias gsnm='git branch --no-merged' # show branches you need to merge still
+# graphical commit history/log
 alias glg="git log --branches --tags --graph --oneline --decorate --remotes"
 alias gdn='git diff --name-only'
 # $  git diff --color-words
@@ -80,6 +104,11 @@ alias gir="git rebase" # puts all your commits (in your current branch) ontop of
 alias gmr="git merge" # merges the specified branch onto the current branch.. creating a mrege commit
 # This will delete any locally tracked remote branches if they're removed from origin
 alias gbc="git fetch origin --prune"
+
+# git_diff_follow
+# do a head follow on the /tmp/diff file to watch the diff go
+alias git_diff_follow="watch -c -n 1 git diff" #harken_develop-rob jruby-normalizing config/secrets.yml
+__git_complete git_diff_follow _git_diff  # auto-completion
 
 # Ignoring Files
 

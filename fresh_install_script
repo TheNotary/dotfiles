@@ -21,20 +21,33 @@ sudo apt-get install -y keepassx virtualbox
 sudo apt-get install -y mysql-server mysql-client sqlite3 graphviz
 
 # Software Development Libraries
-sudo apt-get install -y build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev libxml2-dev libxslt-dev autoconf 
+sudo apt-get install -y build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev libxml2-dev libxslt-dev autoconf
 
-# volitile and dangerous dev deps:
+# volitile dev deps that change names capriciously:
 sudo apt-get install -y libmysqlclient15-dev libmysqlclient2-dev
-
 
 # Install ruby
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 \curl -sSL https://get.rvm.io | bash -s stable --ruby
 
+# Mac, OSX git branch tab completion
+# you need to source it...
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+# Stop your mac from sleeping when you lock the screen
+sudo pmset -a sleep 0
 
-#
-# Install node
-#
+
+###############
+# Vim Plugins #
+###############
+
+# Colorize log files
+# https://vim.sourceforge.io/scripts/script.php?script_id=302
+
+
+################
+# Install node #
+################
 
 # Use nvm!
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
@@ -46,7 +59,7 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | b
 sudo apt-get install -y apt-transport-https ca-certificates
 sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
-echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" > /etc/apt/sources.list.d/docker.list 
+echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" > /etc/apt/sources.list.d/docker.list
 
 sudo apt-get update
 sudo apt-get install -y linux-image-extra-$(uname -r)
@@ -60,6 +73,3 @@ sudo apt-get update
 sudo apt-get install atom
 
 apm install atom-beautify merge-conflicts rails-partials git-time-machine rails-transporter highlight-selected minimap-highlight-selected tabs-to-spaces language-javascript-jsx motepair
-
-
-

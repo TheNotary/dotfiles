@@ -10,6 +10,7 @@
       "*.md"
     ]
   core:
+    allowPendingPaneItems: false
     autoHideMenuBar: true
     telemetryConsent: "no"
     themes: [
