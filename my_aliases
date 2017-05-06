@@ -1,3 +1,5 @@
+source ~/.git-completion.bash
+
 #############
 # Developer #
 #############
@@ -314,3 +316,4 @@ scan-mail() { grep user-name@domain.com /var/log/maillog | grep retr= | awk {'pr
 #grep domain-name.net /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'
 # pass in domain.com as parameter
 scan-mail-sum() { grep 1 /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'; }
+

@@ -1,14 +1,17 @@
+#the_time=$(echo $(($(date +%s%N)/1000000)) |cut -c 8-); echo ${the_time:0:3}:${the_time:3}
+
 # Change this to 'server' to get the bash prompt to look different
 # do this in .this_machine if you're clever
 bash_display_style=normal
 
 # FIXME: refactor this to b_completion_helper
 # enable bash completion in interactive shells
-if [ $(uname) == "Darwin" ]; then
+if [ ${OSTYPE:0:6} == "darwin" ]; then
   [ -e $HOME/.git-completion.bash ] && source $HOME/.git-completion.bash
 else
   [ -e /etc/bash_completion ] && . /etc/bash_completion
 fi
+
 
 # Source in additional resource files if they exist
 [ -e $HOME/.this_machine ] && source $HOME/.this_machine
@@ -144,7 +147,6 @@ fi
 
 
 
-
 ###########################################
 # Automatically Added Stuff from Packages #
 ###########################################
@@ -178,12 +180,21 @@ export NODE_PATH="$HOME/.npm-packages/lib/node_modules:$NODE_PATH"
 
 export PATH="$PATH:$HOME/.npm-packages/bin"
 
-export NVM_DIR="/home/john/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
+# This loads nvm
+export NVM_DIR=~/.nvm
+function nvm {
+  if [ -s "$NVM_DIR/nvm.sh" ]; then
+    . "$NVM_DIR/nvm.sh"
+    nvm use system
+    nvm $@
+  else
+    echo "nvm hasn't been installed on this machine I think.  You're reading a bash function"
+  fi
+}
 
 ### Ruby Stuff
 if [ -d "$HOME/.rvm/bin" ] ; then
   PATH="$HOME/.rvm/bin:$PATH"
 fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
