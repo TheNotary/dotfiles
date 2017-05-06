@@ -8,6 +8,12 @@ bash_display_style=normal
 [ -e $HOME/.rails_secrets ] && source $HOME/.rails_secrets
 source $HOME/.my_aliases
 
+# enable bash completion in interactive shells
+if [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+fi
+
+
 #
 ## setup git to use vim and not NANO
 export VISUAL=vim

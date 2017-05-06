@@ -48,7 +48,7 @@ alias gundo-last-commit-retain-progress='git stash && git reset --hard && git st
 alias gundo-commit-on-remote='git push origin :master'
 # Git Root:  Go to the root of the project directory
 alias gr='cd "$(git rev-parse --show-toplevel)"'
-alias gpl='git pull origin' 
+alias gpl='git pull origin'
 alias gps='git push origin'
 
 # Monitoring:
@@ -63,10 +63,10 @@ alias gdn='git diff --name-only'
 # $  git diff --color-words
 
 # Research:
-alias gdump="git log --oneline -p > /tmp/git/huge" # dump out contents of every file at each commit.  Allows searching 
+alias gdump="git log --oneline -p > /tmp/git/huge" # dump out contents of every file at each commit.  Allows searching
 alias gago="git whatchanged --since='1 year ago'" # Looks at the diff since a year ago
 ghp() { git checkout $(git rev-list HEAD..master | tail -n 1); } #incriment HEAD, the opposit of git checkout HEAD^
-alias ghm="git checkout HEAD^"  # Git Head Minus 
+alias ghm="git checkout HEAD^"  # Git Head Minus
 
 alias gdf="git diff --color"
 alias gdfh="git diff --color HEAD"
@@ -84,8 +84,8 @@ alias gbc="git fetch origin --prune"
 # Ignoring Files
 
 # A .gitignore that isn't shared on the public repo
-alias vilocalignor='vi .git/info/exclude' 
-# This tells all repos on your machine to ignore the files listed in 
+alias vilocalignor='vi .git/info/exclude'
+# This tells all repos on your machine to ignore the files listed in
 # .gitignore_global
 # https://help.github.com/articles/ignoring-files/#create-a-global-gitignore
 alias git-ignore-awesome="git config --global core.excludesfile ~/.gitignore_global"
@@ -104,7 +104,7 @@ alias git-ignore-awesome="git config --global core.excludesfile ~/.gitignore_glo
 # $  git reset --hard upstream/master
 
 # Pull in pull request so it can be merged with out an annoying blank commit
-# $  
+# $
 
 
 # hub aliases
@@ -162,8 +162,8 @@ get-gateway() { netstat -rn | grep -e '^0\.0\.0\.0 \s*[0-9]*\.[0-9]*\.[0-9]\.[0-
 
 # Backups
 # Don't use this, see the script backup_self
-sync-files-to-backup() { 
-  rsync -avrh /media/kentos/f39c6a7b-0c94-4489-953b-dccb16f1037c/home/phill phill@192.168.0.56:/storage/backups/tesla/home/phill ; 
+sync-files-to-backup() {
+  rsync -avrh /media/kentos/f39c6a7b-0c94-4489-953b-dccb16f1037c/home/phill phill@192.168.0.56:/storage/backups/tesla/home/phill ;
 }
 
 # File System
@@ -174,13 +174,13 @@ fs-rename-files-to-linux-style() {
   done ;
 }
 
-# Write raspbian to memory card 
+# Write raspbian to memory card
 # dd bs=4M if=2015-02-16-raspbian-wheezy.img of=/dev/mmcblk0
 
 # DL a file from another machine via ssh
 # dl-ssh() { scp server:/file.txt . }
 
-#  ssh-copy-id -i identity_file remote_host 
+#  ssh-copy-id -i identity_file remote_host
 
 
 ############
@@ -206,12 +206,13 @@ alias burp_backup="sudo burp -a b"
 #
 # # throttle bandwidth
 # sudo wondershaper wlan0 256 128 # go hella slow
-# sudo wondershaper wlp8s0 20480 750 # allow uploading without shutting down internet 
+# sudo wondershaper wlp8s0 20480 700 # allow uploading without shutting down internet
+# sudo wondershaper enp7s0 20480 700 # allow uploading without shutting down internet
 # sudo wondershaper clear wlan0
 #
 # http://serverfault.com/questions/407968/how-find-out-what-or-who-is-using-my-bandwidth
 
-# Define a bash function 
+# Define a bash function
 say-hello() { echo "hello ${1}" ;}
 
 # convert unix line endings to dos
@@ -227,12 +228,12 @@ mysql-backup() { mysqldump -u ${1} -p ${2} > ${2}.sql; }
 
 # Pass in Username and database name
 # Run in folder with a *.sql file, database name must equal .sql file's name too...
-mysql-restore() { 
+mysql-restore() {
   stty -echo;
   read -p "Password: " passw; echo
   stty echo;
   mysql-temp-store-pw ${1} $passw
-  # if mysql --defaults-extra-file=mysql_helper_from_script$$ -e "create database ${2}" ; then 
+  # if mysql --defaults-extra-file=mysql_helper_from_script$$ -e "create database ${2}" ; then
   if mysql -u${1} -p"$passw" -e "create database ${2}" ; then
     echo "created new db"
   else
@@ -240,7 +241,7 @@ mysql-restore() {
     if [ $should_delete_db == "y" ] ; then
       mysql -u${1} -p"$passw" -e "drop database ${2};create database ${2}"
       #mysql --defaults-extra-file=mysql_helper_from_script -e "drop database ${2}" &&
-      #mysql --defaults-extra-file=mysql_helper_from_script -e "create database ${2}" 
+      #mysql --defaults-extra-file=mysql_helper_from_script -e "create database ${2}"
     else
       echo "No Action Performed"
       return 1
@@ -248,11 +249,11 @@ mysql-restore() {
     fi
   fi
 
-  mysql -u${1} -p"$passw" ${2} < ${2}.sql; 
+  mysql -u${1} -p"$passw" ${2} < ${2}.sql;
   #mysql --defaults-extra-file=mysql_helper_from_script < ${2} < ${2}.sql
 
   #mysql -u${1} -p -e "create database ${2}" &&
-  #mysql -u${1} -p ${2} < ${2}.sql; 
+  #mysql -u${1} -p ${2} < ${2}.sql;
   mysql-temp-clear-pw
 }
 
@@ -278,10 +279,7 @@ alias latest-removes='grep " remove " /var/log/dpkg.*'
 # grep user-name@domain.com /var/log/maillog | grep retr= | awk {'print $7" "$1" "$2" "$3" "$11'} | grep -v retr=0
 scan-mail() { grep user-name@domain.com /var/log/maillog | grep retr= | awk {'print $7" "$1" "$2" "$3" "$11'} | grep -v retr=0; }
 #alias scan-mail="grep user-name@domain-name.com /var/log/maillog | grep retr= | awk {'print $7\" \"$1\" \"$2\" \"$3\" \"$11'} | grep -v retr=0"
-# This one sums all the bytes 
+# This one sums all the bytes
 #grep domain-name.net /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'
 # pass in domain.com as parameter
 scan-mail-sum() { grep 1 /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'; }
-
-
-
