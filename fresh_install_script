@@ -73,3 +73,19 @@ sudo apt-get update
 sudo apt-get install atom
 
 apm install atom-beautify merge-conflicts rails-partials git-time-machine rails-transporter highlight-selected minimap-highlight-selected tabs-to-spaces language-javascript-jsx motepair
+
+
+#####################
+# Mouse Fix (linux) #
+#####################
+
+# Fix your gaming mouse so it doesn't have acceleration... much...
+# first search for your mouse
+xinput --list --short
+
+# Then replace the '15' from below with the proper ID
+xinput --set-prop 15 "Coordinate Transformation Matrix" 0.6 0 0 0 0.6 0 0 0 2
+xinput --set-prop 15 "Device Accel Constant Deceleration" 1
+xinput --set-prop 15 "Device Accel Velocity Scaling" 1
+xinput --set-prop 15 "Device Accel Profile" -1
+
