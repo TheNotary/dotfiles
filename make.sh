@@ -3,13 +3,18 @@
 #######################################################################
 #                           Dotfiles                                  #
 # This script creates symlinks from the home directory to any desired #
-# dotfiles in ~/dotfiles                                              #
+# dotfiles in ~/dotfiles (or whatever you change the variable         #
+# dotfiles_folder_name to be.                                         #
 #######################################################################
 
 
 ###############################
 #          Variables          #
 ###############################
+
+# dotfiles folder name.  Change to "private_dotfile" for a seperate repo that you
+# can track secrets into but never push to github
+dotfiles_folder_name="dotfiles"
 
 # old dotfiles backup directory
 backup_dir=${HOME}/dotfiles_backups/dotfiles_$(date +"%Y-%m-%d_%H-%M-%S")
@@ -21,7 +26,7 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 files="$(ls $DIR)"
 
 # dotfiles directory
-dir=${HOME}/dotfiles
+dir=${HOME}/${dotfiles_folder_name}
 
 
 ###############################
@@ -30,10 +35,10 @@ dir=${HOME}/dotfiles
 
 # Make sure the directory's name is dotfiles... otherwise the user could be
 # getting more than he or she bargained for
-if [ "$( cd ${DIR} && echo ${PWD##*/} )" != "dotfiles" ]
+if [ "$( cd ${DIR} && echo ${PWD##*/} )" != "${dotfiles_folder_name}" ]
 then
-  echo "The folder you ran this script from isn't named 'dotfiles'... so the script \nhas been blocked from to prevent you from accidentally creating a bunch of symlinks you don't actually want"
-  echo "Please clone the dotfiles repo to ~/dotfile and run `make.sh` from within that dir"
+  echo "The folder you ran this script from isn't named '${dotfiles_folder_name}'... so the script \nhas been blocked from to prevent you from accidentally creating a bunch of symlinks you don't actually want"
+  echo "Please clone the dotfiles repo to ~/${dotfiles_folder_name} and run `make.sh` from within that dir"
   exit 1
 fi
 
