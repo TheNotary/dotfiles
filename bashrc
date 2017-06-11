@@ -6,6 +6,7 @@ bash_display_style=normal
 
 # Source in additional resource files if they exist
 [ -e /etc/bash_completion ] && . /etc/bash_completion  # enable bash completion in interactive shells
+[ -e $HOME/.mac_fixes ] && source $HOME/.mac_fixes
 [ -e $HOME/.git-completion.bash ] && source $HOME/.git-completion.bash
 [ -e $HOME/.app_secrets ] && source $HOME/.app_secrets
 [ -e $HOME/.this_machine ] && source $HOME/.this_machine

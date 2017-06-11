@@ -55,9 +55,14 @@ cd ${dir}
 for file in $files; do
 
   # skip the README.md and make.sh file #
-  if [ "$file" = "README.md" ] || [ "$file" = "make.sh" ] || [ "$file" = "fresh_install_script" ] || [ "$file" = "sample_this_machine" ] || [ "$file" = "complex" ]
+  if [ "$file" = "README.md" ] ||
+     [ "$file" = "make.sh" ] ||
+     [ "$file" = "fresh_install_script" ] ||
+     [ "$file" = "sample_this_machine" ] ||
+     [ "$file" = "complex" ] ||
+     ( [ "$file" = "mac_fixes" ] && [ "$(uname)" != "Darwin" ] )  # OS specific file
   then
-    echo "  skipping $file"
+    echo "skipping one:  ${file}"
     continue      # Skip rest of this particular loop iteration.
   fi
 

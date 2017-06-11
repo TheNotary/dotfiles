@@ -1,4 +1,7 @@
-# Mac fixes
+#############
+# Mac Fixes #
+#############
+
 alias vi=vim
 export PATH="/usr/local/mysql/bin/:$PATH"
 export PAGER="/usr/bin/less -R"
@@ -27,5 +30,4 @@ _complete_ssh_hosts ()
         return 0
 }
 complete -F _complete_ssh_hosts ssh
-
 
