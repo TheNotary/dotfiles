@@ -74,6 +74,11 @@ sudo apt-get install atom
 
 apm install atom-beautify merge-conflicts rails-partials git-time-machine rails-transporter highlight-selected minimap-highlight-selected tabs-to-spaces language-javascript-jsx motepair
 
+###################
+# Browser Plugins #
+###################
+
+# https://addons.mozilla.org/en-US/firefox/addon/kindle-it/
 
 #####################
 # Mouse Fix (linux) #

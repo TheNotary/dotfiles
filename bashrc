@@ -7,9 +7,8 @@ bash_display_style=normal
 # Source in additional resource files if they exist
 [ -e /etc/bash_completion ] && . /etc/bash_completion  # enable bash completion in interactive shells
 [ -e $HOME/.git-completion.bash ] && source $HOME/.git-completion.bash
-[ -e $HOME/.this_machine ] && source $HOME/.this_machine
-[ -e $HOME/.mongodbrc ] && source $HOME/.mongodbrc
 [ -e $HOME/.app_secrets ] && source $HOME/.app_secrets
+[ -e $HOME/.this_machine ] && source $HOME/.this_machine
 [ -e $HOME/.work_specific ] && source $HOME/.work_specific
 source $HOME/.my_aliases
 
