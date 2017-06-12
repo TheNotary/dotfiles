@@ -17,7 +17,7 @@
 dotfiles_folder_name="dotfiles"
 
 # old dotfiles backup directory
-backup_dir=${HOME}/dotfiles_backups/dotfiles_$(date +"%Y-%m-%d_%H-%M-%S")
+backup_dir=${HOME}/${dotfiles_folder_name}_backups/dotfiles_$(date +"%Y-%m-%d_%H-%M-%S")
 
 # Get current directory of script
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
