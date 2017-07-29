@@ -16,6 +16,7 @@ autocmd BufRead,BufNewFile *.log :AnsiEsc
 au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=handlebars
 au BufRead,BufNewFile *.coffee set ft=js syntax=coffee
 au FilterWritePre * if &diff | set wrap | endif
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
 
 
 if &diff
