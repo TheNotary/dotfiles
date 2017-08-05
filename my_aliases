@@ -3,6 +3,8 @@
 #############
 
 # VPN action
+# Route traffic to this host through another server via an ssh tunnle
+# alias do_vpn_to_esxi="sshuttle -v -r ssh-server 192.168.1.100"
 alias do_vpn="sshuttle -v -r jump-box -N 0/0"
 alias do_vpn="sshuttle -v -r jump-box -x 10.0.0.0/8 -N 0/0"
 
