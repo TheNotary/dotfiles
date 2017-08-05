@@ -2,7 +2,8 @@
 
 # Change this to 'server' to get the bash prompt to look different
 # do this in .this_machine if you're clever
-bash_display_style=normal
+[ -z "$bash_display_style" ] && \
+  bash_display_style=normal
 
 # Source in additional resource files if they exist
 [ -e /etc/bash_completion ] && . /etc/bash_completion  # enable bash completion in interactive shells
@@ -117,7 +118,7 @@ if [ "$color_prompt" = yes ]; then
         PS1="${debian_chroot:+($debian_chroot)}${purple}\u ${blue}\w ${green} ❥ ${color_off}"
     fi
     if [ "$bash_display_style" = "prototype" ]; then
-        PS1="\[${blue}\]\u[\h]\[${purple}\] ♢\[${blue}\] \w \[${color_off}\]\[${yellow}\]λ \[${color_off}\]"
+        PS1="${blue}\u[\h]${purple} ♢${blue} \w ${color_off}${yellow}λ ${color_off}"
     fi
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
@@ -164,6 +165,12 @@ export WINEARCH=win32
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+### Python stuff
+
+# Prevent .pyc files from being generated
+export PYTHONDONTWRITEBYTECODE=1
+
 
 ### NodeJS stuff
 
