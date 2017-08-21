@@ -97,3 +97,9 @@ xinput --set-prop 15 "Device Accel Constant Deceleration" 1
 xinput --set-prop 15 "Device Accel Velocity Scaling" 1
 xinput --set-prop 15 "Device Accel Profile" -1
 
+##################################################
+#  Remove window shadows from Ubuntu/ Linuxmint  #
+##################################################
+
+https://github.com/linuxmint/Cinnamon/issues/2285
+echo "MUFFIN_NO_SHADOWS=1" | sudo tee -a /etc/environment
