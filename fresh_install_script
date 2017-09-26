@@ -30,6 +30,9 @@ sudo apt-get install -y libmysqlclient15-dev libmysqlclient2-dev
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 \curl -sSL https://get.rvm.io | bash -s stable --ruby
 
+# Setup Python for Mac ppl
+export PATH="$HOME/Library/Python/2.7/bin:$PATH"
+
 # Mac, OSX git branch tab completion
 # you need to source it...
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash

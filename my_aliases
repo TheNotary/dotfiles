@@ -2,6 +2,10 @@
 # Developer #
 #############
 
+# VPN action
+alias do_vpn="sshuttle -v -r jump-box -N 0/0"
+alias do_vpn="sshuttle -v -r jump-box -x 10.0.0.0/8 -N 0/0"
+
 # OMG, typing ~.<enter> will exit you from an ssh session that has become non-responsive!!!!!
 
 alias vs="vagrant ssh"
