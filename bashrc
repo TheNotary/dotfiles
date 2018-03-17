@@ -196,5 +196,8 @@ function nvm {
 if [ -d "$HOME/.rvm/bin" ] ; then
   PATH="$HOME/.rvm/bin:$PATH"
 fi
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
+
+#[ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm"
+
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
