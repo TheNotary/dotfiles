@@ -12,12 +12,17 @@
   core:
     allowPendingPaneItems: false
     autoHideMenuBar: true
+    disabledPackages: [
+      "motepair"
+      "rails-transporter"
+    ]
     telemetryConsent: "no"
     themes: [
       "atom-light-ui"
       "one-light-syntax"
     ]
   editor:
+    fontSize: 15
     invisibles: {}
   "exception-reporting":
     userId: "abd7c2da-84f2-8197-1d75-c9ed99f0fcad"
@@ -27,6 +32,8 @@
     plugins:
       "highlight-selected": true
       "highlight-selectedDecorationsZIndex": 0
+  "shebang-set-grammar":
+    changeNonPlainText: true
   "split-diff":
     diffWords: true
     ignoreWhitespace: true
