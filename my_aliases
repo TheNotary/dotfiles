@@ -244,6 +244,7 @@ alias burp_backup="sudo burp -a b"
 # sudo nload wlan0
 #
 # # throttle bandwidth
+# sudo wondershaper wlan0 500 500 # reasonable
 # sudo wondershaper wlan0 256 128 # go hella slow
 # sudo wondershaper wlp8s0 20480 700 # allow uploading without shutting down internet
 # sudo wondershaper enp7s0 20480 700 # allow uploading without shutting down internet
