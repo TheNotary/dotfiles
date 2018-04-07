@@ -70,7 +70,8 @@ alias gis="git status"
 # Show change set of a single commit
 #alias gs="git show"
 alias c="git checkout"
-__git_complete c _git_checkout  # auto-completion
+declare -f __git_complete > /dev/null && \
+  __git_complete c _git_checkout  # auto-completion
 
 # Committing
 alias ga="git add -au" # adds all files and removed files to staging
@@ -86,7 +87,9 @@ alias gps='git push origin'
 # Monitoring:
 alias gsnm='git branch --no-merged'  # view branches that still need to be merged
 alias d="git diff"
-__git_complete d _git_diff  # auto-completion
+declare -f __git_complete > /dev/null && \
+  __git_complete d _git_diff  # auto-completion
+
 alias gis="git status"
 alias gsnm='git branch --no-merged' # show branches you need to merge still
 # graphical commit history/log
@@ -119,7 +122,8 @@ alias gbc="git fetch origin --prune"
 # git_diff_follow
 # do a head follow on the /tmp/diff file to watch the diff go
 alias git_diff_follow="watch -c -n 1 git diff" #harken_develop-rob jruby-normalizing config/secrets.yml
-__git_complete git_diff_follow _git_diff  # auto-completion
+declare -f __git_complete > /dev/null && \
+  __git_complete git_diff_follow _git_diff  # auto-completion
 
 # Ignoring Files
 
