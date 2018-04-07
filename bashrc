@@ -198,6 +198,17 @@ if [ -d "$HOME/.rvm/bin" ] ; then
 fi
 
 
-#[ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm"
+#export ACTUAL_RVM_PATH="$(which rvm)"
+#export RVM_IS_SETUP=""
+#function rvm {
+#  if [ -z "$RVM_IS_SETUP" ]; then
+#    echo 'got here'
+#    source "$HOME/.rvm/scripts/rvm"
+#    export RVM_IS_SETUP="true"
+#  fi
+#  eval "${ACTUAL_RVM_PATH} $@"
+#}
+
+[ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm"
 
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
