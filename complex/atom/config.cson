@@ -22,7 +22,6 @@
       "one-light-syntax"
     ]
   editor:
-    fontSize: 15
     invisibles: {}
   "exception-reporting":
     userId: "abd7c2da-84f2-8197-1d75-c9ed99f0fcad"

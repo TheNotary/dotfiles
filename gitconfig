@@ -10,3 +10,7 @@
   interactive = auto
   ui = true
   pager = true
+[core]
+  excludesfile = ~/.gitignore_global
+[gist]
+  home = ~/gister

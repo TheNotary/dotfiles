@@ -3,12 +3,30 @@
 #############
 
 # VPN action
-# Route traffic to this host through another server via an ssh tunnle
+# Route traffic to this host through another server via an ssh tunnel
+# See this_machine for other helpful examples
 # alias do_vpn_to_esxi="sshuttle -v -r ssh-server 192.168.1.100"
 alias do_vpn="sshuttle -v -r jump-box -N 0/0"
 alias do_vpn="sshuttle -v -r jump-box -x 10.0.0.0/8 -N 0/0"
+# sshuttle -v -r torpedo -N 0/0
+
+# https://www.ssh.com/ssh/tunneling/example
+# The machine running the below command will have connections to it's port 32000 tunnled through jump-box to it's localhost:32000.  change localhost to some other server as needed :)
+#ssh -L 32000:localhost:32000 jump-box  "tail -f /dev/null"
+
+
+# https://askubuntu.com/questions/897907/how-to-tunnel-and-browse-the-web-on-remote-network
+# ssh -p 22 -i /home/path_to_privkey -L 12666:localhost:80 -l username xx.xxx.xxx.xxx
+# ssh -p 22 -i ~/.ssh/id_rsa -L 12666:localhost:443 torpedo
+# ssh -i ~/.ssh/id_rsa -L 12666:10.152.183.142:443 torpedo
 
 # OMG, typing ~.<enter> will exit you from an ssh session that has become non-responsive!!!!!
+
+alias k="kubectl"
+alias kd="kubectl describe"
+alias kl="kubectl logs"
+alias kga="kubectl get all"
+alias kg="kubectl get"
 
 alias vs="vagrant ssh"
 alias vm-list="vboxmanage list vms -l | awk '/^Name:  / || /^State: / {if (\$1 ==\"State:\") print \"  - \" \$2 \" \" \$3; else print \$2; }'"
@@ -74,7 +92,7 @@ declare -f __git_complete > /dev/null && \
   __git_complete c _git_checkout  # auto-completion
 
 # Committing
-alias ga="git add -au" # adds all files and removed files to staging
+#alias ga="git add -au" # adds all files and removed files to staging
 alias gam="git add -A; git commit --amend"
 alias gcm="git commit -m"
 alias gundo-last-commit-retain-progress='git stash && git reset --hard && git stash pop'
@@ -220,6 +238,9 @@ fs-rename-files-to-linux-style() {
 
 # Write raspbian to memory card
 # dd bs=4M if=2015-02-16-raspbian-wheezy.img of=/dev/mmcblk0
+
+# Write ubuntu to USB stick
+# dd bs=4M if=ubuntu.iso of=/dev/sdc
 
 # DL a file from another machine via ssh
 # dl-ssh() { scp server:/file.txt . }
