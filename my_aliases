@@ -26,6 +26,7 @@ alias k="kubectl"
 alias kd="kubectl describe"
 alias kl="kubectl logs"
 alias kga="kubectl get all"
+alias kgp="kubectl get pods --show-kind"
 alias kg="kubectl get"
 
 alias vs="vagrant ssh"
