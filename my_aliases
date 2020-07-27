@@ -26,14 +26,6 @@ alias do_vpn="sshuttle -v -r jump-box -x 10.0.0.0/8 -N 0/0"
 
 # OMG, typing ~.<enter> will exit you from an ssh session that has become non-responsive!!!!!
 
-<<<<<<< HEAD
-alias k="kubectl"
-alias kd="kubectl describe"
-alias kl="kubectl logs"
-alias kga="kubectl get all"
-alias kgp="kubectl get pods --show-kind"
-alias kg="kubectl get"
-=======
 # Kubernetes Aliases
 alias k="kubectl"
 alias kg="kubectl get"
@@ -42,7 +34,6 @@ alias kgall="kubectl get service,pod,deployment,daemonset,networkpolicy,pvc,secr
 alias kgp="kubectl get pods --show-kind"
 alias kd="kubectl describe"
 alias kl="kubectl logs"
->>>>>>> 16392d8... periodic commit
 
 alias vs="vagrant ssh"
 alias vm-list="vboxmanage list vms -l | awk '/^Name:  / || /^State: / {if (\$1 ==\"State:\") print \"  - \" \$2 \" \" \$3; else print \$2; }'"
