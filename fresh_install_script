@@ -39,6 +39,12 @@ curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-com
 # Stop your mac from sleeping when you lock the screen
 sudo pmset -a sleep 0
 
+# Disable Mouse Acceleration:  http://osxdaily.com/2010/08/25/mouse-acceleration/
+defaults write .GlobalPreferences com.apple.mouse.scaling -1
+
+# Enable vim and terminal usage
+#http://www.idownloadblog.com/2015/01/14/how-to-enable-key-repeats-on-your-mac/
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 ###############
 # Vim Plugins #

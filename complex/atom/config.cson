@@ -12,13 +12,13 @@
   core:
     allowPendingPaneItems: false
     autoHideMenuBar: true
+    automaticallyUpdate: false
     disabledPackages: [
-      "motepair"
-      "rails-transporter"
+      "Hydrogen"
     ]
     telemetryConsent: "no"
     themes: [
-      "atom-light-ui"
+      "one-light-ui"
       "one-light-syntax"
     ]
   editor:
@@ -43,6 +43,7 @@
     onSave: "untabify"
   "tree-view":
     hideVcsIgnoredFiles: true
+    squashDirectoryNames: true
   welcome:
     showOnStartup: false
 ".erb":
@@ -52,6 +53,10 @@
   editor:
     softTabs: true
     tabLength: 2
+".java.source":
+  editor:
+    tabLength: 4
+    tabType: "soft"
 ".js":
   editor:
     tabLength: 2

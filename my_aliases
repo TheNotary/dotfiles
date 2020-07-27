@@ -2,6 +2,10 @@
 # Developer #
 #############
 
+# Encrypt file with password
+# Usage: enc_with_pass records.zip
+alias enc_with_pass="gpg --symmetric --cipher-algo AES256"
+
 # VPN action
 # Route traffic to this host through another server via an ssh tunnel
 # See this_machine for other helpful examples
@@ -22,12 +26,23 @@ alias do_vpn="sshuttle -v -r jump-box -x 10.0.0.0/8 -N 0/0"
 
 # OMG, typing ~.<enter> will exit you from an ssh session that has become non-responsive!!!!!
 
+<<<<<<< HEAD
 alias k="kubectl"
 alias kd="kubectl describe"
 alias kl="kubectl logs"
 alias kga="kubectl get all"
 alias kgp="kubectl get pods --show-kind"
 alias kg="kubectl get"
+=======
+# Kubernetes Aliases
+alias k="kubectl"
+alias kg="kubectl get"
+alias kga="kubectl get all"
+alias kgall="kubectl get service,pod,deployment,daemonset,networkpolicy,pvc,secret,configmap"
+alias kgp="kubectl get pods --show-kind"
+alias kd="kubectl describe"
+alias kl="kubectl logs"
+>>>>>>> 16392d8... periodic commit
 
 alias vs="vagrant ssh"
 alias vm-list="vboxmanage list vms -l | awk '/^Name:  / || /^State: / {if (\$1 ==\"State:\") print \"  - \" \$2 \" \" \$3; else print \$2; }'"
@@ -36,7 +51,7 @@ alias vm-start="vboxmanage startvm --type headless"
 
 # Beautify JSON objects
 # $  curl -s http://localhost:3000/publishing_houses | pj
-alias pj="python -m json.tool"
+alias pj="python -m json.tool | jq '.'"
 
 # Use json syntax highlighting in vim
 #   :set syntax=json
@@ -96,6 +111,7 @@ declare -f __git_complete > /dev/null && \
 #alias ga="git add -au" # adds all files and removed files to staging
 alias gam="git add -A; git commit --amend"
 alias gcm="git commit -m"
+alias git-clear-remote-branch-names="git branch -r |sed 1d | xargs git branch -dr"
 alias gundo-last-commit-retain-progress='git stash && git reset --hard && git stash pop'
 alias gundo-commit-on-remote='git push origin :master'
 # Git Root:  Go to the root of the project directory
@@ -105,6 +121,7 @@ alias gps='git push origin'
 
 # Monitoring:
 alias gsnm='git branch --no-merged'  # view branches that still need to be merged
+# d --color-words
 alias d="git diff"
 declare -f __git_complete > /dev/null && \
   __git_complete d _git_diff  # auto-completion
@@ -138,6 +155,79 @@ alias gmr="git merge" # merges the specified branch onto the current branch.. cr
 # This will delete any locally tracked remote branches if they're removed from origin
 alias gbc="git fetch origin --prune"
 
+# Multi-Repo Helpers:
+function git_subdir_fetch() {
+  \
+    find . -type d -depth 1 -exec sh -c ' \
+      git --git-dir={}/.git --work-tree=$PWD/{} fetch origin master ' \;
+}
+
+function git_subdir_show_branch() {
+  \
+    find . -type d -depth 1 -exec sh -c ' \
+      git --git-dir={}/.git --work-tree=$PWD/{} branch --show-current \
+        | tr -d "\n" \
+      && printf "\t{} \n" \
+    ' \; \
+    | column -t \
+    | sort -t: -k2
+}
+
+function git_subdir_commits_behind() {
+  \
+    find . -type d -depth 1 -exec sh -c ' \
+      git --git-dir={}/.git --work-tree=$PWD/{} rev-list --left-right --count master..origin/master \
+        | cut -f1 \
+        | tr -d "\n" \
+        && printf " {}\n" ' \; \
+    | sort
+}
+
+function git_subdir_dirty_check() {
+  \
+    find . -type d -depth 1 -exec sh -c ' \
+      git --git-dir={}/.git --work-tree=$PWD/{} diff --quiet --exit-code \
+        || printf "{} is dirty\n" ' \; \
+    | sort
+}
+
+function git_subdir_update() {
+  \
+    find . -type d -depth 1 -exec \
+      git --git-dir={}/.git --work-tree=$PWD/{} fetch origin master:master --update-head-ok \;
+}
+
+# e.g. git_subdir_commit jenkins-migration "updates jenkinsfile for migration" | tee /tmp/a
+function git_subdir_commit() {
+  export branch_name=$1
+  export commit_message=$2
+
+  git_repos=$(find . -type d -depth 2 -name .git  | cut -c3- | awk -v n=5 '{ print substr($0, 1, length($0)-n) }')
+
+  for repo in $git_repos; do
+    if ( ! git --git-dir=$PWD/${repo}/.git --work-tree=$PWD/${repo} diff --quiet --exit-code ); then
+      echo "[[ ${repo} ]] dirty working dir found, making commit"
+
+      git --git-dir=${repo}/.git --work-tree=$PWD/${repo} checkout -b ${branch_name}
+      true \
+        && git --git-dir=${repo}/.git --work-tree=$PWD/${repo} add -A \
+        && git --git-dir=${repo}/.git --work-tree=$PWD/${repo} commit -m "$commit_message" \
+        && git --git-dir=${repo}/.git --work-tree=$PWD/${repo} push origin $branch_name
+    else
+      true
+      # echo "${repo} SKIPPED"
+    fi
+    echo ""
+  done
+}
+
+
+
+
+
+
+
+
 # git_diff_follow
 # do a head follow on the /tmp/diff file to watch the diff go
 alias git_diff_follow="watch -c -n 1 git diff" #harken_develop-rob jruby-normalizing config/secrets.yml
@@ -153,8 +243,38 @@ alias vilocalignor='vi .git/info/exclude'
 # https://help.github.com/articles/ignoring-files/#create-a-global-gitignore
 alias git-ignore-awesome="git config --global core.excludesfile ~/.gitignore_global"
 
+
+# THIS is very dangerous!  It will change the history of a repository to correct the email addresses for
+# committers...
+# git_correct_email incorrect_email correct_name correct_email
+git_correct_email() {
+  if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+    echo "You must specify all three inputs"
+    echo "usage:  git_correct_email incorrect_email correct_name correct_email"
+    return 1
+  fi
+  git filter-branch -f --env-filter "OLD_EMAIL='$1';CORRECT_NAME='$2';CORRECT_EMAIL='$3'"'
+    if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+    then
+        export GIT_COMMITTER_NAME="$CORRECT_NAME"
+        export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+    fi
+    if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+    then
+        export GIT_AUTHOR_NAME="$CORRECT_NAME"
+        export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+    fi
+  ' --tag-name-filter cat -- --branches --tags
+}
+
 # delete file from git repo without deleting
 # git rm --cached mylogfile.log
+
+# git show emails
+#alias gse="git log --format='%aE' | sort -u"
+# Show commit counts
+alias gse="git shortlog -e -s -n"
+
 
 # Ammend git commits (reuse the commit message for additional changes) by this
 # $  git commit --allow-empty -m "cool message"
@@ -181,6 +301,9 @@ alias mongoshell="mongo --shell --host $MONGODB_DEVELOPMENT_HOST --port $MONGODB
 ##############
 # Linux user #
 ##############
+
+# List
+alias l='ls -G'
 
 # Video
 # DL all videos of a youtube playlist BY PLAYLIST ID (eg PL0zVEGEvSaeFSwPn06GKArptSxiP1Gff8)
@@ -350,4 +473,3 @@ scan-mail() { grep user-name@domain.com /var/log/maillog | grep retr= | awk {'pr
 #grep domain-name.net /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'
 # pass in domain.com as parameter
 scan-mail-sum() { grep 1 /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'; }
-

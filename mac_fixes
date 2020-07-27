@@ -3,6 +3,7 @@
 #############
 
 alias vi=vim
+alias stat="stat -x"
 export PATH="/usr/local/mysql/bin/:$PATH"
 export PAGER="/usr/bin/less -R"
 

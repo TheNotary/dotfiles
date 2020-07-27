@@ -9,6 +9,7 @@
 [ -e /etc/bash_completion ] && . /etc/bash_completion  # enable bash completion in interactive shells
 [ -e $HOME/.mac_fixes ] && source $HOME/.mac_fixes
 [ -e $HOME/.git-completion.bash ] && source $HOME/.git-completion.bash
+[ -e $HOME/.kubectl-completion.bash ] && source $HOME/.kubectl-completion.bash
 [ -e $HOME/.app_secrets ] && source $HOME/.app_secrets
 [ -e $HOME/.this_machine ] && source $HOME/.this_machine
 [ -e $HOME/.work_specific ] && source $HOME/.work_specific
@@ -153,7 +154,6 @@ export WINEARCH=win32
 #export JAVA_HOME=/usr/lib/jvm/jre1.8.0_45/bin
 #export netbeans_jdkhome=/usr/lib/jvm/jre1.8.0_45/bin
 #
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # set PATH so it includes user's private bin if it exists
 #if [ -d "$HOME/bin" ] ; then
@@ -212,3 +212,5 @@ fi
 [ -s "$HOME/.rvm/scripts/rvm" ] && . "$HOME/.rvm/scripts/rvm"
 
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+complete -C ~/bin/vault vault
