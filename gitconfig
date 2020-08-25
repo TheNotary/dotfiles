@@ -13,4 +13,9 @@
 [core]
   excludesfile = ~/.gitignore_global
 [gist]
-  home = ~/gister
+	home = ~/gists
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

@@ -15,6 +15,8 @@
 [ -e $HOME/.work_specific ] && source $HOME/.work_specific
 source $HOME/.my_aliases
 
+export PATH="/$HOME/bin:$PATH"
+
 
 ## Setup git
 # export GIT_AUTHOR_NAME=$MY_FULL_NAME
