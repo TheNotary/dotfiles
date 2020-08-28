@@ -107,5 +107,18 @@ done
 
 popd
 
+# Inane Phase
+#
+#   Some config files are absolutely inane like the VS Code config file.  We will
+# manually map these inane files here.
+#
+#
+echo "    Creating symlink to Inane stuff"
+vscode_folder="${HOME}/Library/Application Support/Code/User"
+mkdir -p "${vscode_folder}"
+ln -s "${PWD}/inane/vscode/settings.json" "${vscode_folder}/settings.json"
 
+
+
+echo "done."
 exit
