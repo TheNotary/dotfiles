@@ -117,8 +117,7 @@ echo "    Creating symlink to Inane stuff"
 vscode_folder="${HOME}/Library/Application Support/Code/User"
 mkdir -p "${vscode_folder}"
 ln -s "${PWD}/inane/vscode/settings.json" "${vscode_folder}/settings.json"
-
-
+ln -s "${PWD}/inane/vscode/keybindings.json" "${vscode_folder}/keybindings.json"
 
 echo "done."
 exit
