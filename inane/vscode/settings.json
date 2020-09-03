@@ -4,5 +4,7 @@
     "telemetry.enableTelemetry": false,
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
-    "update.showReleaseNotes": false
+    "update.showReleaseNotes": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.list.openMode": "doubleClick"
 }
