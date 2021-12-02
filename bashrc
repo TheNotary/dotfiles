@@ -1,4 +1,5 @@
 #the_time=$(echo $(($(date +%s%N)/1000000)) |cut -c 8-); echo ${the_time:0:3}:${the_time:3}
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Change this to 'server' to get the bash prompt to look different
 # do this in .this_machine if you're clever
