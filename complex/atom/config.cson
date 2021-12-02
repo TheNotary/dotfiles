@@ -42,13 +42,15 @@
   "tabs-to-spaces":
     onSave: "untabify"
   "tree-view":
-    hideVcsIgnoredFiles: true
     squashDirectoryNames: true
   welcome:
     showOnStartup: false
 ".erb":
   editor:
     tabLength: 2
+".groovy.source":
+  editor:
+    tabType: "soft"
 ".html":
   editor:
     softTabs: true

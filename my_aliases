@@ -2,6 +2,8 @@
 # Developer #
 #############
 
+alias dc="docker-compose"
+
 # Encrypt file with password
 # Usage: enc_with_pass records.zip
 alias enc_with_pass="gpg --symmetric --cipher-algo AES256"
