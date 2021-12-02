@@ -83,6 +83,25 @@ sudo apt-get install atom
 
 apm install atom-beautify merge-conflicts rails-partials git-time-machine rails-transporter highlight-selected minimap-highlight-selected tabs-to-spaces language-javascript-jsx motepair
 
+
+# Install VS Code stuff since MS is slowly killing Atom
+
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension esbenp.prettier-vscode
+code --install-extension formulahendry.dotnet-test-explorer
+code --install-extension jchannon.csharpextensions
+code --install-extension ms-dotnettools.csharp
+code --install-extension Orta.vscode-jest
+code --install-extension redhat.java
+code --install-extension VisualStudioExptTeam.vscodeintellicode
+code --install-extension vscjava.vscode-java-debug
+code --install-extension vscjava.vscode-java-dependency
+code --install-extension vscjava.vscode-java-pack
+code --install-extension vscjava.vscode-java-test
+code --install-extension vscjava.vscode-maven
+code --install-extension xabikos.ReactSnippets
+
+
 ###################
 # Browser Plugins #
 ###################
