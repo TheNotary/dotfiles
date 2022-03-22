@@ -3,6 +3,8 @@
   name = TheNotary
 [push]
   default = matching
+[pull]
+	rebase = true
 [color]
   diff = auto
   status = auto

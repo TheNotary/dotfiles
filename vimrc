@@ -44,6 +44,9 @@ if &diff
   colorscheme autumn
 endif
 
+" This is higher contrast than the other garbage, omg
+colorscheme biogoo
+
 """""""""""""""""
 "  Plugin List  "
 """""""""""""""""
