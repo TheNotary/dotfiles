@@ -12,9 +12,9 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 [ -e $HOME/.git-completion.bash ] && source $HOME/.git-completion.bash
 [ -e $HOME/.kubectl-completion.bash ] && source $HOME/.kubectl-completion.bash
 [ -e $HOME/.app_secrets ] && source $HOME/.app_secrets
-[ -e $HOME/.this_machine ] && source $HOME/.this_machine
 [ -e $HOME/.work_specific ] && source $HOME/.work_specific
 source $HOME/.my_aliases
+[ -e $HOME/.this_machine ] && source $HOME/.this_machine
 
 export PATH="/$HOME/bin:$PATH"
 
