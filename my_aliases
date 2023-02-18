@@ -3,6 +3,7 @@
 #############
 
 alias dc="docker-compose"
+alias tf="terraform"
 
 # Encrypt file with password
 # Usage: enc_with_pass records.zip
@@ -64,11 +65,13 @@ function kill-ruby { ps -A|grep ruby |awk '{print $1}' | xargs kill -s 9 ; }
 # tests if a page is being cached by showing you headers
 alias tcache="curl -svo /dev/null "
 
+
 # instant web server in the current directory
 #python -m SimpleHTTPServer
 # this is so clever...  ruby -r un requires the 'un' library... which
 # provides the command 'httpd' which is a wrapper for using weBrick
-alias rhttp='rvmsudo ruby -run -e httpd .'
+#alias rhttp='rvmsudo ruby -run -e httpd .'
+alias rhttp='ruby -run -e httpd .'
 
 # Use this cmd to dl a web page and it's css/js file if you're not sure where a string comes from
 alias dl_resources_for_grepping='wget -p -k http://localhost:3000'

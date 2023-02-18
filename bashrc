@@ -19,6 +19,7 @@ source $HOME/.my_aliases
 export PATH="/$HOME/bin:$PATH"
 
 
+
 ## Setup git
 # export GIT_AUTHOR_NAME=$MY_FULL_NAME
 # export GIT_AUTHOR_EMAIL=$MY_EMAIL
@@ -46,8 +47,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+HISTSIZE=20000
+HISTFILESIZE=40000
 
 # Make it so you don't lose bash_history when multiple sessions are spun up
 #shopt -s histappend
@@ -77,7 +78,7 @@ esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
+# should be on the output of commands, not on the prompt (bs)
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
@@ -149,23 +150,6 @@ fi
 # Automatically Added Stuff from Packages #
 ###########################################
 
-## Added by Wine
-export WINEARCH=win32
-
-# put java in path
-#PATH=$PATH:/usr/lib/jvm/jre1.8.0_45/bin
-#export JAVA_HOME=/usr/lib/jvm/jre1.8.0_45/bin
-#export netbeans_jdkhome=/usr/lib/jvm/jre1.8.0_45/bin
-#
-
-# set PATH so it includes user's private bin if it exists
-#if [ -d "$HOME/bin" ] ; then
-#  PATH="$HOME/bin:$PATH"
-#fi
-
-# added by travis gem
-[ -f /home/john/.travis/travis.sh ] && source /home/john/.travis/travis.sh
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
@@ -194,6 +178,7 @@ function nvm {
     echo "nvm hasn't been installed on this machine I think.  You're reading a bash function"
   fi
 }
+
 
 ### Ruby Stuff
 if [ -d "$HOME/.rvm/bin" ] ; then
