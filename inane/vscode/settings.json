@@ -50,5 +50,6 @@
     "typescript",
   ],
   "stretchySpaces.updateDelay": 10,
-  "editor.folding": false
+  "editor.folding": false,
+  "git.openRepositoryInParentFolders": "never"
 }

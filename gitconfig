@@ -1,8 +1,10 @@
-[user]
-  email = no@email.plz
-  name = TheNotary
+#[user]
+#  email = no@email.plz
+#  name = TheNotary
+[push.autoSetupRemote]
+  default = current
 [push]
-  default = matching
+  default = current
 [pull]
 	rebase = true
 [color]

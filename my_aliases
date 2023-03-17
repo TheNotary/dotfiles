@@ -5,6 +5,7 @@
 alias dc="docker-compose"
 alias tf="terraform"
 
+
 # Encrypt file with password
 # Usage: enc_with_pass records.zip
 alias enc_with_pass="gpg --symmetric --cipher-algo AES256"
@@ -95,18 +96,26 @@ alias pairing-session-join='tmux attach -t pair'
 # Git Stuff #
 #############
 
-# Basics:
+# Most Used:
+alias glg="git log --branches --tags --graph --oneline --decorate --remotes"
 alias gis="git status"
-# Show change set of a single commit
-#alias gs="git show"
+alias gcm="git commit -m"
+alias gam="git add -A; git commit --amend"
+alias gs="git show"
+
 alias c="git checkout"
 declare -f __git_complete > /dev/null && \
   __git_complete c _git_checkout  # auto-completion
 
+alias d="git diff"
+declare -f __git_complete > /dev/null && \
+  __git_complete d _git_diff  # auto-completion
+
+# There's one for work handles defined elsewhere ^.<
+alias git_setup_author="git config --local user.email no@email.plz && git config --local user.name TheNotary"
+
 # Committing
 #alias ga="git add -au" # adds all files and removed files to staging
-alias gam="git add -A; git commit --amend"
-alias gcm="git commit -m"
 alias git-clear-remote-branch-names="git branch -r |sed 1d | xargs git branch -dr"
 alias gundo-last-commit-retain-progress='git stash && git reset --hard && git stash pop'
 alias gundo-commit-on-remote='git push origin :master'
@@ -118,14 +127,9 @@ alias gps='git push origin'
 # Monitoring:
 alias gsnm='git branch --no-merged'  # view branches that still need to be merged
 # d --color-words
-alias d="git diff"
-declare -f __git_complete > /dev/null && \
-  __git_complete d _git_diff  # auto-completion
 
-alias gis="git status"
 alias gsnm='git branch --no-merged' # show branches you need to merge still
 # graphical commit history/log
-alias glg="git log --branches --tags --graph --oneline --decorate --remotes"
 alias glg2="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 alias gdn='git diff --name-only'
 # This was a crucial command for diffing two different branches by files that differ
@@ -273,7 +277,7 @@ alias gse="git shortlog -e -s -n"
 
 
 # Ammend git commits (reuse the commit message for additional changes) by this
-# $  git commit --allow-empty -m "cool message"
+# $  git commit --allow-empty -m "todo: fix thing"
 # $  git commit -a --amend
 
 # Colaborating
@@ -281,9 +285,6 @@ alias gse="git shortlog -e -s -n"
 # Bring lagging origin up to state of upstream
 # $  git fetch upstream
 # $  git reset --hard upstream/master
-
-# Pull in pull request so it can be merged with out an annoying blank commit
-# $
 
 
 # hub aliases
