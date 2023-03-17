@@ -136,6 +136,12 @@ alias gdn='git diff --name-only'
 alias branch_diff="d left-branch right-branch --name-only |grep -v casset | grep -v .lock | grep -v bin"
 # $  git diff --color-words
 
+# Watching and unwatching:
+alias gunwatch='git update-index --assume-unchanged'
+alias gwatch='git update-index --no-assume-unchanged'
+gunwatched() { git ls-files -v | grep '^[[:lower:]]'; }
+gwatchall() { gunwatched | xargs -L 1 -I % sh -c 'git watch `echo % | cut -c 2-`'; }
+
 # Research:
 alias gdump="git log --oneline -p > /tmp/git/huge" # dump out contents of every file at each commit.  Allows searching
 alias gago="git whatchanged --since='1 year ago'" # Looks at the diff since a year ago
