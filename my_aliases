@@ -4,6 +4,7 @@
 
 alias dc="docker-compose"
 alias tf="terraform"
+alias g="git"
 
 
 # Encrypt file with password
@@ -455,6 +456,7 @@ mysql-rm-database() { mysql -u${1} -p -e "drop database ${2}"; }
 mysql-temp-store-pw() { echo -e "[client]\nuser=${1}\npassword=${2}" > mysql_helper_from_script$$; }
 mysql-temp-clear-pw() { rm mysql_helper_from_script$$; }
 
+
 # Create database user and grant full access
 #
 # $  su; su postgres; psql
@@ -476,3 +478,10 @@ scan-mail() { grep user-name@domain.com /var/log/maillog | grep retr= | awk {'pr
 #grep domain-name.net /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'
 # pass in domain.com as parameter
 scan-mail-sum() { grep 1 /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'; }
+
+
+# Aliases to change the keyboard settings on a mac to copy/ paste be like windows
+alias keyboard-restore="hidutil property --set '{\"UserKeyMapping\":[]}'"
+alias keyboard-windows="hidutil property --set '{\"UserKeyMapping\": [{\"HIDKeyboardModifierMappingSrc\":0x7000000E0,\"HIDKeyboardModifierMappingDst\":0x7000000E3}, {\"HIDKeyboardModifierMappingSrc\":0x7000000E3,\"HIDKeyboardModifierMappingDst\":0x7000000E0}] }'"
+
+

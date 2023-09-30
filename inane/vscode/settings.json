@@ -17,10 +17,9 @@
   "editor.fontSize": 13,
   "workbench.preferredHighContrastLightColorTheme": "Visual Studio 2017 Light - C++",
   "database.connections": [],
-  "workbench.tree.indent": 20,
-  "files.trimTrailingWhitespace": true,
+"workbench.tree.indent": 20,
   "explorer.autoReveal": "focusNoScroll",
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.guides.indentation": false,
   "files.insertFinalNewline": true,
   "editor.codeActionsOnSave": {
@@ -34,7 +33,6 @@
   "eslint.format.enable": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "window.zoomLevel": 1,
   "stretchySpaces.excludedLanguages": [
     "markdown",
     "plaintext",
@@ -51,5 +49,29 @@
   ],
   "stretchySpaces.updateDelay": 10,
   "editor.folding": false,
-  "git.openRepositoryInParentFolders": "never"
+  "git.openRepositoryInParentFolders": "never",
+  "remove-tabs-on-save.ignoreFileExtensions": [
+    "*.go"
+  ],
+"editor.indentSize": "tabSize",
+"editor.inlineSuggest.enabled": true,
+"github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+},
+"[plaintext]": {
+    "editor.wordWrap": "on"
+},
+"[ruby]": {
+  "editor.tabSize": 2,
+},
+"go.toolsManagement.autoUpdate": true,
+"cmake.configureOnOpen": false,
+"debug.openDebug": "neverOpen",
+"window.zoomLevel": 1,
+"files.trimTrailingWhitespace": true,
+"jest.disabledWorkspaceFolders": [],
+"files.autoSave": "onFocusChange"
 }
