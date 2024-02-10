@@ -18,10 +18,6 @@
       "Hydrogen"
     ]
     telemetryConsent: "no"
-    themes: [
-      "one-light-ui"
-      "one-light-syntax"
-    ]
   editor:
     invisibles: {}
   "exception-reporting":

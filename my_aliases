@@ -5,6 +5,7 @@
 alias dc="docker-compose"
 alias tf="terraform"
 alias g="git"
+alias v="vagrant"
 
 
 # Encrypt file with password
@@ -15,8 +16,8 @@ alias enc_with_pass="gpg --symmetric --cipher-algo AES256"
 # Route traffic to this host through another server via an ssh tunnel
 # See this_machine for other helpful examples
 # alias do_vpn_to_esxi="sshuttle -v -r ssh-server 192.168.1.100"
-alias do_vpn="sshuttle -v -r jump-box -N 0/0"
-alias do_vpn="sshuttle -v -r jump-box -x 10.0.0.0/8 -N 0/0"
+#alias do_vpn="sshuttle -v -r jump-box -N 0/0"
+#alias do_vpn="sshuttle -v -r jump-box -x 10.0.0.0/8 -N 0/0"
 # sshuttle -v -r torpedo -N 0/0
 
 # https://www.ssh.com/ssh/tunneling/example

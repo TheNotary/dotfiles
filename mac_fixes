@@ -2,6 +2,11 @@
 # Mac Fixes #
 #############
 
+# fix mac's varius cli utils that do things the wrong way
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+
+
 alias vi=vim
 alias stat="stat -x"
 export PATH="/usr/local/mysql/bin/:$PATH"

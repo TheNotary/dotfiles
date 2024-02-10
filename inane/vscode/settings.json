@@ -5,8 +5,7 @@
   "update.showReleaseNotes": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.list.openMode": "doubleClick",
-  "workbench.preferredHighContrastColorTheme": "Visual Studio 2017 Dark - C++",
-  "workbench.colorTheme": "Visual Studio 2017 Light - C++",
+"workbench.preferredHighContrastColorTheme": "Visual Studio 2017 Dark - C++",
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "java.configuration.checkProjectSettingsExclusions": false,
@@ -23,8 +22,8 @@
   "editor.guides.indentation": false,
   "files.insertFinalNewline": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
+    "source.fixAll.eslint": "explicit"
+},
   "eslint.validate": [
     "javascript",
     "javascriptreact"
@@ -73,5 +72,6 @@
 "window.zoomLevel": 1,
 "files.trimTrailingWhitespace": true,
 "jest.disabledWorkspaceFolders": [],
-"files.autoSave": "onFocusChange"
+"workbench.preferredDarkColorTheme": "Visual Studio Dark - C++",
+"window.autoDetectHighContrast": false
 }

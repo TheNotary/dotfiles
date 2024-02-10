@@ -25,7 +25,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set backspace=2 " make backspace work like most other apps
-autocmd BufWritePre * %s/\s\+$//e " delete trailing whitespace at ends of lines
+" autocmd BufWritePre * %s/\s\+$//e " delete trailing whitespace at ends of lines
 
 execute pathogen#infect()
 
