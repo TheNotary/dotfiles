@@ -60,6 +60,7 @@ for file in $files; do
      [ "$file" = "fresh_install_script" ] ||
      [ "$file" = "sample_this_machine" ] ||
      [ "$file" = "complex" ] ||
+     [ "$file" = "config" ] ||
      ( [ "$file" = "mac_fixes" ] && [ "$(uname)" != "Darwin" ] )  # OS specific file
   then
     echo "skipping one:  ${file}"
@@ -102,9 +103,31 @@ for folder in $folders; do
     [ -e ${HOME}/.${folder}/ ] && ln -s ${PWD}/${file} ${HOME}/.${folder}/${file}
   done
   popd
-
 done
+popd
 
+# .config Phase
+#
+echo "Changing to the $dir/config directory"
+pushd ${dir}/config
+echo ""
+
+folders="$(ls ${PWD})"
+for folder in $folders; do
+  echo "  folder name: ${folder}"
+
+  # cd into the folder
+  pushd $folder
+  for file in $(ls ${PWD}); do
+    echo "    Making backup of ${file} in ${backup_dir}/config/${folder}/${file}"
+    [ ! -e ${backup_dir}/config/${folder} ] && mkdir ${backup_dir}/config/${folder}
+    [ -e ${HOME}/.${folder}/${file} ] && mv ${HOME}/.config/${folder}/${file} ${backup_dir}/config/${folder}/${file}
+
+    echo "    Creating symlink to ~/.${folder}/${file}"
+    [ -e ${HOME}/.config/${folder}/ ] && ln -s ${PWD}/${file} ${HOME}/.config/${folder}/${file}
+  done
+  popd
+done
 popd
 
 # Inane Phase
