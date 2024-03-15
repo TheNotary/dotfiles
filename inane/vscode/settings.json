@@ -73,5 +73,8 @@
 "files.trimTrailingWhitespace": true,
 "jest.disabledWorkspaceFolders": [],
 "workbench.preferredDarkColorTheme": "Visual Studio Dark - C++",
-"window.autoDetectHighContrast": false
+"window.autoDetectHighContrast": false,
+"editor.rulers": [
+    80, 100
+]
 }

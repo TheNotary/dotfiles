@@ -18,6 +18,10 @@
       "Hydrogen"
     ]
     telemetryConsent: "no"
+    themes: [
+      "atom-dark-ui"
+      "atom-dark-syntax"
+    ]
   editor:
     invisibles: {}
   "exception-reporting":
