@@ -121,9 +121,9 @@ for folder in $folders; do
   for file in $(ls ${PWD}); do
     echo "    Making backup of ${file} in ${backup_dir}/config/${folder}/${file}"
     [ ! -e ${backup_dir}/config/${folder} ] && mkdir ${backup_dir}/config/${folder}
-    [ -e ${HOME}/.${folder}/${file} ] && mv ${HOME}/.config/${folder}/${file} ${backup_dir}/config/${folder}/${file}
+    [ -e ${HOME}/.config/${folder}/${file} ] && mv ${HOME}/.config/${folder}/${file} ${backup_dir}/config/${folder}/${file}
 
-    echo "    Creating symlink to ~/.${folder}/${file}"
+    echo "    Creating symlink to ~/.config/${folder}/${file}"
     [ -e ${HOME}/.config/${folder}/ ] && ln -s ${PWD}/${file} ${HOME}/.config/${folder}/${file}
   done
   popd
