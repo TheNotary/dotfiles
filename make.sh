@@ -45,6 +45,7 @@ fi
 # create backup_dir in homedir
 echo "Creating ${backup_dir} for backup of any existing dotfiles in ~"
 mkdir -p ${backup_dir}/complex
+mkdir ${backup_dir}/config
 echo "...done"
 
 # change to the dotfiles directory
