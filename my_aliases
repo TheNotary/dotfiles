@@ -24,6 +24,7 @@ alias enc_with_pass="gpg --symmetric --cipher-algo AES256"
 # https://www.ssh.com/ssh/tunneling/example
 # The machine running the below command will have connections to it's port 32000 tunnled through jump-box to it's localhost:32000.  change localhost to some other server as needed :)
 #ssh -L 32000:localhost:32000 jump-box  "tail -f /dev/null"
+# ssh -L 5911:localhost:5911 gitlab-runner-alpha  "tail -f /dev/null"
 
 
 # https://askubuntu.com/questions/897907/how-to-tunnel-and-browse-the-web-on-remote-network
@@ -37,10 +38,12 @@ alias enc_with_pass="gpg --symmetric --cipher-algo AES256"
 alias k="kubectl"
 alias kg="kubectl get"
 alias kga="kubectl get all"
-alias kgall="kubectl get service,pod,deployment,daemonset,networkpolicy,pvc,secret,configmap"
+alias kgall="kubectl get service,pod,deployment,daemonset,networkpolicy,pvc,secret,configmap,persistentvolumeclaim"
 alias kgp="kubectl get pods --show-kind"
 alias kd="kubectl describe"
+# Filter logs through this for slight improvements: sed 's/^[^\w]*\]//' 
 alias kl="kubectl logs"
+alias knamespace="kubectl config set-context --current --namespace"
 
 alias vs="vagrant ssh"
 alias vm-list="vboxmanage list vms -l | awk '/^Name:  / || /^State: / {if (\$1 ==\"State:\") print \"  - \" \$2 \" \" \$3; else print \$2; }'"
@@ -69,6 +72,15 @@ function kill-ruby { ps -A|grep ruby |awk '{print $1}' | xargs kill -s 9 ; }
 # tests if a page is being cached by showing you headers
 alias tcache="curl -svo /dev/null "
 
+# title a tab, e.g. $ title git
+function title {
+  # ♐ git
+  msg=$*
+
+  [ $1 == "git" ] && msg="♐ git"
+  
+  echo -ne "\033]0;"${msg}"\007"
+}
 
 # instant web server in the current directory
 #python -m SimpleHTTPServer

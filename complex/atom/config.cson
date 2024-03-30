@@ -19,8 +19,8 @@
     ]
     telemetryConsent: "no"
     themes: [
-      "atom-dark-ui"
-      "atom-dark-syntax"
+      "atom-light-ui"
+      "atom-light-syntax"
     ]
   editor:
     invisibles: {}
