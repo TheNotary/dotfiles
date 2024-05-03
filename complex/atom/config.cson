@@ -62,7 +62,7 @@
     tabType: "soft"
 ".js":
   editor:
-    tabLength: 2
+    tabLength: 4
 ".makefile.source":
   editor:
     softTabs: false

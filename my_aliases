@@ -22,8 +22,8 @@ alias enc_with_pass="gpg --symmetric --cipher-algo AES256"
 # sshuttle -v -r torpedo -N 0/0
 
 # https://www.ssh.com/ssh/tunneling/example
-# The machine running the below command will have connections to it's port 32000 tunnled through jump-box to it's localhost:32000.  change localhost to some other server as needed :)
-#ssh -L 32000:localhost:32000 jump-box  "tail -f /dev/null"
+# The machine running the below command will have connections to it's port 32000 tunnled through jump-box to it's localhost:32001.  change localhost to some other server as needed :)
+#ssh -L 32000:localhost:32001 jump-box  "tail -f /dev/null"
 # ssh -L 5900:localhost:5913 gitlab-runner-alpha  "tail -f /dev/null"
 
 
@@ -55,6 +55,11 @@ function ktach {
 
   kubectl exec --stdin --tty $POD_NAME -- $SHELL_PATH;
 }
+# Manually run a cronjob
+function kjob {
+  JOB_NAME=$1
+  kubectl delete job manual-${JOB_NAME} --ignore-not-found && kubectl create job --from=cronjob/${JOB_NAME} manual-${JOB_NAME}
+}
 
 # VM Aliases
 alias vs="vagrant ssh"
@@ -81,6 +86,11 @@ function find-within-project { grep -irn -C 3 "$1" . ; }
 
 # Kills all instances of ruby
 function kill-ruby { ps -A|grep ruby |awk '{print $1}' | xargs kill -s 9 ; }
+
+#alias yaml2json="ruby -ryaml -rjson -e 'puts JSON.pretty_generate(YAML.load(ARGF))'"
+function yaml2json() {
+  ruby -ryaml -rjson -e 'puts JSON.pretty_generate(YAML.load(ARGF))' ${@}
+}
 
 # tests if a page is being cached by showing you headers
 alias tcache="curl -svo /dev/null "
@@ -406,6 +416,15 @@ fs-rename-files-to-linux-style() {
 ############
 # sysadmin #
 ############
+
+# apt-get update but just for a speicifc repository as defined in sources.list.d, e.g. private.list
+update-repo() {
+    for source in "$@"; do
+        sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/${source}" \
+        -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
+    done
+}
+
 
 # launch_vpnd
 alias vpnd="docker run --volumes-from $OVPN_DATA -p 1194:1194/udp --privileged -e DEBUG=1 kylemanna/openvpn"
