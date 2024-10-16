@@ -4,7 +4,7 @@
 #############
 
 alias dc="docker-compose"
-alias tf="terraform"
+#alias tf="terraform"
 alias g="git"
 alias v="vagrant"
 
@@ -25,6 +25,7 @@ alias enc_with_pass="gpg --symmetric --cipher-algo AES256"
 # The machine running the below command will have connections to it's port 32000 tunnled through jump-box to it's localhost:32001.  change localhost to some other server as needed :)
 #ssh -L 32000:localhost:32001 jump-box  "tail -f /dev/null"
 # ssh -L 5900:localhost:5913 gitlab-runner-alpha  "tail -f /dev/null"
+# ssh -L 8080:192.168.3.11:80 router "tail -f /dev/null"
 
 
 # https://askubuntu.com/questions/897907/how-to-tunnel-and-browse-the-web-on-remote-network
@@ -43,7 +44,11 @@ alias kgp="kubectl get pods --show-kind"
 alias kd="kubectl describe"
 # Filter logs through this for slight improvements: sed 's/^[^\w]*\]//' 
 alias kl="kubectl logs"
-alias knamespace="kubectl config set-context --current --namespace"
+#alias knamespace="kubectl config set-context --current --namespace"
+function knamespace {
+  kubectl config set-context --current --namespace $1
+}
+
 function ktach {
   POD_NAME=$1
   SHELL_PATH=${2:-/bin/bash}
@@ -138,6 +143,7 @@ alias pairing-session-join='tmux attach -t pair'
 alias glg="git log --branches --tags --graph --oneline --decorate --remotes"
 alias gis="git status"
 alias gcm="git commit -m"
+alias ad="git add"
 alias gam="git add -A; git commit --amend"
 alias gs="git show"
 
@@ -400,6 +406,8 @@ fs-rename-files-to-linux-style() {
     mv -v "$FILE" `echo $FILE | tr ' ' '_' | tr -d '[{}(),\!]' | tr -d "\'" | tr '[A-Z]' '[a-z]' | sed 's/_-_/_/g'`
   done ;
 }
+
+alias tcpdump_dns="sudo tcpdump -i any port 53"
 
 # Write raspbian to memory card
 # dd bs=4M if=2015-02-16-raspbian-wheezy.img of=/dev/mmcblk0

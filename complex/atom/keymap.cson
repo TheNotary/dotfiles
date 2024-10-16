@@ -3,3 +3,7 @@
   'ctrl-tab': 'pane:show-next-item'
   'ctrl-shift-tab ^ctrl': 'unset!'
   'ctrl-shift-tab': 'pane:show-previous-item'
+'atom-text-editor':
+  'ctrl--': 'last-cursor-position:previous'
+  'ctrl-_': 'last-cursor-position:next'
+  'ctrl-R': 'last-cursor-position:clear'
