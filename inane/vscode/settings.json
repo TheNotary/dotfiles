@@ -9,7 +9,6 @@
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "java.configuration.checkProjectSettingsExclusions": false,
-    "editor.renderControlCharacters": false,
     "editor.renderWhitespace": "none",
     "editor.detectIndentation": false,
     "redhat.telemetry.enabled": false,
@@ -25,8 +24,8 @@
         "source.fixAll.eslint": "explicit"
     },
     "eslint.validate": [
-    "javascript",
-    "javascriptreact"
+        "javascript",
+        "javascriptreact"
     ],
     "eslint.quiet": true,
     "eslint.format.enable": true,
@@ -44,7 +43,7 @@
     "stretchySpaces.includedLanguages": [
         "javascript",
         "javascriptreact",
-        "typescript",
+        "typescript"
     ],
     "stretchySpaces.updateDelay": 10,
     "editor.folding": false,
@@ -64,10 +63,16 @@
         "editor.wordWrap": "on"
     },
     "[ruby]": {
+        "editor.tabSize": 2
+    },
+    "[html]": {
         "editor.tabSize": 2,
+        "editor.wordWrap": "on"
     },
     "[erb]": {
         "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
+        "editor.wordWrap": "on",
+        "editor.tabSize": 2,
         "editor.formatOnSave": true
     },
     "vscode-erb-beautify.keepBlankLines": 2,
@@ -82,8 +87,10 @@
     "editor.rulers": [
         80, 100
     ],
-    "workbench.colorTheme": "Default Light Modern",
+    "workbench.colorTheme": "Atom One Light2",
     "editor.accessibilitySupport": "off",
     "editor.stickyScroll.enabled": false,
-    "github.copilot.editor.enableAutoCompletions": true
+    "editor.renderControlCharacters": false,
+    "cmake.showOptionsMovedNotification": false,
+    "editor.copyWithSyntaxHighlighting": false
 }

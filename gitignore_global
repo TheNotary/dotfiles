@@ -1,3 +1,4 @@
 *.swp
 .project
 .DS_Store
+*.drawio.bkp
