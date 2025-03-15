@@ -9,13 +9,13 @@ export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 
 alias vi=vim
 alias stat="stat -x"
-export PATH="/usr/local/mysql/bin/:$PATH"
 export PAGER="/usr/bin/less -R"
 
 # mysql crap...
+export PATH="/usr/local/mysql/bin/:$PATH"
 MYSQL=/usr/local/mysql/bin
 export PATH=$PATH:$MYSQL
-export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
+#export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 
 
 _complete_ssh_hosts ()

@@ -23,7 +23,6 @@
       "atom-light-syntax"
     ]
   editor:
-    fontSize: 20
     invisibles: {}
   "exception-reporting":
     userId: "abd7c2da-84f2-8197-1d75-c9ed99f0fcad"
@@ -44,6 +43,7 @@
   "tabs-to-spaces":
     onSave: "untabify"
   "tree-view":
+    hideVcsIgnoredFiles: true
     squashDirectoryNames: true
   welcome:
     showOnStartup: false

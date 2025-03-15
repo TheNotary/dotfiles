@@ -87,6 +87,11 @@ alias pj="python -m json.tool | jq '.'"
 # IE find within project!
 # grep -irn -C 3 "String to search for in directory" .
 function find-within-project { grep -irn -C 3 "$1" . ; }
+function search-recursively { grep -irn --exclude "node_modules" -C 3 "$1" . ; }
+
+# This does a recursive search for a file containing all of the 3 matching keywords, deploy, static, and s3.  It doesn't search 
+# folders named node_modules or .git which is a waste of time
+#grep -rlZ --exclude-dir "node_modules" --exclude-dir ".git" "deploy" | xargs -r0 grep -l "static" | xargs -r0 grep -l "s3"
 
 
 # Kills all instances of ruby
