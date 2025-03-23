@@ -9,5 +9,16 @@
 {
   "theme": "Andromeda",
   "ui_font_size": 16,
-  "buffer_font_size": 16
+  "buffer_font_size": 16,
+  "diagnostics": {
+    "include_warnings": false,
+    "inline": {
+      "enabled": false,
+      "update_debounce_ms": 150,
+      "padding": 4,
+      "min_column": 0,
+      "max_severity": null
+    }
+  },
+  "metrics": false
 }

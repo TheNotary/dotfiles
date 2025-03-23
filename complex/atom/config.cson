@@ -7,6 +7,7 @@
     pusher_app_key: "3f0173d82c6a0ba42871"
     pusher_app_secret: "36560a9de00d671cc61d"
   "autocomplete-plus":
+    confirmCompletion: "tab always, enter when suggestion explicitly selected"
     scopeBlacklist: [
       "*.md"
     ]
@@ -16,6 +17,7 @@
     automaticallyUpdate: false
     disabledPackages: [
       "Hydrogen"
+      "teletype"
     ]
     telemetryConsent: "no"
     themes: [
@@ -24,6 +26,8 @@
     ]
   editor:
     invisibles: {}
+    preferredLineLength: 100
+    scrollPastEnd: true
   "exception-reporting":
     userId: "abd7c2da-84f2-8197-1d75-c9ed99f0fcad"
   "markdown-preview":
@@ -50,6 +54,12 @@
 ".erb":
   editor:
     tabLength: 2
+".erb.html.text":
+  editor:
+    nonWordCharacters: "/\\()\"':,.;<>~!#$%^&*|+=[]{}`?-…"
+".gemfile.ruby.source":
+  editor:
+    nonWordCharacters: "/\\()\"':,.;<>~!#$%^&*|+=[]{}`?-…"
 ".groovy.source":
   editor:
     tabType: "soft"
@@ -70,3 +80,6 @@
     tabLength: 4
   "tabs-to-spaces":
     onSave: "none"
+".ruby.source":
+  editor:
+    nonWordCharacters: "/\\()\"':,.;<>~!#$%^&*|+=[]{}`?-…"
