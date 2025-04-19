@@ -25,6 +25,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set backspace=2 " make backspace work like most other apps
+set ic " search ignores case: https://stackoverflow.com/questions/2287440/how-to-do-case-insensitive-search-in-vim
 " autocmd BufWritePre * %s/\s\+$//e " delete trailing whitespace at ends of lines
 
 execute pathogen#infect()
