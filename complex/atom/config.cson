@@ -57,9 +57,13 @@
 ".erb.html.text":
   editor:
     nonWordCharacters: "/\\()\"':,.;<>~!#$%^&*|+=[]{}`?-…"
+    softWrap: true
 ".gemfile.ruby.source":
   editor:
     nonWordCharacters: "/\\()\"':,.;<>~!#$%^&*|+=[]{}`?-…"
+".go.source":
+  editor:
+    tabType: "auto"
 ".groovy.source":
   editor:
     tabType: "soft"

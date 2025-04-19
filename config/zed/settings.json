@@ -7,6 +7,28 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "features": {
+    "edit_prediction_provider": "none"
+  },
+  "language_models": {
+    "ollama": {
+      "api_url": "http://192.168.1.32:11434",
+      "available_models": [
+        {
+          "name": "mistral-small:24b-instruct-2501-q8_0",
+          "display_name": "mistral-small:24b-instruct-2501-q8_0",
+          "max_tokens": 32768
+        }
+      ]
+    }
+  },
+  "assistant": {
+    "default_model": {
+      "provider": "ollama",
+      "model": "mistral-small:24b-instruct-2501-q8_0"
+    },
+    "version": "2"
+  },
   "theme": "Andromeda",
   "ui_font_size": 16,
   "buffer_font_size": 16,

@@ -1,6 +1,7 @@
 [user]
   email = no@email.plz
   name = TheNotary
+  repo-domain = github.com
 [push.autoSetupRemote]
   default = current
 [push]

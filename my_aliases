@@ -8,6 +8,13 @@ alias dc="docker-compose"
 alias g="git"
 alias v="vagrant"
 alias o="open"
+alias head="head -n 40"
+
+# For cleaning out projects, looks in directory and reads readme
+function ww {
+  folder_name=$1
+  vi $1/README.md
+}
 
 
 # Encrypt file with password
@@ -126,6 +133,10 @@ alias rhttp='ruby -run -e httpd .'
 # Use this cmd to dl a web page and it's css/js file if you're not sure where a string comes from
 alias dl_resources_for_grepping='wget -p -k http://localhost:3000'
 
+#
+# Rails
+#
+
 alias r='rails'
 # To properly test, make sure you're running 'spork' in another terminal window
 alias test-rails='bundle exec rspec --drb spec/'
@@ -133,6 +144,15 @@ alias bundle-install='bundle install --without development test'
 alias be='bundle exec'
 alias ber='bundle exec rake'
 alias bec='bundle exec cucumber'
+
+#
+# Go
+#
+
+alias gotest="set -o pipefail && go test ./... -json | tparse -all"
+color_scheme="sed -i 's/: black/: white/g' c.html && sed -i 's/: rgb(44, 212, 149)/: rgb(107 182 77)/g' c.html"
+alias gocover="go test -coverprofile=c.out ./... && go tool cover -html=c.out -o c.html && eval \"${color_scheme}\" && open c.html"
+
 
 # http://collectiveidea.com/blog/archives/2014/02/18/a-simple-pair-programming-setup-with-ssh-and-tmux/
 alias pairing-session-start='tmux new-session -s pair'

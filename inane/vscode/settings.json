@@ -49,7 +49,9 @@
     "editor.folding": false,
     "git.openRepositoryInParentFolders": "never",
     "remove-tabs-on-save.ignoreFileExtensions": [
-        "*.go"
+        "*.go",
+        "go.mod",
+        "go.sum"
     ],
     "editor.indentSize": "tabSize",
     "editor.inlineSuggest.enabled": true,
@@ -75,6 +77,11 @@
         "editor.tabSize": 2,
         "editor.formatOnSave": true
     },
+    "[go.mod]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": false,
+        "editor.insertSpaces": false
+    },
     "vscode-erb-beautify.keepBlankLines": 2,
     "go.toolsManagement.autoUpdate": true,
     "cmake.configureOnOpen": false,
@@ -92,5 +99,6 @@
     "editor.stickyScroll.enabled": false,
     "editor.renderControlCharacters": false,
     "cmake.showOptionsMovedNotification": false,
-    "editor.copyWithSyntaxHighlighting": false
+    "editor.copyWithSyntaxHighlighting": false,
+    "chat.commandCenter.enabled": false
 }
