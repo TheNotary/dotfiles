@@ -18,29 +18,42 @@ function colorTabsByKind(editor) {
 		// Greenish
 		"test": {
 			"matchers": ["_int.rb", "_test.rb", "_spec.rb"],
-			"color": "#f9d4d4",
+			"color": "#ddc9c9",
 		},
 		// orange/ red
 		"job": {
 			"matchers": ["_job.rb"],
-			"color": "#f9d4d4",
+			"color": "#c9dddd",
 		},
 		// purple/ blue
 		"controller": {
 			"matchers": ["_controller.rb"],
-			"color": "#f9d4d4",
+			"color": "#e0e0cc",
+		},
+		// brown/ gold
+		"view": {
+			"matchers": [".html.erb", ".html"],
+			"color": ""
+		},
+		// special gold
+		"config": {
+			"matchers": ["routes.rb", "schema.rb"],
+			"color": ""
 		},
 	}
 	var tabs = document.querySelectorAll('li.tab.texteditor');
 
 	for(var i=0;i<tabs.length;i++) {
 		var file_name = tabs[i].childNodes[0].getAttribute('data-name');
+		if (!file_name) continue;
 		var ext = file_name.substr(file_name.lastIndexOf('.') + 1);
 		var file_type = matchesKnownType(file_name)
 
 		if (!file_type) continue;
 
 		var class_name = 'filetype-' + file_type;
+
+		tabs[i].dataset["filetype"] = file_type;
 
 		if (!tabs[i].classList.contains(class_name)) {
 			tabs[i].classList.add(class_name);
@@ -63,6 +76,10 @@ atom.workspace.onDidOpen(colorTabsByKind);
 // Make treeview say the projects actual name, not just the word project...
 function makeProjectTabSayProjectName() {
 	let treeviewDiv = document.querySelector("atom-workspace atom-panel-container.left atom-pane > ul > li > div")
-	let rootDirName = atom.workspace.project.rootDirectories[0].path.split("/").slice(-1)[0].toUpperCase()
+	let rootDir = atom.workspace.project.rootDirectories[0];
+
+	if (!rootDir) return;
+
+	let rootDirName = rootDir.path.split("/").slice(-1)[0].toUpperCase()
 	treeviewDiv.textContent = rootDirName;
 }

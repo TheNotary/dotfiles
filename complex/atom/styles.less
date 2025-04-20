@@ -7,44 +7,58 @@
  * Add your own CSS or Less to fully customize Atom.
  * If you are unfamiliar with Less, you can read more about it here:
  * http://lesscss.org
+ *
+ * everything is pre-processed by less, despite the file extension.  To
+ * escape hsl declarations, you need to use e("hsl(1, 2, 3)") when using
+ * CSS variables.
  */
 
+/* Default tab start hsl(0, 0%, 91%) */
+/* Default tab end   hsl(0, 0%, 85%) */
 
-/*
- * Examples
- * (To see them, uncomment and save)
- */
+.tab-bar {
+  [data-filetype="test"]       { --hue: 0; };
+  [data-filetype="job"]        { --hue: 180; };
+  [data-filetype="controller"] { --hue: 60; };
+  [data-filetype="view"]       { --hue: 212; };
 
-// style the background color of the tree view
-.tree-view {
-  // background-color: whitesmoke;
+  --hue: 200;
+  --sat: 15%;
+  --lvl: 90%;
+  --lvl-end: e("calc(var(--lvl) - 10%)");
+  --lvl-active: e("calc(var(--lvl) - 2%)");
+  --lvl-active-end: e("calc(var(--lvl) + 3%)");
+
+  & > li[data-filetype],
+  & > li[data-filetype]::before,
+  & > li[data-filetype]::after {
+    background-image: -webkit-linear-gradient(top,
+      e("hsl(var(--hue), var(--sat), var(--lvl))"),
+      e("hsl(var(--hue), var(--sat), var(--lvl-end))")
+    );
+  }
+
+  & > li[data-filetype].tab.active,
+  & > li[data-filetype].tab.active::before,
+  & > li[data-filetype].tab.active::after {
+    background-image: -webkit-linear-gradient(top,
+      e("hsl(var(--hue), var(--sat), var(--lvl-active))"),
+      e("hsl(var(--hue), var(--sat), var(--lvl-active-end))")
+    );
+  }
 }
 
-// style the background and foreground colors on the atom-text-editor-element itself
-atom-text-editor {
-  // color: white;
-  // background-color: hsl(180, 24%, 12%);
-}
+/* Keeping this old way for posterity! */
+/* .tab-bar {
+  .filetype-test,
+  .filetype-test:before,
+  .filetype-test:after {
+    background-image: -webkit-linear-gradient(top, hsl(0, 15%, 90%), hsl(0, 15%, 80%));
+  }
 
-// style UI elements inside atom-text-editor
-atom-text-editor .cursor {
-  // border-color: red;
-}
-
-.tab-bar .filetype-test,
-.tab-bar .filetype-test:before,
-.tab-bar .filetype-test:after {
-  background-image: -webkit-linear-gradient(top, #ddc9c9, #ddd9d9);
-}
-
-.tab-bar .filetype-controller,
-.tab-bar .filetype-controller:before,
-.tab-bar .filetype-controller:after {
-  background-image: -webkit-linear-gradient(top, #e0e0cc, #e9e9cc);
-}
-
-.tab-bar .filetype-job,
-.tab-bar .filetype-job:before,
-.tab-bar .filetype-job:after {
-  background-image: -webkit-linear-gradient(top, #c9dddd, #d9dddd);
-}
+  .tab.active.filetype-test,
+  .tab.active.filetype-test:before,
+  .tab.active.filetype-test:after {
+    background-image: -webkit-linear-gradient(top, hsl(0, 15%, 88%), hsl(0, 15%, 93%));
+  }
+} */
