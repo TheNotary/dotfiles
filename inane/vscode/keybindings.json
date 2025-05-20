@@ -18,12 +18,32 @@
 },
 {
     "key": "cmd+s",
-    "command": "editor.action.inlineSuggest.hide",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        {
+          "command": "workbench.action.files.save"
+        },
+        {
+          "command": "editor.action.inlineSuggest.hide"
+        }
+      ]
+    },
     "when": "inInlineEditsPreviewEditor"
 },
 {
     "key": "cmd+s",
-    "command": "hideSuggestWidget",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        {
+          "command": "workbench.action.files.save"
+        },
+        {
+          "command": "hideSuggestWidget"
+        }
+      ]
+    },
     "when": "suggestWidgetVisible && textInputFocus"
 },
 {
