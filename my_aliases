@@ -113,12 +113,23 @@ function yaml2json() {
 # tests if a page is being cached by showing you headers
 alias tcache="curl -svo /dev/null "
 
-# title a tab, e.g. $ title git
-function title {
+# set the terminal tab's title, e.g. $ title git
+function title-with-process {
   # ♐ git
   msg=$*
 
   [ $1 == "git" ] && msg="♐ git"
+  
+  echo -ne "\033]0;"${msg}"\007"
+}
+
+function title {
+  # ♐ git
+  msg=$1
+
+  [ $1 == "git" ] && msg="⚕️ git"
+  [ $1 == "frontend" ] && msg="♐"
+  [ $1 == "backend" ] && msg="🍑"
   
   echo -ne "\033]0;"${msg}"\007"
 }
@@ -139,6 +150,7 @@ alias dl_resources_for_grepping='wget -p -k http://localhost:3000'
 
 alias r='rails'
 # To properly test, make sure you're running 'spork' in another terminal window
+alias rt='bin/rails test'
 alias test-rails='bundle exec rspec --drb spec/'
 alias bundle-install='bundle install --without development test'
 alias be='bundle exec'

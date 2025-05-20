@@ -9,3 +9,5 @@
   'ctrl-_': 'last-cursor-position:next'
   'ctrl-R': 'last-cursor-position:clear'
   'cmd-\\': 'editor:copy-project-path'
+'.tree-view':
+  'cmd-r': 'tree-view:move'

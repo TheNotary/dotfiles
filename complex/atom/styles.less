@@ -17,11 +17,7 @@
 /* Default tab end   hsl(0, 0%, 85%) */
 
 .tab-bar {
-  [data-filetype="test"]       { --hue: 0; };
-  [data-filetype="job"]        { --hue: 180; };
-  [data-filetype="controller"] { --hue: 60; };
-  [data-filetype="view"]       { --hue: 212; };
-
+  --dir: top;
   --hue: 200;
   --sat: 15%;
   --lvl: 90%;
@@ -29,23 +25,51 @@
   --lvl-active: e("calc(var(--lvl) - 2%)");
   --lvl-active-end: e("calc(var(--lvl) + 3%)");
 
-  & > li[data-filetype],
-  & > li[data-filetype]::before,
-  & > li[data-filetype]::after {
-    background-image: -webkit-linear-gradient(top,
-      e("hsl(var(--hue), var(--sat), var(--lvl))"),
-      e("hsl(var(--hue), var(--sat), var(--lvl-end))")
-    );
+  & {
+
+    [data-filetype="test"]       { --hue: 0; --hue-end: 320; };
+    [data-filetype="job"]        { --hue: 180; };
+    [data-filetype="controller"] { --hue: 60; };
+    // I think this style has potential, views and styles are related.
+    // Their colors are close, too close, but we can make a subtle adjustment to saturation to
+    // differentiate them
+    [data-filetype="view"]       { --hue: 210; };
+    [data-filetype="style"]       { --hue: 240; --sat: 15%};
+
+    // styles share similarities with configs, and so their hue matches
+    // Configs are more serious files, so they're "textured" more boldly
+    // Their saturation is allowed to drift
+    [data-filetype="config"]       { --hue: 240; --sat: 18%; --lvl: 87.5%; --lvl-end: 79%; };
+    [data-filetype="webscript"]    { --hue: 276; };
+
+
+    // controller doesn't look right...
+    & > li[data-filetype],
+    & > li[data-filetype]::before,
+    & > li[data-filetype]::after {
+      --hue-end: var(--hue);
+
+      & {
+        background-image: -webkit-linear-gradient(
+          e("var(--dir)"),
+          e("hsl(var(--hue), var(--sat), var(--lvl))"),
+          e("hsl(var(--hue-end), var(--sat), var(--lvl-end))")
+        );
+      }
+    }
+
+    & > li[data-filetype].tab.active,
+    & > li[data-filetype].tab.active::before,
+    & > li[data-filetype].tab.active::after {
+      background-image: -webkit-linear-gradient(
+        e("var(--dir)"),
+        e("hsl(var(--hue), var(--sat), var(--lvl-active))"),
+        e("hsl(var(--hue-end), var(--sat), var(--lvl-active-end))")
+      );
+    }
+
   }
 
-  & > li[data-filetype].tab.active,
-  & > li[data-filetype].tab.active::before,
-  & > li[data-filetype].tab.active::after {
-    background-image: -webkit-linear-gradient(top,
-      e("hsl(var(--hue), var(--sat), var(--lvl-active))"),
-      e("hsl(var(--hue), var(--sat), var(--lvl-active-end))")
-    );
-  }
 }
 
 /* Keeping this old way for posterity! */

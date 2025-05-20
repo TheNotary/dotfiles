@@ -32,7 +32,17 @@ function colorTabsByKind(editor) {
 		},
 		// brown/ gold
 		"view": {
-			"matchers": [".html.erb", ".html"],
+			"matchers": [".html.erb", ".html", ".erb", ".jsx"],
+			"color": ""
+		},
+		// yellow also because .js is whiny in many contexts
+		"webscript": {
+			"matchers": [".js"],
+			"color": ""
+		},
+		// yellower
+		"style": {
+			"matchers": [".css", ".less", ".scss"],
 			"color": ""
 		},
 		// special gold

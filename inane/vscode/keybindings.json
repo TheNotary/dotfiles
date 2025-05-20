@@ -31,7 +31,7 @@
     "command": "-workbench.action.focusSecondEditorGroup"
 },
 {
-    "key": "cmd+2",
+    "key": "cmd+r",
     "command": "editor.action.rename",
     "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
 },
@@ -48,5 +48,20 @@
     "key": "shift+cmd+\\",
     "command": "-workbench.action.terminal.focusTabs",
     "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
+},
+{
+    "key": "cmd+r",
+    "command": "-inlineChat.regenerate",
+    "when": "inlineChatHasProvider && inlineChatVisible"
+},
+{
+    "key": "cmd+r",
+    "command": "-workbench.action.terminal.chat.rerunRequest",
+    "when": "chatIsEnabled && terminalChatFocus && terminalHasBeenCreated && !terminalChatActiveRequest || chatIsEnabled && terminalChatFocus && terminalProcessSupported && !terminalChatActiveRequest"
+},
+{
+    "key": "cmd+r",
+    "command": "renameFile",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
 }
 ]
