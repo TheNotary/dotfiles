@@ -104,5 +104,6 @@
     "files.autoSave": "onFocusChange",
     "python.analysis.includeAliasesFromUserFiles": true,
     "editor.hover.hidingDelay": 50,
-    "extensions.ignoreRecommendations": true
+    "extensions.ignoreRecommendations": true,
+    "editor.formatOnSave": true
 }
