@@ -1,7 +1,7 @@
 {
     "workbench.startupEditor": "newUntitledFile",
-    "telemetry.enableCrashReporter": false,
-    "telemetry.enableTelemetry": false,
+    "telemetry.feedback.enabled": false,
+    "telemetry.telemetryLevel": "off",
     "update.showReleaseNotes": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.list.openMode": "doubleClick",
@@ -100,5 +100,9 @@
     "editor.renderControlCharacters": false,
     "cmake.showOptionsMovedNotification": false,
     "editor.copyWithSyntaxHighlighting": false,
-    "chat.commandCenter.enabled": false
+    "chat.commandCenter.enabled": false,
+    "files.autoSave": "onFocusChange",
+    "python.analysis.includeAliasesFromUserFiles": true,
+    "editor.hover.hidingDelay": 50,
+    "extensions.ignoreRecommendations": true
 }
