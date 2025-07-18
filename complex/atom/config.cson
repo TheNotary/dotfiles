@@ -33,7 +33,6 @@
   "markdown-preview":
     liveUpdate: false
   minimap:
-    absoluteMode: true
     plugins:
       "git-diff": true
       "git-diffDecorationsZIndex": 0

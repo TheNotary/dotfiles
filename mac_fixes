@@ -6,7 +6,7 @@
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 
-
+alias ls="gls --color=auto --group-directories-first"
 alias vi=vim
 alias stat="stat -x"
 export PAGER="/usr/bin/less -R"
@@ -36,4 +36,3 @@ _complete_ssh_hosts ()
         return 0
 }
 complete -F _complete_ssh_hosts ssh
-
