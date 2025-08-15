@@ -20,15 +20,6 @@
     "editor.tabSize": 4,
     "editor.guides.indentation": false,
     "files.insertFinalNewline": true,
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
-    },
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact"
-    ],
-    "eslint.quiet": true,
-    "eslint.format.enable": true,
     "typescript.updateImportsOnFileMove.enabled": "always",
     "javascript.updateImportsOnFileMove.enabled": "always",
     "stretchySpaces.excludedLanguages": [
@@ -76,6 +67,10 @@
         "editor.formatOnSave": false,
         "editor.insertSpaces": false
     },
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+        "editor.formatOnSave": true
+    },
     "vscode-erb-beautify.keepBlankLines": 2,
     "go.toolsManagement.autoUpdate": true,
     "cmake.configureOnOpen": false,
@@ -100,5 +95,17 @@
     "python.analysis.includeAliasesFromUserFiles": true,
     "editor.hover.hidingDelay": 50,
     "extensions.ignoreRecommendations": true,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        // "source.fixAll": "always",
+        // "source.fixAll.ts": "always",
+        "source.fixAll.eslint": "always"
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact"
+    ],
+    "eslint.quiet": false,
+    "eslint.format.enable": true,
+    "eslint.debug": true
 }
