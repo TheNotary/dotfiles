@@ -8,7 +8,7 @@
     "workbench.preferredHighContrastColorTheme": "Visual Studio 2017 Dark - C++",
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "java.configuration.checkProjectSettingsExclusions": false,
+    "java.import.generatesMetadataFilesAtProjectRoot": false,
     "editor.renderWhitespace": "none",
     "editor.detectIndentation": false,
     "redhat.telemetry.enabled": false,
@@ -55,12 +55,6 @@
     ],
     "editor.indentSize": "tabSize",
     "editor.inlineSuggest.enabled": true,
-    "github.copilot.enable": {
-        "*": true,
-        "plaintext": false,
-        "markdown": false,
-        "scminput": false
-    },
     "[plaintext]": {
         "editor.wordWrap": "on"
     },
@@ -92,7 +86,8 @@
     "workbench.preferredDarkColorTheme": "Visual Studio Dark - C++",
     "window.autoDetectHighContrast": false,
     "editor.rulers": [
-        80, 100
+        80,
+        100
     ],
     "workbench.colorTheme": "Atom One Light2",
     "editor.accessibilitySupport": "off",

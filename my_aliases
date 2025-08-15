@@ -178,7 +178,7 @@ alias pairing-session-join='tmux attach -t pair'
 #############
 
 # Most Used:
-alias glg="git log --branches --tags --graph --oneline --decorate --remotes"
+alias glg="git log --graph --branches --tags --remotes --oneline --decorate"
 alias gis="git status"
 alias gcm="git commit -m"
 alias ad="git add"
