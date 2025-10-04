@@ -56,6 +56,9 @@
         "editor.tabSize": 2,
         "editor.wordWrap": "on"
     },
+    "[json]": {
+        "editor.detectIndentation": true
+    },
     "[erb]": {
         "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
         "editor.wordWrap": "on",
@@ -71,6 +74,7 @@
         "editor.defaultFormatter": "dbaeumer.vscode-eslint",
         "editor.formatOnSave": true
     },
+    "vscode-erb-beautify.executePath": "~/bin/htmlbeautifier",
     "vscode-erb-beautify.keepBlankLines": 2,
     "go.toolsManagement.autoUpdate": true,
     "cmake.configureOnOpen": false,
@@ -87,11 +91,10 @@
     "workbench.colorTheme": "Atom One Light2",
     "editor.accessibilitySupport": "off",
     "editor.stickyScroll.enabled": false,
-    "editor.renderControlCharacters": false,
     "cmake.showOptionsMovedNotification": false,
     "editor.copyWithSyntaxHighlighting": false,
     "chat.commandCenter.enabled": false,
-    "files.autoSave": "onFocusChange",
+    "files.autoSave": "off",
     "python.analysis.includeAliasesFromUserFiles": true,
     "editor.hover.hidingDelay": 50,
     "extensions.ignoreRecommendations": true,
@@ -107,5 +110,86 @@
     ],
     "eslint.quiet": false,
     "eslint.format.enable": true,
-    "eslint.debug": true
+    "eslint.debug": true,
+    // "editor.unicodeHighlight.allowedCharacters": {
+    //     "’": false
+    // },
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.packageIndexDepths": [
+        {
+            "name": "pipecat",
+            "depth": 4
+        },
+        {
+            "name": "sklearn",
+            "depth": 2
+        },
+        {
+            "name": "matplotlib",
+            "depth": 2
+        },
+        {
+            "name": "scipy",
+            "depth": 2
+        },
+        {
+            "name": "django",
+            "depth": 2
+        },
+        {
+            "name": "flask",
+            "depth": 2
+        },
+        {
+            "name": "fastapi",
+            "depth": 2
+        },
+        {
+            "name": "cuda",
+            "depth": 3,
+            "includeAllSymbols": true
+        }
+    ],
+    "editor.semanticTokenColorCustomizations": {
+        "enabled": true,
+        "rules": {
+            // Exact match for what the inspector shows now:
+            "method.decorator": {
+                "foreground": "#f133f7",
+                "fontStyle": "bold"
+            },
+            // Useful if you also use free functions/classes as decorators:
+            "function.decorator": {
+                "foreground": "#f133f7",
+                "fontStyle": "bold"
+            },
+            "class.decorator": {
+                "foreground": "#f133f7",
+                "fontStyle": "bold"
+            },
+            // Catch‑all: anything used as a decorator regardless of base type
+            "*.decorator": {
+                "foreground": "#f133f7"
+            }
+        }
+    },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "entity.name.function.decorator.python",
+                "settings": {
+                    "foreground": "#f133f7"
+                }
+            },
+            {
+                "scope": "meta.function.decorator.python",
+                "settings": {
+                    "foreground": "#f133f7"
+                }
+            },
+        ]
+    },
+    "html.format.wrapLineLength": 0,
+    "editor.renderControlCharacters": false
 }
