@@ -201,3 +201,10 @@ fi
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 complete -C ~/bin/vault vault
+
+# fnm
+FNM_PATH="/home/ubuntu/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi

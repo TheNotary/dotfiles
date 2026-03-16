@@ -58,6 +58,23 @@ function knamespace {
   kubectl config set-context --current --namespace $1
 }
 
+__knamespace_complete() {
+  local cur prev
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+  # Only complete the 1st argument (namespace)
+  if [[ $COMP_CWORD -eq 1 ]]; then
+    local ns
+    ns="$(kubectl get namespaces -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' 2>/dev/null)"
+    COMPREPLY=( $(compgen -W "$ns" -- "$cur") )
+  else
+    COMPREPLY=()
+  fi
+}
+
+complete -F __knamespace_complete knamespace
+
 function ktach {
   POD_NAME=$1
   SHELL_PATH=${2:-/bin/bash}
@@ -193,7 +210,7 @@ alias glg="git log --graph --branches --tags --remotes --oneline --decorate"
 alias gis="git status"
 alias gcm="git commit -m"
 alias ad="git add"
-alias gam="git add -A; git commit --amend"
+alias gam="git add -A; git commit --amend --reset-author"
 alias gs="git show"
 
 alias c="git checkout"
@@ -591,5 +608,4 @@ scan-mail-sum() { grep 1 /var/log/maillog* | grep retr= | grep -v retr=0 | awk {
 # Aliases to change the keyboard settings on a mac to copy/ paste be like windows
 alias keyboard-restore="hidutil property --set '{\"UserKeyMapping\":[]}'"
 alias keyboard-windows="hidutil property --set '{\"UserKeyMapping\": [{\"HIDKeyboardModifierMappingSrc\":0x7000000E0,\"HIDKeyboardModifierMappingDst\":0x7000000E3}, {\"HIDKeyboardModifierMappingSrc\":0x7000000E3,\"HIDKeyboardModifierMappingDst\":0x7000000E0}] }'"
-
 
