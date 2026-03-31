@@ -55,13 +55,15 @@ cd ${dir}
 # move any existing dotfiles in homedir to backup_dir directory, then create symlinks
 for file in $files; do
 
-  # skip the README.md and make.sh file #
+  # skip the README.md and make.sh file, etc.
   if [ "$file" = "README.md" ] ||
-     [ "$file" = "make.sh" ] ||
+     [ "$file" = "MODERN.md" ] ||
+     [ "$file" = "make.sh" ]   ||
      [ "$file" = "fresh_install_script" ] ||
-     [ "$file" = "sample_this_machine" ] ||
+     [ "$file" = "sample_this_machine" ]  ||
      [ "$file" = "complex" ] ||
-     [ "$file" = "config" ] ||
+     [ "$file" = "inane" ] ||
+     [ "$file" = "config" ]  ||
      ( [ "$file" = "mac_fixes" ] && [ "$(uname)" != "Darwin" ] )  # OS specific file
   then
     echo "skipping one:  ${file}"
