@@ -1,5 +1,6 @@
 // Place your key bindings in this file to override the defaults
 [
+  // Reasonable ctrl + tab behavior
   {
     "key": "ctrl+tab",
     "command": "workbench.action.nextEditor"
@@ -8,6 +9,8 @@
     "key": "ctrl+shift+tab",
     "command": "workbench.action.previousEditor"
   },
+
+  // fuzzy find with ctrl + t
   {
     "key": "cmd+t",
     "command": "-workbench.action.showAllSymbols"
@@ -15,8 +18,14 @@
   {
     "key": "cmd+t",
     "command": "workbench.action.quickOpen"
-},
-{
+  },
+  {
+    "key": "ctrl+t",
+    "command": "workbench.action.quickOpen"
+  },
+
+  // Save also clears annoying chat completions
+  {
     "key": "cmd+s",
     "command": "runCommands",
     "args": {
@@ -26,13 +35,16 @@
         },
         {
           "command": "editor.action.inlineSuggest.hide"
+        },
+        {
+          "command": "hideSuggestWidget"
         }
       ]
     },
     "when": "inInlineEditsPreviewEditor"
-},
-{
-    "key": "cmd+s",
+  },
+  {
+    "key": "ctrl+s",
     "command": "runCommands",
     "args": {
       "commands": [
@@ -40,48 +52,96 @@
           "command": "workbench.action.files.save"
         },
         {
+          "command": "editor.action.inlineSuggest.hide"
+        },
+        {
           "command": "hideSuggestWidget"
         }
       ]
     },
-    "when": "suggestWidgetVisible && textInputFocus"
-},
-{
+    "when": "inInlineEditsPreviewEditor"
+  },
+
+  // ??
+  {
     "key": "cmd+2",
     "command": "-workbench.action.focusSecondEditorGroup"
-},
-{
-    "key": "cmd+r",
-    "command": "editor.action.rename",
-    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
-},
-{
+  },
+
+  // Windows / Linux, highlight active file in tree view (cause I disable defaults)
+  {
+    "key": "shift+ctrl+\\",
+    "command": "workbench.files.action.showActiveFileInExplorer"
+  },
+  {
+    "key": "shift+ctrl+\\",
+    "command": "-editor.action.jumpToBracket",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+ctrl+\\",
+    "command": "-workbench.action.terminal.focusTabs",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
+  },
+
+  // Mac, highlight active file in tree view (cause I disable defaults)
+  {
     "key": "shift+cmd+\\",
     "command": "workbench.files.action.showActiveFileInExplorer"
-},
-{
+  },
+  {
     "key": "shift+cmd+\\",
     "command": "-editor.action.jumpToBracket",
     "when": "editorTextFocus"
-},
-{
+  },
+  {
     "key": "shift+cmd+\\",
     "command": "-workbench.action.terminal.focusTabs",
     "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
-},
-{
+  },
+
+  // Windows/ Linux, ctrl + r renames selected file or refactors a symbol
+  {
+    "key": "ctrl+r",
+    "command": "editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-inlineChat.regenerate",
+    "when": "inlineChatHasProvider && inlineChatVisible"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-workbench.action.terminal.chat.rerunRequest",
+    "when": "chatIsEnabled && terminalChatFocus && terminalHasBeenCreated && !terminalChatActiveRequest || chatIsEnabled && terminalChatFocus && terminalProcessSupported && !terminalChatActiveRequest"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "renameFile",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+
+  // Mac, cmd + r renames selected file or refactors a symbol
+  {
+    "key": "cmd+r",
+    "command": "editor.action.rename",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+  },
+  {
     "key": "cmd+r",
     "command": "-inlineChat.regenerate",
     "when": "inlineChatHasProvider && inlineChatVisible"
-},
-{
+  },
+  {
     "key": "cmd+r",
     "command": "-workbench.action.terminal.chat.rerunRequest",
     "when": "chatIsEnabled && terminalChatFocus && terminalHasBeenCreated && !terminalChatActiveRequest || chatIsEnabled && terminalChatFocus && terminalProcessSupported && !terminalChatActiveRequest"
-},
-{
+  },
+  {
     "key": "cmd+r",
     "command": "renameFile",
     "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
-}
+  }
+
 ]
