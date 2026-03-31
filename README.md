@@ -1,5 +1,8 @@
 # Dotfile Configuration Manager
+
 These are my dotfiles.  Some of them are handy aliases, some of them serve mostly as notes on important commands.  Some of them are my personal configurations for apps.
+
+The new way to use this tool is just cloning down and running `ruby make.rb`.  If you see stale references to `make.sh` then I just forgot to clean them up.
 
 ## Using this scheme of dotfile management
 
@@ -8,7 +11,7 @@ If you'd like to start using this scheme of dotfiles, clone this down and delete
 ## To deploy the configs on a new machine
 
     $ cd ~
-    
+
     # With write access to my repo...
     $ git clone git@github.com:TheNotary/dotfiles.git
 
@@ -17,7 +20,7 @@ If you'd like to start using this scheme of dotfiles, clone this down and delete
 
     $ cd dotfiles
     $ ./make.sh
-    
+
 Once complete that should create backups of all files it tries to overwrite and move them to ~/dotfiles_old.  Then it creates symlinks to all files found in ~/dotfiles (excluding this file and make.sh).  If you cloned with write access, remember you can continue making changes to your dotfiles as you always have ~/.bashrc for example.  If you'd like to upload your changes, simply do:
 
     $  cd ~/dotfiles
@@ -27,7 +30,7 @@ Once complete that should create backups of all files it tries to overwrite and 
 
 ## Complex Config Files
 
-Not all apps use a single config file, rather they keep an entire folder of configs.  Those complex configurations can be version controlled too.  For instance, the `~/.atom/config.cson` file is a prominent config file in atom.  To manage it, create the folder(s) `dotfiles/complex/atom` in this repo.  Now running `./make.sh` will soft link any files placed in the `dotfiles/complex/atom/config.cson` to `~/.atom/config.cson`.  Please note that this only works one layer deep as written.  
+Not all apps use a single config file, rather they keep an entire folder of configs.  Those complex configurations can be version controlled too.  For instance, the `~/.atom/config.cson` file is a prominent config file in atom.  To manage it, create the folder(s) `dotfiles/complex/atom` in this repo.  Now running `./make.sh` will soft link any files placed in the `dotfiles/complex/atom/config.cson` to `~/.atom/config.cson`.  Please note that this only works one layer deep as written.
 
 
 ## Credits
