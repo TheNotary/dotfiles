@@ -53,6 +53,11 @@ SKIP_FILES = %w[
 # Move an existing file/dir to backup_dir, then create a symlink from source to target.
 # If guard_dir is provided, the symlink is only created when that directory exists.
 def backup_and_link(source, target, backup_dest, guard_dir: nil)
+  if File.symlink?(target) && File.readlink(target) == source
+    puts "    Already linked: #{target}"
+    return
+  end
+
   if File.exist?(target) || File.symlink?(target)
     puts "    Making backup of #{File.basename(target)} in #{backup_dest}"
     FileUtils.mkdir_p(File.dirname(backup_dest))
@@ -139,13 +144,13 @@ puts "Changing to the #{DOTFILES_DIR} directory"
 FILES.each do |file|
   # skip list
   if SKIP_FILES.include?(file)
-    puts "skipping one:  #{file}"
+    # puts "skipping one:  #{file}"
     next
   end
 
   # OS-specific skip
   if file == "mac_fixes" && !darwin?
-    puts "skipping one:  #{file}"
+    # puts "skipping one:  #{file}"
     next
   end
 
@@ -153,9 +158,7 @@ FILES.each do |file|
   target = File.join(Dir.home, ".#{file}")
   backup = File.join(BACKUP_DIR, file)
 
-  puts "  Moving any existing dotfiles from ~ to #{BACKUP_DIR}"
   backup_and_link(source, target, backup)
-  puts "  Creating symlink to #{file} in home directory."
 end
 
 # Complex Phase
