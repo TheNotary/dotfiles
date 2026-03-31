@@ -87,8 +87,8 @@ def backup_and_link(source, target, backup_dest, guard_dir: nil)
 end
 
 def backup_and_link_inane(mapping)
-  source_dir = mapping["source_dir"]
-  backup_dir = mapping["backup_dir"]
+  source_dir = mapping[:source_dir]
+  backup_dir = mapping[:backup_dir]
 
   dest_dir =
     if darwin?
@@ -96,10 +96,11 @@ def backup_and_link_inane(mapping)
     elsif windows?
       mapping.dig(:dest_dir, :windows?)
     else
-      mapping.dig(:dest_dir, :default)
+      mapping.dig(:dest_dir, :linux?)
     end
 
   Dir.children(source_dir).each do |file|
+    next if dest_dir.nil?
     source = File.join(source_dir, file)
     dest   = File.join(dest_dir, file)
     backup = File.join(backup_dir, file)
@@ -217,12 +218,21 @@ puts "    Creating symlink to Inane stuff"
 
 inane_mappings = [
   {
-    "source_dir" => File.join(DOTFILES_DIR, "inane", "vscode"),
-    "backup_dir" => File.join(BACKUP_DIR, "inane_vscode"),
-    "dest_dir"   => {
+    source_dir: File.join(DOTFILES_DIR, "inane", "vscode"),
+    backup_dir: File.join(BACKUP_DIR, "inane_vscode"),
+    dest_dir: {
       darwin?: File.join(Dir.home, "Library", "Application Support", "Code", "User"),
       windows?: File.join(ENV.fetch("APPDATA", File.join(Dir.home, "AppData", "Roaming")), "Code", "User"),
-      default: File.join(Dir.home, ".config", "Code", "User"))
+      linux?: File.join(Dir.home, ".config", "Code", "User")
+    }
+  },
+  {
+    source_dir: File.join(DOTFILES_DIR, "inane", "powershell"),
+    backup_dir: File.join(BACKUP_DIR, "inane_powershell"),
+    dest_dir: {
+      windows?: ENV.fetch("OneDrive") ?
+        File.join(ENV.fetch("OneDrive"), "Documents", "PowerShell") :
+        File.join(Dir.home, "Documents", "PowerShell")
     }
   }
 ]
