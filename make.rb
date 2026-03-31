@@ -37,7 +37,6 @@ FILES = Dir.children(DIR).reject { |f| f.start_with?(".") }
 SKIP_FILES = %w[
   README.md
   MODERN.md
-  make.sh
   make.rb
   fresh_install_script
   sample_this_machine
@@ -163,7 +162,7 @@ end
 #
 #   The primary configuration file for Atom is `~/.atom/config.cson`
 # We don't want to version control anything else, and we don't want anything in
-# that folder removed when we run `~/.make.sh`  other than a few specific
+# that folder removed when we run `~/.make.rb`  other than a few specific
 # config files.  So we can drop the config files in `~/dotfiles/complex/atom/`
 # to have them directly installed into the proper place...
 

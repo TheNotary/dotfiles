@@ -44,5 +44,5 @@ Not all apps use a single config file, rather they keep an entire folder of conf
 
 
 ## Credits
-I only lightly modified the bash script and wrote this readme.  Credit for the idea and most of the bash tricks goes to https://github.com/michaeljsmalley
+Inspired by the bash script from https://github.com/michaeljsmalley
 
