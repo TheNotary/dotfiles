@@ -73,7 +73,7 @@ def backup_and_link(source, target, backup_dest, guard_dir: nil)
   begin
     File.symlink(source, target)
   rescue Errno::EACCES
-    raise unless windows?
+    raise unless current_os == :windows
     abort <<~MSG
 
       Error:
@@ -93,15 +93,7 @@ end
 def backup_and_link_inane(mapping)
   source_dir = mapping[:source_dir]
   backup_dir = mapping[:backup_dir]
-
-  dest_dir =
-    if darwin?
-      mapping.dig(:dest_dir, :darwin?)
-    elsif windows?
-      mapping.dig(:dest_dir, :windows?)
-    else
-      mapping.dig(:dest_dir, :linux?)
-    end
+  dest_dir = mapping.dig(:dest_dir, current_os)
 
   Dir.children(source_dir).each do |file|
     next if dest_dir.nil?
@@ -114,8 +106,13 @@ def backup_and_link_inane(mapping)
 end
 
 # OS detection
-def darwin?  = RbConfig::CONFIG["host_os"] =~ /darwin/i
-def windows? = RbConfig::CONFIG["host_os"] =~ /mswin|mingw|cygwin/i
+def current_os = if RbConfig::CONFIG["host_os"] =~ /darwin/i
+  :darwin
+elsif RbConfig::CONFIG["host_os"] =~ /mswin|mingw|cygwin/i
+  :windows
+else
+  :linux
+end
 
 
 ###############################
@@ -149,7 +146,7 @@ FILES.each do |file|
   end
 
   # OS-specific skip
-  if file == "mac_fixes" && !darwin?
+  if file == "mac_fixes" && current_os != :darwin
     # puts "skipping one:  #{file}"
     next
   end
@@ -223,16 +220,16 @@ inane_mappings = [
     source_dir: File.join(DOTFILES_DIR, "inane", "vscode"),
     backup_dir: File.join(BACKUP_DIR, "inane_vscode"),
     dest_dir: {
-      darwin?: File.join(Dir.home, "Library", "Application Support", "Code", "User"),
-      windows?: File.join(ENV.fetch("APPDATA", File.join(Dir.home, "AppData", "Roaming")), "Code", "User"),
-      linux?: File.join(Dir.home, ".config", "Code", "User")
+      darwin: File.join(Dir.home, "Library", "Application Support", "Code", "User"),
+      windows: File.join(ENV.fetch("APPDATA", File.join(Dir.home, "AppData", "Roaming")), "Code", "User"),
+      linux: File.join(Dir.home, ".config", "Code", "User")
     }
   },
   {
     source_dir: File.join(DOTFILES_DIR, "inane", "powershell"),
     backup_dir: File.join(BACKUP_DIR, "inane_powershell"),
     dest_dir: {
-      windows?: ENV.fetch("OneDrive") ?
+      windows: ENV.fetch("OneDrive") ?
         File.join(ENV.fetch("OneDrive"), "Documents", "PowerShell") :
         File.join(Dir.home, "Documents", "PowerShell")
     }
@@ -241,9 +238,9 @@ inane_mappings = [
     source_dir: File.join(DOTFILES_DIR, "inane", "zed"),
     backup_dir: File.join(BACKUP_DIR, "inane_zed"),
     dest_dir: {
-      darwin?: File.join(Dir.home, ".config", "zed"),
-      windows?: File.join(ENV.fetch("APPDATA", File.join(Dir.home, "AppData", "Roaming")), "Zed"),
-      linux?: File.join(Dir.home, ".config", "zed")
+      darwin: File.join(Dir.home, ".config", "zed"),
+      windows: File.join(ENV.fetch("APPDATA", File.join(Dir.home, "AppData", "Roaming")), "Zed"),
+      linux: File.join(Dir.home, ".config", "zed")
     }
   }
 ]
