@@ -1,5 +1,21 @@
 {
-    "workbench.startupEditor": "newUntitledFile",
+    "security.allowedUNCHosts": [
+        "wsl.localhost"
+    ],
+    "chat.mcp.gallery.enabled": true,
+    "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+    "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose",
+    "chat.agent.maxRequests": 99999,
+    "github.copilot.chat.agentDebugLog.enabled": true,
+    "chat.hookFilesLocations": {
+        ".github/hooks": true,
+        ".claude/settings.local.json": true,
+        ".claude/settings.json": true,
+        "~/.copilot/hooks": true,
+        "~/.claude/settings.json": true,
+        "~/.agents/hooks": true
+    },
+    "workbench.startupEditor": "none",
     "telemetry.feedback.enabled": false,
     "telemetry.telemetryLevel": "off",
     "update.showReleaseNotes": false,
@@ -12,7 +28,7 @@
     "editor.renderWhitespace": "none",
     "editor.detectIndentation": false,
     "redhat.telemetry.enabled": false,
-    "editor.fontSize": 13,
+    "editor.fontSize": 14,
     "workbench.preferredHighContrastLightColorTheme": "Visual Studio 2017 Light - C++",
     "database.connections": [],
     "workbench.tree.indent": 20,
