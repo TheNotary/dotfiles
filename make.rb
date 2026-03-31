@@ -233,6 +233,15 @@ inane_mappings = [
         File.join(ENV.fetch("OneDrive"), "Documents", "PowerShell") :
         File.join(Dir.home, "Documents", "PowerShell")
     }
+  },
+  {
+    source_dir: File.join(DOTFILES_DIR, "inane", "zed"),
+    backup_dir: File.join(BACKUP_DIR, "inane_zed"),
+    dest_dir: {
+      darwin?: File.join(Dir.home, ".config", "zed"),
+      windows?: File.join(ENV.fetch("APPDATA", File.join(Dir.home, "AppData", "Roaming")), "Zed"),
+      linux?: File.join(Dir.home, ".config", "zed")
+    }
   }
 ]
 
