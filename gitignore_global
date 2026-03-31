@@ -4,3 +4,5 @@
 *.drawio.bkp
 .github/instructions/copilot-instructions.md
 .github/agents
+.github/skills/*/*
+MY_PLAN.md

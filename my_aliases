@@ -92,6 +92,10 @@ function kjob {
   kubectl delete job manual-${JOB_NAME} --ignore-not-found && kubectl create job --from=cronjob/${JOB_NAME} manual-${JOB_NAME}
 }
 
+source "${HOME}/.aliases/klog.sh"
+
+
+
 # VM Aliases
 alias vs="vagrant ssh"
 alias vm-list="vboxmanage list vms -l | awk '/^Name:  / || /^State: / {if (\$1 ==\"State:\") print \"  - \" \$2 \" \" \$3; else print \$2; }'"
