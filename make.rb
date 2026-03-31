@@ -86,6 +86,28 @@ def backup_and_link(source, target, backup_dest, guard_dir: nil)
   end
 end
 
+def backup_and_link_inane(mapping)
+  source_dir = mapping["source_dir"]
+  backup_dir = mapping["backup_dir"]
+
+  dest_dir =
+    if darwin?
+      mapping.dig(:dest_dir, :darwin?)
+    elsif windows?
+      mapping.dig(:dest_dir, :windows?)
+    else
+      mapping.dig(:dest_dir, :default)
+    end
+
+  Dir.children(source_dir).each do |file|
+    source = File.join(source_dir, file)
+    dest   = File.join(dest_dir, file)
+    backup = File.join(backup_dir, file)
+
+    backup_and_link(source, dest, backup)
+  end
+end
+
 # OS detection
 def darwin?  = RbConfig::CONFIG["host_os"] =~ /darwin/i
 def windows? = RbConfig::CONFIG["host_os"] =~ /mswin|mingw|cygwin/i
@@ -193,23 +215,20 @@ end
 #
 puts "    Creating symlink to Inane stuff"
 
-vscode_folder =
-  if darwin?
-    File.join(Dir.home, "Library", "Application Support", "Code", "User")
-  elsif windows?
-    File.join(ENV.fetch("APPDATA", File.join(Dir.home, "AppData", "Roaming")), "Code", "User")
-  else
-    File.join(Dir.home, ".config", "Code", "User")
-  end
+inane_mappings = [
+  {
+    "source_dir" => File.join(DOTFILES_DIR, "inane", "vscode"),
+    "backup_dir" => File.join(BACKUP_DIR, "inane_vscode"),
+    "dest_dir"   => {
+      darwin?: File.join(Dir.home, "Library", "Application Support", "Code", "User"),
+      windows?: File.join(ENV.fetch("APPDATA", File.join(Dir.home, "AppData", "Roaming")), "Code", "User"),
+      default: File.join(Dir.home, ".config", "Code", "User"))
+    }
+  }
+]
 
-FileUtils.mkdir_p(vscode_folder)
-
-%w[settings.json keybindings.json].each do |file|
-  source = File.join(DOTFILES_DIR, "inane", "vscode", file)
-  target = File.join(vscode_folder, file)
-  backup = File.join(BACKUP_DIR, "inane_vscode_#{file}")
-
-  backup_and_link(source, target, backup)
+inane_mappings.each do |mapping|
+  backup_and_link_inane(mapping)
 end
 
 puts "done."
