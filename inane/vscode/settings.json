@@ -96,23 +96,24 @@
     "git.openRepositoryInParentFolders": "never",
     "typescript.updateImportsOnFileMove.enabled": "always",
     "javascript.updateImportsOnFileMove.enabled": "always",
+
+    "files.autoSave": "off",
     
     // Formatting on save related... disabled soon (or now)
-    "files.autoSave": "off",
-    "files.insertFinalNewline": true,
-    "files.trimTrailingWhitespace": true,
-    "editor.formatOnSave": true,
+    "files.insertFinalNewline": false,
+    "files.trimTrailingWhitespace": false,
+    "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
         // "source.fixAll": "always",
         // "source.fixAll.ts": "always",
-        "source.fixAll.eslint": "always"
+        // "source.fixAll.eslint": "always"
     },
+    "eslint.format.enable": true,
     "eslint.validate": [
         "javascript",
         "javascriptreact"
     ],
     "eslint.quiet": false,
-    "eslint.format.enable": true,
     "eslint.debug": true,
     "remove-tabs-on-save.ignoreFileExtensions": [
         "*.go",
@@ -147,7 +148,7 @@
     },
     "[javascript]": {
         "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-        "editor.formatOnSave": true
+        // "editor.formatOnSave": true
     },
     "vscode-erb-beautify.executePath": "~/bin/htmlbeautifier",
     "vscode-erb-beautify.keepBlankLines": 2,
