@@ -1,12 +1,33 @@
 {
+    // Windows specific
     "security.allowedUNCHosts": [
         "wsl.localhost"
     ],
+    "terminal.external.windowsExec": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+    "terminal.integrated.defaultProfile.windows": "PowerShell_7_5",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell_7_5": {
+            "path": "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash",
+            "icon": "terminal-git-bash"
+        }
+    },
+
+    // Changes daily
+    "chat.useAgentSkills": true,
     "chat.mcp.gallery.enabled": true,
-    "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
-    "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose",
     "chat.agent.maxRequests": 99999,
-    "github.copilot.chat.agentDebugLog.enabled": true,
+    "chat.viewSessions.orientation": "stacked",
     "chat.hookFilesLocations": {
         ".github/hooks": true,
         ".claude/settings.local.json": true,
@@ -15,13 +36,51 @@
         "~/.claude/settings.json": true,
         "~/.agents/hooks": true
     },
-    "workbench.startupEditor": "none",
+    "chat.instructionsFilesLocations": {
+        ".github/instructions": true
+    },
+    "chat.tools.urls.autoApprove": {
+        "https://learn.microsoft.com": {
+            "approveRequest": false,
+            "approveResponse": true
+        }
+    },
+    "chat.autopilot.enabled": true,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "github.copilot.chat.agentDebugLog.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false
+    },
+
+    // chat diff features are so broken, this doesn't even have the ability to fix it all the way
+    "workbench.colorCustomizations": {
+        // --- Copilot/Inline diff-style edits (usually these) ---
+        "diffEditor.insertedTextBackground": "#0f361055", // subdued green w/ alpha
+        "diffEditor.removedTextBackground":  "#18020255", // subdued red  w/ alpha
+
+        // Optional: soften borders if your theme draws them
+        "diffEditor.insertedTextBorder": "#2E7D3200",
+        "diffEditor.removedTextBorder":  "#18020255"
+    },
+
+
+    // Misc...
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "rust-analyzer.diagnostics.enable": false,
+    "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+    "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose",
     "telemetry.feedback.enabled": false,
     "telemetry.telemetryLevel": "off",
     "update.showReleaseNotes": false,
+    "workbench.startupEditor": "none",
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.list.openMode": "doubleClick",
     "workbench.preferredHighContrastColorTheme": "Visual Studio 2017 Dark - C++",
+    "workbench.preferredHighContrastLightColorTheme": "Visual Studio 2017 Light - C++",
+    "workbench.tree.indent": 20,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "java.import.generatesMetadataFilesAtProjectRoot": false,
@@ -29,32 +88,32 @@
     "editor.detectIndentation": false,
     "redhat.telemetry.enabled": false,
     "editor.fontSize": 14,
-    "workbench.preferredHighContrastLightColorTheme": "Visual Studio 2017 Light - C++",
     "database.connections": [],
-    "workbench.tree.indent": 20,
     "explorer.autoReveal": "focusNoScroll",
     "editor.tabSize": 4,
     "editor.guides.indentation": false,
-    "files.insertFinalNewline": true,
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "stretchySpaces.excludedLanguages": [
-        "markdown",
-        "plaintext",
-        "README.md",
-        "README",
-        "yml",
-        "yaml",
-        "md"
-    ],
-    "stretchySpaces.includedLanguages": [
-        "javascript",
-        "javascriptreact",
-        "typescript"
-    ],
-    "stretchySpaces.updateDelay": 10,
     "editor.folding": false,
     "git.openRepositoryInParentFolders": "never",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    
+    // Formatting on save related... disabled soon (or now)
+    "files.autoSave": "off",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        // "source.fixAll": "always",
+        // "source.fixAll.ts": "always",
+        "source.fixAll.eslint": "always"
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact"
+    ],
+    "eslint.quiet": false,
+    "eslint.format.enable": true,
+    "eslint.debug": true,
     "remove-tabs-on-save.ignoreFileExtensions": [
         "*.go",
         "go.mod",
@@ -96,7 +155,6 @@
     "cmake.configureOnOpen": false,
     "debug.openDebug": "neverOpen",
     "window.zoomLevel": 1,
-    "files.trimTrailingWhitespace": true,
     "jest.disabledWorkspaceFolders": [],
     "workbench.preferredDarkColorTheme": "Visual Studio Dark - C++",
     "window.autoDetectHighContrast": false,
@@ -104,32 +162,33 @@
         80,
         100
     ],
+    "editor.hover.hidingDelay": 50,
+    "extensions.ignoreRecommendations": true,
+    
+    // "editor.unicodeHighlight.allowedCharacters": {
+    //     "’": false
+    // },
     "workbench.colorTheme": "Atom One Light2",
     "editor.accessibilitySupport": "off",
     "editor.stickyScroll.enabled": false,
     "cmake.showOptionsMovedNotification": false,
     "editor.copyWithSyntaxHighlighting": false,
-    "chat.commandCenter.enabled": false,
-    "files.autoSave": "off",
-    "python.analysis.includeAliasesFromUserFiles": true,
-    "editor.hover.hidingDelay": 50,
-    "extensions.ignoreRecommendations": true,
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        // "source.fixAll": "always",
-        // "source.fixAll.ts": "always",
-        "source.fixAll.eslint": "always"
-    },
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact"
+    "stretchySpaces.excludedLanguages": [
+        "markdown",
+        "plaintext",
+        "README.md",
+        "README",
+        "yml",
+        "yaml",
+        "md"
     ],
-    "eslint.quiet": false,
-    "eslint.format.enable": true,
-    "eslint.debug": true,
-    // "editor.unicodeHighlight.allowedCharacters": {
-    //     "’": false
-    // },
+    "stretchySpaces.includedLanguages": [
+        "javascript",
+        "javascriptreact",
+        "typescript"
+    ],
+    "stretchySpaces.updateDelay": 10,
+    "python.analysis.includeAliasesFromUserFiles": true,
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.autoImportCompletions": true,
     "python.analysis.packageIndexDepths": [
