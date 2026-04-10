@@ -21,6 +21,13 @@ function ww {
 # Usage: enc_with_pass records.zip
 alias enc_with_pass="gpg --symmetric --cipher-algo AES256"
 
+# Convert json to yaml, color it and load it colored into less
+function y {
+  yq -P -C |less -R
+}
+
+
+
 # VPN action
 # Route traffic to this host through another server via an ssh tunnel
 # See this_machine for other helpful examples
@@ -216,6 +223,49 @@ alias gcm="git commit -m"
 alias ad="git add"
 alias gam="git add -A; git commit --amend --reset-author"
 alias gs="git show"
+
+gtag() {
+  semver=$1
+  git tag -a $semver -m $semver
+  git push --tags
+}
+
+
+# git show HEAD^ --stat -- azure.yaml
+#
+# TOD: This should become a TUI
+# `s ^` == `git show HEAD^`
+s() {
+  local rev="HEAD"
+  local stat_switch="--stat"
+  local args=()
+
+  if [[ $# -gt 0 && "$1" != --* ]]; then
+    rev="$1"
+    shift
+
+    case "$rev" in
+      ^*|~*)
+        rev="HEAD${rev}"
+        ;;
+    esac
+  fi
+
+  # Filter arguments
+  for arg in "$@"; do
+    echo "checking $arg"
+    if [[ "$arg" == "--all" ]]; then
+      stat_switch=""
+      echo "FOUND IT"
+    else
+      args+=("$arg")
+    fi
+  done
+
+  echo git show "$rev" ${stat_switch} "${args[@]}"
+  git show "$rev" ${stat_switch:+$stat_switch} "${args[@]}"
+}
+
 
 alias c="git checkout"
 declare -f __git_complete > /dev/null && \
@@ -455,7 +505,9 @@ alias decompress-file-with-zip='unzip my.zip'
 alias compress-image-file='jpegoptim -m70'
 
 # Service management
-alias s='sudo service'
+#alias s='sudo service'
+
+
 
 
 # Get Gateway
@@ -489,6 +541,19 @@ alias tcpdump_dns="sudo tcpdump -i any port 53"
 # dl-ssh() { scp server:/file.txt . }
 
 #  ssh-copy-id -i identity_file remote_host
+
+
+###############
+# Cloud Admin #
+###############
+
+az-list-resources() {
+  RG=$1
+  if [ -z "$RG" ]; then
+    RG=$(azd env get-value AZURE_RESOURCE_GROUP)
+  fi
+  az resource list --resource-group $RG --query "sort_by([].{Type:type, Name:name}, &Type)" --output table
+}
 
 
 ############
