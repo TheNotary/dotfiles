@@ -226,6 +226,22 @@ inane_mappings = [
     }
   },
   {
+    source_dir: File.join(DOTFILES_DIR, "inane", "vscode"),
+    backup_dir: File.join(BACKUP_DIR, "inane_vscode_oss"),
+    dest_dir: {
+      windows: File.join(ENV.fetch("APPDATA", File.join(Dir.home, "AppData", "Roaming")), "Code - OSS", "User")
+    }
+  },
+  {
+    source_dir: File.join(DOTFILES_DIR, "inane", "vscode"),
+    backup_dir: File.join(BACKUP_DIR, "inane_vscode_insiders"),
+    dest_dir: {
+      darwin: File.join(Dir.home, "Library", "Application Support", "Code - Insiders", "User"),
+      windows: File.join(ENV.fetch("APPDATA", File.join(Dir.home, "AppData", "Roaming")), "Code - Insiders", "User"),
+      linux: File.join(Dir.home, ".config", "Code - Insiders", "User")
+    }
+  },
+  {
     source_dir: File.join(DOTFILES_DIR, "inane", "powershell"),
     backup_dir: File.join(BACKUP_DIR, "inane_powershell"),
     dest_dir: {
