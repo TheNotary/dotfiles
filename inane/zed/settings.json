@@ -7,12 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "ui.show_fps": true,
+    "format_on_save": "off",
     "gutter": {
         "min_line_number_digits": 0
     },
     "minimap": {
         "max_width_columns": 80,
-        "show": "never"
+        "show": "always"
     },
     "wsl_connections": [
         {
@@ -36,7 +38,7 @@
     "theme": {
         "mode": "dark",
         "light": "Atom One Light",
-        "dark": "Ayu Dark",
+        "dark": "Atom Dark"
     },
     "metrics": false
 }
