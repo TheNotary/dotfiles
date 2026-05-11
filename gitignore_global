@@ -5,4 +5,5 @@
 .github/instructions/copilot-instructions.md
 .github/agents
 .github/skills/*/*
+.github/prompts
 MY_PLAN.md
