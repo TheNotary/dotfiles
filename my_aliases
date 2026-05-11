@@ -9,6 +9,7 @@ alias g="git"
 alias v="vagrant"
 alias o="open"
 alias head="head -n 40"
+alias ls='ls --color=auto --group-directories-first'
 
 # For cleaning out projects, looks in directory and reads readme
 function ww {
