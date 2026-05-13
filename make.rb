@@ -87,6 +87,8 @@ def backup_and_link(source, target, backup_dest, guard_dir: nil)
 
       Then re-run this script.
     MSG
+  rescue Errno::ENOENT
+    puts "    Skipping symlink of file, path not available for #{target}"
   end
 end
 
