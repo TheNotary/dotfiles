@@ -245,8 +245,8 @@ inane_mappings = [
     source_dir: File.join(DOTFILES_DIR, "inane", "powershell"),
     backup_dir: File.join(BACKUP_DIR, "inane_powershell"),
     dest_dir: {
-      windows: ENV.fetch("OneDrive") ?
-        File.join(ENV.fetch("OneDrive"), "Documents", "PowerShell") :
+      windows: ENV["OneDrive"] ?
+        File.join(ENV["OneDrive"], "Documents", "PowerShell") :
         File.join(Dir.home, "Documents", "PowerShell")
     }
   },
