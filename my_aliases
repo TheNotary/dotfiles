@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+
+# Source all *.sh in ~/.aliases (alphabetical)
+for f in "${HOME}/.aliases/"*.sh; do
+  [[ -r "$f" ]] && source "$f"
+done
+
+#source "${HOME}/.aliases/klog.sh"
+
 #############
 # Developer #
 #############
@@ -99,7 +107,6 @@ function kjob {
   kubectl delete job manual-${JOB_NAME} --ignore-not-found && kubectl create job --from=cronjob/${JOB_NAME} manual-${JOB_NAME}
 }
 
-source "${HOME}/.aliases/klog.sh"
 
 
 
