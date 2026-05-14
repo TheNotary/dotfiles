@@ -23,6 +23,11 @@
         }
     },
 
+    // Fonts
+    "editor.fontFamily": "'Monaspace Neon', monospace",
+    "editor.inlineSuggest.fontFamily": "'Monaspace Krypton', monospace",
+    "editor.fontLigatures": "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09'",
+
     // Changes daily
     "chat.useAgentSkills": true,
     "chat.mcp.gallery.enabled": true,
@@ -42,29 +47,23 @@
     "chat.tools.urls.autoApprove": {
         "https://code.visualstudio.com": true,
         "https://github.com/microsoft/vscode/wiki/*": true,
-        "https://learn.microsoft.com": true
+        "https://learn.microsoft.com": true,
+        "https://github.com/microsoft/windows-rs/tree/master/crates/samples/windows": {
+            "approveResponse": true
+        },
+        "https://raw.githubusercontent.com/microsoft/windows-rs": true,
+        "https://crates.io/crates/copilot-sdk": true,
+        "https://docs.rs/copilot-sdk": true
     },
     "chat.autopilot.enabled": true,
     "github.copilot.nextEditSuggestions.enabled": true,
-    "github.copilot.chat.agentDebugLog.enabled": true,
+    "github.copilot.chat.agentDebugLog.fileLogging.enabled": true,
     "github.copilot.enable": {
         "*": true,
         "plaintext": false,
         "markdown": true,
         "scminput": false
     },
-
-    // chat diff features are so broken, this doesn't even have the ability to fix it all the way
-    "workbench.colorCustomizations": {
-        // --- Copilot/Inline diff-style edits (usually these) ---
-        "diffEditor.insertedTextBackground": "#0f361055", // subdued green w/ alpha
-        "diffEditor.removedTextBackground":  "#18020255", // subdued red  w/ alpha
-
-        // Optional: soften borders if your theme draws them
-        "diffEditor.insertedTextBorder": "#2E7D3200",
-        "diffEditor.removedTextBorder":  "#18020255"
-    },
-
 
     // Misc...
     "editor.inlayHints.enabled": "offUnlessPressed",
@@ -272,7 +271,5 @@
     // disable "keep" and "keep all" chat edits widget from showing up
     "chat.editing.autoAcceptDelay": 1,
     "@azure.argTenant": "",
-    "github.copilot.nextEditSuggestions.eagerness": "low",
-    "github.copilot.chat.agentDebugLog.fileLogging.enabled": true
-
+    "github.copilot.nextEditSuggestions.eagerness": "low"
 }

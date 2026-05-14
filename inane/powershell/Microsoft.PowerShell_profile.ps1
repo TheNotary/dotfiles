@@ -1,5 +1,6 @@
 fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 
+function foobar { foobar_templates @args }
 
 function gis { git status @args }
 
