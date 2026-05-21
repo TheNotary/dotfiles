@@ -271,5 +271,6 @@
     // disable "keep" and "keep all" chat edits widget from showing up
     "chat.editing.autoAcceptDelay": 1,
     "@azure.argTenant": "",
-    "github.copilot.nextEditSuggestions.eagerness": "low"
+    "github.copilot.nextEditSuggestions.eagerness": "low",
+    "editor.codeLens": false
 }
