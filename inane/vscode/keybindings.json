@@ -24,6 +24,24 @@
     "command": "workbench.action.quickOpen"
   },
 
+  // Copy file relative path
+  {
+    "key": "cmd+\\",
+    "command": "copyRelativeFilePath"
+  },
+  {
+    "key": "ctrl+\\",
+    "command": "copyRelativeFilePath"
+  },
+  { // unbind default
+    "key": "ctrl+\\",
+    "command": "-workbench.action.splitEditor"
+  },
+  { // unbind default
+    "key": "cmd+\\",
+    "command": "-workbench.action.splitEditor"
+  },
+
   // Save also clears annoying chat completions
   {
     "key": "cmd+s",
