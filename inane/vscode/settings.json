@@ -32,7 +32,6 @@
     "chat.useAgentSkills": true,
     "chat.mcp.gallery.enabled": true,
     "chat.agent.maxRequests": 99999,
-    "chat.viewSessions.orientation": "stacked",
     "chat.hookFilesLocations": {
         ".github/hooks": true,
         ".claude/settings.local.json": true,
@@ -66,6 +65,7 @@
     },
 
     // Misc...
+    "editor.renderLineHighlight": "none",
     "editor.inlayHints.enabled": "offUnlessPressed",
     "rust-analyzer.diagnostics.enable": false,
     "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
@@ -272,5 +272,8 @@
     "chat.editing.autoAcceptDelay": 1,
     "@azure.argTenant": "",
     "github.copilot.nextEditSuggestions.eagerness": "low",
-    "editor.codeLens": false
+    "editor.codeLens": false,
+    "telemetry.editStats.enabled": false,
+    "dotnetAcquisitionExtension.enableTelemetry": false,
+    "chat.viewSessions.orientation": "stacked"
 }
