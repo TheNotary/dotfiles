@@ -62,27 +62,15 @@ alog() {
   local query
   query=$(cat "$kql_file")
 
-  local result
-  result=$(az monitor log-analytics query \
-    --workspace "$ALOG_WORKSPACE_ID" \
-    --analytics-query "$query" \
-    -o json 2>&1)
-
-  if [[ $? -ne 0 ]]; then
-    echo "ERROR: Query failed:" >&2
-    echo "$result" >&2
-    return 1
-  fi
-
-  if [[ "$result" == "[]" ]]; then
-    echo "(no results)" >&2
-    return 0
-  fi
-
-  echo "$result" \
-    | jq -r '(.[0] | keys_unsorted | map(select(. != "TableName"))) as $cols
-      | ($cols | @tsv), (.[] | [.[$cols[]]] | @tsv)' \
-    | column -t -s $'\t'
+  az rest --method post \
+    --url "https://api.loganalytics.io/v1/workspaces/${ALOG_WORKSPACE_ID}/query" \
+    --body "$(jq -n --arg q "$query" '{query: $q}')" \
+    --resource "https://api.loganalytics.io" \
+    -o json 2>&1 \
+  | jq -r '.tables[0] //empty |
+      (.columns | map(.name) | @tsv),
+      (.rows[] | @tsv)' \
+  | column -t -s $'\t'
 }
 
 # ---------------------------------------------------------------------------
