@@ -88,7 +88,9 @@ __knamespace_complete() {
   fi
 }
 
+alias kn=knamespace
 complete -F __knamespace_complete knamespace
+complete -F __knamespace_complete kn
 
 function ktach {
   POD_NAME=$1
