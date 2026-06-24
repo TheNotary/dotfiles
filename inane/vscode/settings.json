@@ -86,7 +86,7 @@
     "redhat.telemetry.enabled": false,
     "editor.fontSize": 14,
     "database.connections": [],
-    "explorer.autoReveal": "focusNoScroll",
+    "explorer.autoReveal": false,
     "editor.guides.indentation": false,
     "editor.folding": false,
     "git.openRepositoryInParentFolders": "never",
@@ -262,6 +262,16 @@
                     "foreground": "#f133f7"
                 }
             },
+            {
+                "name": "ERB/HTML class attribute value",
+                "scope": [
+                    "meta.attribute.class.html string.quoted.double.html",
+                    "meta.attribute.class.html string.quoted.single.html"
+                ],
+                "settings": {
+                    "foreground": "#D1A65C"
+                }
+            }
         ]
     },
     "html.format.wrapLineLength": 0,
