@@ -1,15 +1,16 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 #
 # alog.sh
 #
-# Bash function and completion for running KQL queries against a
+# Function and completion for running KQL queries against a
 # Log Analytics workspace via the Azure CLI.
+# Compatible with both bash and zsh.
 #
 # Checks ./monitoring/log_queries and current folder for .kql files
 # to run.
 #
 # Usage:
-#   source alog.sh                  # or add to ~/.bashrc / ~/.aliases/
+#   source alog.sh                  # or add to ~/.bashrc / ~/.zshrc
 #
 #   alog aks_start_stops            # run aks_start_stops.kql
 #   alog some_query                 # run some_query.kql
@@ -74,37 +75,49 @@ alog() {
 }
 
 # ---------------------------------------------------------------------------
-# Bash completion for alog
+# Completion for alog (bash and zsh)
 # ---------------------------------------------------------------------------
-_alog_completions() {
-  # Only complete the first argument
-  if [[ ${COMP_CWORD} -ne 1 ]]; then
-    return
-  fi
-
-  local cur="${COMP_WORDS[COMP_CWORD]}"
+_alog_candidates() {
   local fallback_dir="./monitoring/log_queries"
   local candidates=""
 
   # Gather .kql basenames from CWD
-  if compgen -G "${PWD}/*.kql" >/dev/null 2>&1; then
+  if ls "${PWD}"/*.kql >/dev/null 2>&1; then
     candidates=$(basename -a "${PWD}"/*.kql 2>/dev/null | sed 's/\.kql$//')
   fi
 
-  # Gather from fallback dir (deduplicate later)
-  if [[ -d "$fallback_dir" ]] && compgen -G "${fallback_dir}/*.kql" >/dev/null 2>&1; then
+  # Gather from fallback dir
+  if [[ -d "$fallback_dir" ]] && ls "${fallback_dir}"/*.kql >/dev/null 2>&1; then
     local fb
     fb=$(basename -a "${fallback_dir}"/*.kql 2>/dev/null | sed 's/\.kql$//')
     candidates=$(printf '%s\n%s' "$candidates" "$fb")
   fi
 
   # Deduplicate
-  candidates=$(echo "$candidates" | sort -u | tr '\n' ' ')
-
-  COMPREPLY=()
-  while IFS= read -r line; do
-    COMPREPLY+=("$line")
-  done < <(compgen -W "$candidates" -- "$cur")
+  echo "$candidates" | sort -u
 }
 
-complete -F _alog_completions alog
+if [[ -n "$BASH_VERSION" ]]; then
+  _alog_completions() {
+    if [[ ${COMP_CWORD} -ne 1 ]]; then
+      return
+    fi
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    local candidates
+    candidates=$(_alog_candidates | tr '\n' ' ')
+
+    COMPREPLY=()
+    while IFS= read -r line; do
+      COMPREPLY+=("$line")
+    done < <(compgen -W "$candidates" -- "$cur")
+  }
+  complete -F _alog_completions alog
+
+elif [[ -n "$ZSH_VERSION" ]]; then
+  _alog_completions() {
+    local -a candidates
+    candidates=(${(f)"$(_alog_candidates)"})
+    _describe 'query' candidates
+  }
+  (( $+functions[compdef] )) && compdef _alog_completions alog
+fi

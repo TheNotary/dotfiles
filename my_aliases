@@ -68,30 +68,10 @@ alias kgp="kubectl get pods --show-kind"
 alias kd="kubectl describe"
 # Filter logs through this for slight improvements: sed 's/^[^\w]*\]//' 
 alias kl="kubectl logs"
-#alias knamespace="kubectl config set-context --current --namespace"
-function knamespace {
-  kubectl config set-context --current --namespace $1
-}
+# Switch kubectl namespace context
+# knamespace + kn: see ~/.aliases/knamespace.sh (sourced by glob loop above)
 
-__knamespace_complete() {
-  local cur prev
-  cur="${COMP_WORDS[COMP_CWORD]}"
-  prev="${COMP_WORDS[COMP_CWORD-1]}"
-
-  # Only complete the 1st argument (namespace)
-  if [[ $COMP_CWORD -eq 1 ]]; then
-    local ns
-    ns="$(kubectl get namespaces -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' 2>/dev/null)"
-    COMPREPLY=( $(compgen -W "$ns" -- "$cur") )
-  else
-    COMPREPLY=()
-  fi
-}
-
-alias kn=knamespace
-complete -F __knamespace_complete knamespace
-complete -F __knamespace_complete kn
-
+# Attach to a running pod in k8s and spawn a /bin/bash process
 function ktach {
   POD_NAME=$1
   SHELL_PATH=${2:-/bin/bash}
@@ -103,6 +83,7 @@ function ktach {
 
   kubectl exec --stdin --tty $POD_NAME -- $SHELL_PATH;
 }
+
 # Manually run a cronjob
 function kjob {
   JOB_NAME=$1
@@ -277,12 +258,14 @@ s() {
 
 
 alias c="git checkout"
-declare -f __git_complete > /dev/null && \
+if type __git_complete >/dev/null 2>&1; then
   __git_complete c _git_checkout  # auto-completion
+fi
 
 alias d="git diff"
-declare -f __git_complete > /dev/null && \
+if type __git_complete >/dev/null 2>&1; then
   __git_complete d _git_diff  # auto-completion
+fi
 
 # There's one for work handles defined elsewhere ^.<
 alias git_setup_author="git config --local user.email no@email.plz && git config --local user.name TheNotary"
@@ -410,8 +393,9 @@ function git_subdir_commit() {
 # git_diff_follow
 # do a head follow on the /tmp/diff file to watch the diff go
 alias git_diff_follow="watch -c -n 1 git diff" #harken_develop-rob jruby-normalizing config/secrets.yml
-declare -f __git_complete > /dev/null && \
+if type __git_complete >/dev/null 2>&1; then
   __git_complete git_diff_follow _git_diff  # auto-completion
+fi
 
 # Ignoring Files
 

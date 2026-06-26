@@ -1,12 +1,13 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 #
 # klog.sh
 #
-# Bash function and completion for streaming kubectl logs from any pod
+# Function and completion for streaming kubectl logs from any pod
 # across all namespaces, without needing to know or switch namespace context.
+# Compatible with both bash and zsh.
 #
 # Usage:
-#   source scripts/klog.sh          # or add to ~/.bashrc
+#   source scripts/klog.sh          # or add to ~/.bashrc / ~/.zshrc
 #
 #   klog pod/my-app-abc123 -f       # stream logs (namespace auto-detected)
 #   klog my-app-abc123 --tail=100   # bare pod name also works
@@ -103,10 +104,9 @@ klog() {
 }
 
 # ---------------------------------------------------------------------------
-# Bash completion for klog
+# Completion for klog (bash and zsh)
 # ---------------------------------------------------------------------------
-_klog_completions() {
-  local cur="${COMP_WORDS[COMP_CWORD]}"
+_klog_pod_candidates() {
   local cache_file="/tmp/klog_pods_cache_$(id -u)"
   local cache_max_age=30  # seconds
 
@@ -127,13 +127,27 @@ _klog_completions() {
       | sed 's/^/pod\//' > "$cache_file" 2>/dev/null || true
   fi
 
-  local candidates
-  candidates=$(cat "$cache_file" 2>/dev/null || true)
-
-  COMPREPLY=()
-  while IFS= read -r line; do
-    COMPREPLY+=("$line")
-  done < <(compgen -W "$candidates" -- "$cur")
+  cat "$cache_file" 2>/dev/null || true
 }
 
-complete -F _klog_completions klog
+if [[ -n "$BASH_VERSION" ]]; then
+  _klog_completions() {
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    local candidates
+    candidates=$(_klog_pod_candidates)
+
+    COMPREPLY=()
+    while IFS= read -r line; do
+      COMPREPLY+=("$line")
+    done < <(compgen -W "$candidates" -- "$cur")
+  }
+  complete -F _klog_completions klog
+
+elif [[ -n "$ZSH_VERSION" ]]; then
+  _klog_completions() {
+    local -a candidates
+    candidates=(${(f)"$(_klog_pod_candidates)"})
+    _describe 'pod' candidates
+  }
+  (( $+functions[compdef] )) && compdef _klog_completions klog
+fi
