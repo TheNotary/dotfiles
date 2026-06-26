@@ -271,7 +271,18 @@
                 "settings": {
                     "foreground": "#D1A65C"
                 }
+            },
+            {
+                "name": "ERB don't highlight machine tokens",
+                "scope": [
+                    "punctuation.section.embedded.begin.erb",
+                    "punctuation.section.embedded.end.erb"
+                ],
+                "settings": {
+                    "foreground": "#5f594f"
+                }
             }
+            
         ]
     },
     "html.format.wrapLineLength": 0,
