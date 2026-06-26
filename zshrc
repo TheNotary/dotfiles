@@ -35,5 +35,5 @@ elif [ "$bash_display_style" = "work" ]; then
 elif [ "$bash_display_style" = "prototype" ]; then
     PROMPT='%F{blue}%n[%m]%F{magenta} ♢%F{blue} %~ %f%F{yellow}λ %f'
 else
-    PROMPT='%F{green}%n@%m%f %F{blue}%~ %#%f '
+    PROMPT='%B%F{green}%n@%m%f %F{blue}%~ %(#.#.$)%f%b '
 fi
