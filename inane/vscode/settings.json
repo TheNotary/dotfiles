@@ -295,6 +295,15 @@
                 "settings": {
                     "foreground": "#5f594f"
                 }
+            },
+            {
+                "name": "Rust function parameter variables",
+                "scope": [
+                    "variable.parameter"
+                ],
+                "settings": {
+                    "foreground": "#cac3bc"
+                }
             }
             
         ]
