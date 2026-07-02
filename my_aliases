@@ -221,10 +221,10 @@ gtag() {
 }
 
 
-# git show HEAD^ --stat -- azure.yaml
+# git show HEAD~1 --stat -- azure.yaml
 #
 # TOD: This should become a TUI
-# `s ^` == `git show HEAD^`
+# `s 1` == `git show HEAD~1`
 s() {
   local rev="HEAD"
   local stat_switch="--stat"
@@ -235,8 +235,8 @@ s() {
     shift
 
     case "$rev" in
-      ^*|~*)
-        rev="HEAD${rev}"
+      [0-9]*)
+        rev="HEAD~${rev}"
         ;;
     esac
   fi
