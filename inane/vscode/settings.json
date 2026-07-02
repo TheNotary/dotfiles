@@ -28,7 +28,7 @@
     "editor.inlineSuggest.fontFamily": "'Monaspace Krypton', monospace",
     "editor.fontLigatures": "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09'",
 
-    // Changes daily
+    // Copilot, Changes daily
     "chat.useAgentSkills": true,
     "chat.mcp.gallery.enabled": true,
     "chat.agent.maxRequests": 99999,
@@ -54,7 +54,14 @@
         "https://crates.io/crates/copilot-sdk": true,
         "https://docs.rs/copilot-sdk": true
     },
-    "chat.autopilot.enabled": true,
+    // disable "keep" and "keep all" chat edits widget from showing up
+    "chat.editing.autoAcceptDelay": 1,
+    "chat.editing.revealNextChangeOnResolve": false,
+    "chat.implicitContext.enabled": {
+        "panel": "never"
+    },
+    "chat.viewSessions.orientation": "stacked",
+    "github.copilot.nextEditSuggestions.eagerness": "low",
     "github.copilot.nextEditSuggestions.enabled": true,
     "github.copilot.chat.agentDebugLog.fileLogging.enabled": true,
     "github.copilot.enable": {
@@ -90,12 +97,12 @@
     "editor.guides.indentation": false,
     "editor.folding": false,
     "git.openRepositoryInParentFolders": "never",
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "javascript.updateImportsOnFileMove.enabled": "always",
+    "ts.updateImportsOnFileMove.enabled": "always",
+    "js.updateImportsOnFileMove.enabled": "always",
 
     "files.autoSave": "off",
     
-    // Formatting on save related... disabled soon (or now)
+    // Indentation and format-on-save behavior... disabled soon (or now)
     "files.insertFinalNewline": false,
     "files.trimTrailingWhitespace": false,
     "editor.formatOnSave": false,
@@ -148,6 +155,21 @@
         "editor.defaultFormatter": "dbaeumer.vscode-eslint",
         // "editor.formatOnSave": true
     },
+    "stretchySpaces.updateDelay": 10,
+    "stretchySpaces.excludedLanguages": [
+        "markdown",
+        "plaintext",
+        "README.md",
+        "README",
+        "yml",
+        "yaml",
+        "md"
+    ],
+    "stretchySpaces.includedLanguages": [
+        "javascript",
+        "javascriptreact",
+        "typescript"
+    ],
     "vscode-erb-beautify.executePath": "~/bin/htmlbeautifier",
     "vscode-erb-beautify.keepBlankLines": 2,
     "go.toolsManagement.autoUpdate": true,
@@ -163,6 +185,8 @@
     ],
     "editor.hover.hidingDelay": 50,
     "extensions.ignoreRecommendations": true,
+    "html.format.wrapLineLength": 0,
+    "editor.renderControlCharacters": false,
     
     // "editor.unicodeHighlight.allowedCharacters": {
     //     "’": false
@@ -172,21 +196,6 @@
     "editor.stickyScroll.enabled": false,
     "cmake.showOptionsMovedNotification": false,
     "editor.copyWithSyntaxHighlighting": false,
-    "stretchySpaces.excludedLanguages": [
-        "markdown",
-        "plaintext",
-        "README.md",
-        "README",
-        "yml",
-        "yaml",
-        "md"
-    ],
-    "stretchySpaces.includedLanguages": [
-        "javascript",
-        "javascriptreact",
-        "typescript"
-    ],
-    "stretchySpaces.updateDelay": 10,
     "python.analysis.includeAliasesFromUserFiles": true,
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.autoImportCompletions": true,
@@ -225,6 +234,8 @@
             "includeAllSymbols": true
         }
     ],
+
+    // Syntax and Highlight Customizations
     "editor.semanticTokenColorCustomizations": {
         "enabled": true,
         "rules": {
@@ -245,6 +256,9 @@
             // Catch‑all: anything used as a decorator regardless of base type
             "*.decorator": {
                 "foreground": "#f133f7"
+            },
+            "*.mutable": {
+                "underline": false
             }
         }
     },
@@ -285,20 +299,14 @@
             
         ]
     },
-    "html.format.wrapLineLength": 0,
-    "editor.renderControlCharacters": false,
-    "chat.editing.revealNextChangeOnResolve": false,
 
-    // disable "keep" and "keep all" chat edits widget from showing up
-    "chat.editing.autoAcceptDelay": 1,
-    "@azure.argTenant": "",
-    "github.copilot.nextEditSuggestions.eagerness": "low",
     "editor.codeLens": false,
     "telemetry.editStats.enabled": false,
     "dotnetAcquisitionExtension.enableTelemetry": false,
-    "chat.viewSessions.orientation": "stacked",
     "remote.autoForwardPortsSource": "hybrid",
     "security.promptForLocalFileProtocolHandling": false,
     "security.promptForRemoteFileProtocolHandling": false,
-    "editor.minimap.showSlider": "always"
+    "editor.minimap.showSlider": "always",
+
+    "bottom_of_config": "Anything below this line should be organized above"
 }
