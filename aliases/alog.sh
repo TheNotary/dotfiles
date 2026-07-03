@@ -14,6 +14,13 @@
 #
 #   alog aks_start_stops            # run aks_start_stops.kql
 #   alog some_query                 # run some_query.kql
+#   alog policy_automation --days_back 7  # pass parameter to query
+#
+# Parameters:
+#   .kql files may contain {{PARAM_NAME:default}} placeholders.
+#   Pass --param_name value (or --param-name value) after the query name
+#   to override defaults. Keys are matched case-insensitively;
+#   hyphens are normalized to underscores.
 #
 # Tab completion:
 #   alog <TAB>                      # lists .kql files in CWD (and fallback dir)
@@ -40,13 +47,38 @@ alog() {
   fi
 
   if [[ $# -lt 1 ]]; then
-    echo "Usage: alog <query-name> (without .kql extension)" >&2
+    echo "Usage: alog <query-name> [--param value ...]" >&2
+    echo "  .kql files may use {{PARAM:default}} placeholders." >&2
     return 1
   fi
 
   local query_name="$1"
+  shift
   local kql_file=""
   local fallback_dir="./monitoring/log_queries"
+  local query _key _ph _default _lookup _repl
+  local -A params
+
+  # --- Parse --key value parameters into associative arrays (bash 4+ / zsh) ---
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --*)
+        _key="${1#--}"
+        # Normalize: lowercase→uppercase, hyphens→underscores
+        _key=$(echo "$_key" | tr '[:lower:]' '[:upper:]' | tr '-' '_')
+        if [[ $# -lt 2 ]]; then
+          echo "ERROR: Missing value for --${1#--}" >&2
+          return 1
+        fi
+        params[$_key]="$2"
+        shift 2
+        ;;
+      *)
+        echo "WARNING: Ignoring unexpected argument: $1" >&2
+        shift
+        ;;
+    esac
+  done
 
   # Resolve .kql file: CWD first, then fallback directory
   if [[ -f "${PWD}/${query_name}.kql" ]]; then
@@ -60,8 +92,26 @@ alog() {
     return 1
   fi
 
-  local query
   query=$(cat "$kql_file")
+
+  # --- Substitute {{PARAM_NAME:default}} placeholders ---
+  # Uses grep + parameter expansion (portable across bash and zsh).
+  while IFS= read -r _ph; do
+    [[ -z "$_ph" ]] && continue
+    # Extract key and default from {{KEY:default}}
+    _key="${_ph#\{\{}"
+    _key="${_key%%:*}"
+    _default="${_ph#*:}"
+    _default="${_default%\}\}}"
+    # Normalize key for lookup
+    _lookup=$(echo "$_key" | tr '[:lower:]' '[:upper:]' | tr '-' '_')
+    if [[ -n "${params[$_lookup]+set}" ]]; then
+      _repl="${params[$_lookup]}"
+    else
+      _repl="$_default"
+    fi
+    query="${query//$_ph/$_repl}"
+  done < <(echo "$query" | grep -oE '\{\{[A-Za-z_][A-Za-z0-9_]*:[^}]*\}\}' | sort -u)
 
   az rest --method post \
     --url "https://api.loganalytics.io/v1/workspaces/${ALOG_WORKSPACE_ID}/query" \
