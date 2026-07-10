@@ -118,6 +118,25 @@
     "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
   },
 
+  // Jump to matching bracket
+  {
+    "key": "shift+ctrl+n",
+    "command": "editor.action.jumpToBracket",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+ctrl+n",
+    "command": "-workbench.action.newWindow"
+  },
+  {
+    "key": "shift+ctrl+n",
+    "command": "-chatEditor.action.reject"
+  },
+
+  
+
+
+
   // Windows/ Linux, ctrl + r renames selected file or refactors a symbol
   {
     "key": "ctrl+r",
@@ -160,6 +179,10 @@
     "key": "cmd+r",
     "command": "renameFile",
     "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "ctrl+shift+l",
+    "command": "editor.emmet.action.matchTag"
   }
 
 ]
