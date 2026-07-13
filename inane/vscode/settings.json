@@ -29,6 +29,19 @@
     "editor.fontLigatures": "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09'",
 
     // Copilot, Changes daily
+    // "chat.advanced.omitBaseAgentInstructions": true,
+    // "chat.omitBaseAgentInstructions": true,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": true,
+        "markdown-plus": false,
+        "dotenv": false,
+        "scminput": false
+    },
+    "chat.tools.edits.autoApprove": {
+		"*MY_PLAN.md": false
+	},
     "chat.useAgentSkills": true,
     "chat.mcp.gallery.enabled": true,
     "chat.agent.maxRequests": 99999,
@@ -52,7 +65,7 @@
         },
         "https://raw.githubusercontent.com/microsoft/windows-rs": true,
         "https://crates.io/crates/copilot-sdk": true,
-        "https://docs.rs/copilot-sdk": true
+        "https://docs.rs/copilot-sdk": true,
     },
     // disable "keep" and "keep all" chat edits widget from showing up
     "chat.editing.autoAcceptDelay": 1,
@@ -64,14 +77,11 @@
     "github.copilot.nextEditSuggestions.eagerness": "low",
     "github.copilot.nextEditSuggestions.enabled": true,
     "github.copilot.chat.agentDebugLog.fileLogging.enabled": true,
-    "github.copilot.enable": {
-        "*": true,
-        "plaintext": false,
-        "markdown": true,
-        "scminput": false
-    },
 
     // Misc...
+    "files.associations": {
+        "*MY_PLAN.md": "markdown-plus",
+    },
     "editor.renderLineHighlight": "none",
     "editor.inlayHints.enabled": "offUnlessPressed",
     "rust-analyzer.diagnostics.enable": false,
@@ -101,7 +111,7 @@
     "js.updateImportsOnFileMove.enabled": "always",
 
     "files.autoSave": "off",
-    
+
     // Indentation and format-on-save behavior... disabled soon (or now)
     "files.insertFinalNewline": false,
     "files.trimTrailingWhitespace": false,
@@ -187,7 +197,7 @@
     "extensions.ignoreRecommendations": true,
     "html.format.wrapLineLength": 0,
     "editor.renderControlCharacters": false,
-    
+
     // "editor.unicodeHighlight.allowedCharacters": {
     //     "’": false
     // },
@@ -304,8 +314,19 @@
                 "settings": {
                     "foreground": "#cac3bc"
                 }
+            },
+            {
+                "scope": "text.html.markdown-plus markdownplus.heading",
+                "settings": {
+                    "foreground": "#685F56"
+                }
+            },
+            {
+                "scope": "text.html.markdown-plus markdownplus.heading.title",
+                "settings": {
+                    "foreground": "#bc8e64"
+                }
             }
-            
         ]
     },
 
