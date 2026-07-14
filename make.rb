@@ -231,7 +231,9 @@ inane_mappings = [
     source_dir: File.join(DOTFILES_DIR, "inane", "vscode"),
     backup_dir: File.join(BACKUP_DIR, "inane_vscode_oss"),
     dest_dir: {
-      windows: File.join(ENV.fetch("APPDATA", File.join(Dir.home, "AppData", "Roaming")), "Code - OSS", "User")
+      darwin: File.join(Dir.home, "Library", "Application Support", "Code - OSS", "User"),
+      windows: File.join(ENV.fetch("APPDATA", File.join(Dir.home, "AppData", "Roaming")), "Code - OSS", "User"),
+      linux: File.join(Dir.home, ".config", "Code - OSS", "User")
     }
   },
   {
