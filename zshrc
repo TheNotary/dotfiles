@@ -7,8 +7,8 @@ setopt EXTENDED_GLOB
 
 bindkey '^U' backward-kill-line
 zstyle ':completion:*' menu no
-source ~/zsh_plugins/fzf-tab/fzf-tab.plugin.zsh
-source ~/zsh_plugins/kubectl_complete
+#source ~/zsh_plugins/fzf-tab/fzf-tab.plugin.zsh
+#source ~/zsh_plugins/kubectl_complete
 
 ###########################
 # Start in last directory #
