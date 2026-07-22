@@ -9,6 +9,30 @@
     "key": "ctrl+shift+tab",
     "command": "workbench.action.previousEditor"
   },
+  {
+    "key": "ctrl+shift+l",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "ctrl+shift+h",
+    "command": "workbench.action.previousEditor"
+  },
+
+  // global find is find and replace by default
+  {
+    "key": "ctrl+shift+f",
+    "command": "-workbench.action.findInFiles"
+  },
+  {
+    "key": "ctrl+shift+f",
+    "command": "-workbench.view.search",
+    "when": "workbench.view.search.active && neverMatch =~ /doesNotMatch/"
+  },
+  {
+    "key": "ctrl+shift+f",
+    "command": "workbench.action.replaceInFiles",
+    "when": "!isSessionsWindow && !searchViewletFocus"
+  },
 
   // fuzzy find with ctrl + t
   {
@@ -125,6 +149,10 @@
     "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
   },
 
+  //
+  // Editor Navigation
+  //
+
   // Jump to matching bracket
   {
     "key": "shift+ctrl+n",
@@ -138,6 +166,13 @@
   {
     "key": "shift+ctrl+n",
     "command": "-chatEditor.action.reject"
+  },
+
+  // Jump to beginning/ end of html tag
+  {
+    "key": "ctrl+shift+;",
+    "command": "editor.emmet.action.matchTag",
+    "when": "editorTextFocus"
   },
 
   
@@ -186,10 +221,6 @@
     "key": "cmd+r",
     "command": "renameFile",
     "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
-  },
-  {
-    "key": "ctrl+shift+l",
-    "command": "editor.emmet.action.matchTag"
   }
 
 ]
