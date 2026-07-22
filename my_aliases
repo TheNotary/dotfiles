@@ -17,7 +17,13 @@ alias g="git"
 alias v="vagrant"
 alias o="open"
 alias head="head -n 40"
+alias explorer="explorer.exe"
+
 alias foobar="foobar_templates"
+alias kcd="klingon-cloaking-device"
+alias lasso="git_lasso"
+alias bd="plen"
+alias p="plen"
 
 # For cleaning out projects, looks in directory and reads readme
 function ww {
@@ -668,7 +674,10 @@ scan-mail() { grep user-name@domain.com /var/log/maillog | grep retr= | awk {'pr
 scan-mail-sum() { grep 1 /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'; }
 
 
-# vscode custom build
+
+#
+# Install code-oss
+#
 
 if [[ -z "$TERM_PROGRAM" ]]; then
   export HUMAN=true
@@ -688,6 +697,12 @@ code-oss() {
   [[ "$?" == "0" ]] && \
   . "$(code-oss --locate-shell-integration-path zsh)"
 
+
+# Fix Copy/ Paste for Windows WSL
+if [[ -e /mnt/c/Windows/system32/clip.exe ]]; then
+  alias pbcopy='clip.exe'
+  alias pbpaste='powershell.exe -command Get-Clipboard'
+fi
 
 # Aliases to change the keyboard settings on a mac to copy/ paste be like windows
 alias keyboard-restore="hidutil property --set '{\"UserKeyMapping\":[]}'"
