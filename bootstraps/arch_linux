@@ -1,5 +1,11 @@
 # TODO: Make this a script for base install on arch...
 
+# My GUI
+# hyprland is from some distro
+
+# Terminal and fonts
+pacman -S wezterm 
+
 # Install some configuration backends that would enable dark mode... unfinished...
 pacman -S xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 
@@ -7,11 +13,21 @@ pacman -S xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
 # make gcc etc
 
 # Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo install cargo-binstall
 
 # Install Ruby
 
 
 # Install my stuff
+git clone https://github.com/thenotary/dotfiles.git && \
+  cd dotfiles && \
+  ruby make.rb
+
+gem install foobar_templates
+foobar_templates --install-public-templates
+foobar_templates --setup-personal-templates
+
 
 
 
