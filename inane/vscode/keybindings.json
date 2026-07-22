@@ -24,24 +24,6 @@
     "command": "workbench.action.quickOpen"
   },
 
-  // Copy file relative path
-  {
-    "key": "cmd+\\",
-    "command": "copyRelativeFilePath"
-  },
-  {
-    "key": "ctrl+\\",
-    "command": "copyRelativeFilePath"
-  },
-  { // unbind default
-    "key": "ctrl+\\",
-    "command": "-workbench.action.splitEditor"
-  },
-  { // unbind default
-    "key": "cmd+\\",
-    "command": "-workbench.action.splitEditor"
-  },
-
   // Save also clears annoying chat completions
   {
     "key": "cmd+s",
@@ -86,10 +68,35 @@
     "command": "-workbench.action.focusSecondEditorGroup"
   },
 
+  // Copy file relative path
+  {
+    "key": "cmd+\\",
+    "command": "copyRelativeFilePath"
+  },
+  {
+    "key": "ctrl+\\",
+    "command": "copyRelativeFilePath"
+  },
+  { // unbind default
+    "key": "ctrl+\\",
+    "command": "-workbench.action.splitEditor"
+  },
+  { // unbind default
+    "key": "cmd+\\",
+    "command": "-workbench.action.splitEditor"
+  },
+
   // Windows / Linux, highlight active file in tree view (cause I disable defaults)
   {
     "key": "shift+ctrl+\\",
-    "command": "workbench.files.action.showActiveFileInExplorer"
+    "command": "workbench.files.action.showActiveFileInExplorer",
+    "when": "editorTextFocus"
+  },
+  // Focus the editor if we're already switched to the explorer
+  {
+    "key": "shift+ctrl+\\",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "!editorTextFocus"
   },
   {
     "key": "shift+ctrl+\\",
