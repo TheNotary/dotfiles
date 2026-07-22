@@ -149,9 +149,49 @@
     "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
   },
 
-  //
-  // Editor Navigation
-  //
+  // Focus chat view
+  {
+    "key": "ctrl+alt+j",
+    "command": "workbench.action.chat.open",
+    "when": "!auxiliaryBarVisible || !chatInputHasFocus"
+  },
+  {
+    "key": "ctrl+alt+j",
+    "command": "workbench.action.toggleAuxiliaryBar",
+    "when": "auxiliaryBarVisible && chatInputHasFocus"
+  },
+
+  // don't forget about ctrl + b to minimize the left sidebar!
+  {
+    "key": "ctrl+alt+b",
+    "command": "workbench.action.toggleAuxiliaryBar"
+  },
+
+  // new chat
+  {
+    "key": "ctrl+alt+n",
+    "command": "workbench.action.chat.newChat",
+    "when": "auxiliaryBarVisible"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        {
+          "command": "workbench.action.toggleAuxiliaryBar"
+        },
+        {
+          "command": "workbench.action.chat.newChat"
+        }
+      ]
+    },
+    "when": "!auxiliaryBarVisible"
+  },
+
+  ///////////////////////
+  // Editor Navigation //
+  ///////////////////////
 
   // Jump to matching bracket
   {
@@ -174,10 +214,6 @@
     "command": "editor.emmet.action.matchTag",
     "when": "editorTextFocus"
   },
-
-  
-
-
 
   // Windows/ Linux, ctrl + r renames selected file or refactors a symbol
   {
