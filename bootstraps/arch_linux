@@ -1,0 +1,18 @@
+# TODO: Make this a script for base install on arch...
+
+# Install some configuration backends that would enable dark mode... unfinished...
+pacman -S xdg-desktop-portal-hyprland xdg-desktop-portal-gtk
+
+# Install baseline development env
+# make gcc etc
+
+# Install Rust
+
+# Install Ruby
+
+
+# Install my stuff
+
+
+
+

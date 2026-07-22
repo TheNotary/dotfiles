@@ -43,6 +43,7 @@ SKIP_FILES = %w[
   complex
   config
   inane
+  bootstraps
 ].freeze
 
 
