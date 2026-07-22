@@ -667,6 +667,27 @@ scan-mail() { grep user-name@domain.com /var/log/maillog | grep retr= | awk {'pr
 scan-mail-sum() { grep 1 /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'; }
 
 
+# vscode custom build
+
+if [[ -z "$TERM_PROGRAM" ]]; then
+  export HUMAN=true
+else
+  unset HUMAN
+fi
+
+export PATH="/mnt/c/l/code-oss-win32/bin:$PATH"
+alias code='echo "code is depricated, use code-oss"'
+code-oss() {
+  env -u HUMAN /mnt/c/l/code-oss-win32/bin/code-oss $@
+}
+
+# https://code.visualstudio.com/docs/terminal/shell-integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && \
+  [[ "$SHELL" == "$(which zsh)" ]] && \
+  [[ "$?" == "0" ]] && \
+  . "$(code-oss --locate-shell-integration-path zsh)"
+
+
 # Aliases to change the keyboard settings on a mac to copy/ paste be like windows
 alias keyboard-restore="hidutil property --set '{\"UserKeyMapping\":[]}'"
 alias keyboard-windows="hidutil property --set '{\"UserKeyMapping\": [{\"HIDKeyboardModifierMappingSrc\":0x7000000E0,\"HIDKeyboardModifierMappingDst\":0x7000000E3}, {\"HIDKeyboardModifierMappingSrc\":0x7000000E3,\"HIDKeyboardModifierMappingDst\":0x7000000E0}] }'"

@@ -1,4 +1,3 @@
-
 # Performance monitoring
 zmodload zsh/datetime
 _zshrc_start=$EPOCHREALTIME
