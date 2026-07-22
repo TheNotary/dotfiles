@@ -9,6 +9,7 @@ _t=$EPOCHREALTIME; printf 'compinit: %dms\n' $(( ($_t - $_zshrc_start) * 1000 ))
 setopt INTERACTIVE_COMMENTS
 setopt AUTO_CD
 setopt EXTENDED_GLOB
+setopt NO_NOMATCH  # allow HEAD^ syntax to work right
 
 bindkey '^U' backward-kill-line
 zstyle ':completion:*' menu no
