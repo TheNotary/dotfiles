@@ -23,6 +23,9 @@
         }
     },
 
+    // Theme: Custom Dark 2026 (thenotary-custom-theme extension)
+    "workbench.colorTheme": "Custom Dark 2026",
+
     // Fonts
     "editor.fontFamily": "'Monaspace Neon', monospace",
     "editor.inlineSuggest.fontFamily": "'Monaspace Krypton', monospace",
@@ -73,15 +76,11 @@
     "chat.implicitContext.enabled": {
         "panel": "never"
     },
-    "chat.viewSessions.orientation": "stacked",
     "github.copilot.nextEditSuggestions.eagerness": "low",
     "github.copilot.nextEditSuggestions.enabled": true,
     "github.copilot.chat.agentDebugLog.fileLogging.enabled": true,
 
     // Misc...
-    "files.associations": {
-        "*MY_PLAN.md": "markdown-plus",
-    },
     "editor.renderLineHighlight": "none",
     "editor.inlayHints.enabled": "offUnlessPressed",
     "rust-analyzer.diagnostics.enable": false,
@@ -93,8 +92,7 @@
     "workbench.startupEditor": "none",
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.list.openMode": "doubleClick",
-    "workbench.preferredHighContrastColorTheme": "Visual Studio 2017 Dark - C++",
-    "workbench.preferredHighContrastLightColorTheme": "Visual Studio 2017 Light - C++",
+
     "workbench.tree.indent": 20,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
@@ -187,7 +185,7 @@
     "debug.openDebug": "neverOpen",
     "window.zoomLevel": 1,
     "jest.disabledWorkspaceFolders": [],
-    "workbench.preferredDarkColorTheme": "Visual Studio Dark - C++",
+
     "window.autoDetectHighContrast": false,
     "editor.rulers": [
         80,
@@ -197,11 +195,6 @@
     "extensions.ignoreRecommendations": true,
     "html.format.wrapLineLength": 0,
     "editor.renderControlCharacters": false,
-
-    // "editor.unicodeHighlight.allowedCharacters": {
-    //     "’": false
-    // },
-    "workbench.colorTheme": "Atom One Light2",
     "editor.accessibilitySupport": "off",
     "editor.stickyScroll.enabled": false,
     "cmake.showOptionsMovedNotification": false,
@@ -245,91 +238,6 @@
         }
     ],
 
-    // Syntax and Highlight Customizations
-    "editor.semanticTokenColorCustomizations": {
-        "enabled": true,
-        "rules": {
-            // Exact match for what the inspector shows now:
-            "method.decorator": {
-                "foreground": "#f133f7",
-                "fontStyle": "bold"
-            },
-            // Useful if you also use free functions/classes as decorators:
-            "function.decorator": {
-                "foreground": "#f133f7",
-                "fontStyle": "bold"
-            },
-            "class.decorator": {
-                "foreground": "#f133f7",
-                "fontStyle": "bold"
-            },
-            // Catch‑all: anything used as a decorator regardless of base type
-            "*.decorator": {
-                "foreground": "#f133f7"
-            },
-            "*.mutable": {
-                "underline": false
-            }
-        }
-    },
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": "entity.name.function.decorator.python",
-                "settings": {
-                    "foreground": "#f133f7"
-                }
-            },
-            {
-                "scope": "meta.function.decorator.python",
-                "settings": {
-                    "foreground": "#f133f7"
-                }
-            },
-            {
-                "name": "ERB/HTML class attribute value",
-                "scope": [
-                    "meta.attribute.class.html string.quoted.double.html",
-                    "meta.attribute.class.html string.quoted.single.html"
-                ],
-                "settings": {
-                    "foreground": "#D1A65C"
-                }
-            },
-            {
-                "name": "ERB don't highlight machine tokens",
-                "scope": [
-                    "punctuation.section.embedded.begin.erb",
-                    "punctuation.section.embedded.end.erb"
-                ],
-                "settings": {
-                    "foreground": "#5f594f"
-                }
-            },
-            {
-                "name": "Rust function parameter variables",
-                "scope": [
-                    "variable.parameter"
-                ],
-                "settings": {
-                    "foreground": "#cac3bc"
-                }
-            },
-            {
-                "scope": "text.html.markdown-plus markdownplus.heading",
-                "settings": {
-                    "foreground": "#685F56"
-                }
-            },
-            {
-                "scope": "text.html.markdown-plus markdownplus.heading.title",
-                "settings": {
-                    "foreground": "#bc8e64"
-                }
-            }
-        ]
-    },
-
     "editor.codeLens": false,
     "telemetry.editStats.enabled": false,
     "dotnetAcquisitionExtension.enableTelemetry": false,
@@ -338,5 +246,18 @@
     "security.promptForRemoteFileProtocolHandling": false,
     "editor.minimap.showSlider": "always",
 
-    "bottom_of_config": "Anything below this line should be organized above"
+    "editor.tokenColorCustomizations": {
+    "textMateRules": [
+            {
+            "scope": "text.html.markdown-plus markdownplus.squiglywiggly",
+                "settings": {
+                    "foreground": "#53bac3"
+                }
+            }
+        ]
+    },
+
+    "bottom_of_config": "Anything below this line should be organized above",
+    "@azure.argTenant": "",
+    "chat.viewSessions.orientation": "stacked"
 }
