@@ -269,7 +269,7 @@ if type __git_complete >/dev/null 2>&1; then
   __git_complete c _git_checkout  # auto-completion
 fi
 
-alias d="git diff"
+alias d="LESS='-+F -R -S -X' git diff"
 if type __git_complete >/dev/null 2>&1; then
   __git_complete d _git_diff  # auto-completion
 fi
@@ -674,21 +674,21 @@ scan-mail() { grep user-name@domain.com /var/log/maillog | grep retr= | awk {'pr
 scan-mail-sum() { grep 1 /var/log/maillog* | grep retr= | grep -v retr=0 | awk {'print $11'} | cut -d, -f1 | cut -d= -f2 | awk '{t += $1} END { print "total: ", t, " bytes transferred over POP3"}'; }
 
 
-
 #
-# Install code-oss
+# Install code-oss and alias
 #
 
 if [[ -z "$TERM_PROGRAM" ]]; then
   export HUMAN=true
 else
   unset HUMAN
+  unset bash_display_style
 fi
 
 export PATH="/mnt/c/l/code-oss-win32/bin:$PATH"
 alias code='echo "code is depricated, use code-oss"'
 code-oss() {
-  env -u HUMAN /mnt/c/l/code-oss-win32/bin/code-oss $@
+  /mnt/c/l/code-oss-win32/bin/code-oss $@
 }
 
 # https://code.visualstudio.com/docs/terminal/shell-integration

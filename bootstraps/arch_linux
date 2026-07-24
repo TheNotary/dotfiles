@@ -29,6 +29,6 @@ foobar_templates --install-public-templates
 foobar_templates --setup-personal-templates
 
 
-
+# Private dotfiles (includes ssh configs)
 
 

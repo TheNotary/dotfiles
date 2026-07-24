@@ -14,7 +14,7 @@ setopt NO_NOMATCH  # allow HEAD^ syntax to work right
 bindkey '^U' backward-kill-line
 zstyle ':completion:*' menu no
 _t=$EPOCHREALTIME
-source ~/zsh_plugins/fzf-tab/fzf-tab.plugin.zsh
+#source ~/zsh_plugins/fzf-tab/fzf-tab.plugin.zsh
 printf 'fzf-tab: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
 _t=$EPOCHREALTIME
 source ~/zsh_plugins/kubectl_complete
