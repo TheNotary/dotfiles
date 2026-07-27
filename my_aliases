@@ -5,7 +5,19 @@ for f in "${HOME}/.aliases/"*.sh; do
   [[ -r "$f" ]] && source "$f"
 done
 
-#source "${HOME}/.aliases/klog.sh"
+
+##############################
+# Stuff I'm Still Memorizing #
+##############################
+
+# git worktree add -b test-old \
+#   ../testing-prompt-on-older-vs-code \
+#   'HEAD^'
+
+# git worktree remove ../testing-prompt-on-older-vs-code
+
+# git worktree list
+
 
 #############
 # Developer #
@@ -165,7 +177,7 @@ function title {
 # this is so clever...  ruby -r un requires the 'un' library... which
 # provides the command 'httpd' which is a wrapper for using weBrick
 #alias rhttp='rvmsudo ruby -run -e httpd .'
-alias rhttp='ruby -run -e httpd .'
+alias rhttp='ruby -run -e httpd . -p 8000'
 
 # Use this cmd to dl a web page and it's css/js file if you're not sure where a string comes from
 alias dl_resources_for_grepping='wget -p -k http://localhost:3000'
@@ -194,13 +206,6 @@ function gotest() {
 
 color_scheme="sed -i 's/: black/: white/g' c.html && sed -i 's/: rgb(44, 212, 149)/: rgb(107 182 77)/g' c.html"
 alias gocover="go test -coverprofile=c.out ./... && go tool cover -html=c.out -o c.html && eval \"${color_scheme}\" && open c.html"
-
-#
-# Python
-#
-
-alias p='python'
-
 
 # http://collectiveidea.com/blog/archives/2014/02/18/a-simple-pair-programming-setup-with-ssh-and-tmux/
 alias pairing-session-start='tmux new-session -s pair'
