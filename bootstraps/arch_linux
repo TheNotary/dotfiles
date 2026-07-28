@@ -19,7 +19,14 @@ cargo install cargo-binstall
 # Install Ruby
 
 
+# Install Py
+curl -fsSL https://pyenv.run | bash
+
+
+
 # Install my stuff
+# clone private_dotfiles
+
 git clone https://github.com/thenotary/dotfiles.git && \
   cd dotfiles && \
   ruby make.rb
