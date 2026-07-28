@@ -1,5 +1,6 @@
 #the_time=$(echo $(($(date +%s%N)/1000000)) |cut -c 8-); echo ${the_time:0:3}:${the_time:3}
 export BASH_SILENCE_DEPRECATION_WARNING=1
+export SHELL_NAME=bash
 
 # Source common configuration
 source ${HOME}/.commonrc

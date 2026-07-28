@@ -1,4 +1,6 @@
 # Performance monitoring
+export SHELL_NAME=zsh
+
 zmodload zsh/datetime
 _zshrc_start=$EPOCHREALTIME
 
