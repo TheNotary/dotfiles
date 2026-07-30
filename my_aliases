@@ -10,13 +10,39 @@ done
 # Stuff I'm Still Memorizing #
 ##############################
 
-# git worktree add -b test-old \
-#   ../testing-prompt-on-older-vs-code \
-#   'HEAD^'
+# How have a not been using this my whole life?!?
+alias ghist='git log --follow -p -- ' # arg: path/to/file
 
-# git worktree remove ../testing-prompt-on-older-vs-code
+
+#git worktree add -b testing-opus-48 \
+#  ../testing-opus-48 \
+#  'HEAD'
+
+# git worktree remove ../testing-opus-48
+# git worktree remove ../
 
 # git worktree list
+
+
+# git worktree alias
+function gwk {
+  if [[ -z "$1" ]]; then
+    echo "Required argument missing, branch_name"
+    return 1
+  fi
+  branch_name=$1
+  git worktree add -b $branch_name "worktrees/$branch_name" 'HEAD'
+}
+
+# undo git worktree
+function ugwk {
+  if [[ -z "$1" ]]; then
+    echo "Required argument missing, branch_name"
+    return 1
+  fi
+  branch_name=$1
+  git workgree remove "worktrees/$branch_name"
+}
 
 
 #############
