@@ -19,7 +19,7 @@ _t=$EPOCHREALTIME
 #source ~/zsh_plugins/fzf-tab/fzf-tab.plugin.zsh
 printf 'fzf-tab: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
 _t=$EPOCHREALTIME
-source ~/zsh_plugins/kubectl_complete
+#source ~/zsh_plugins/kubectl_complete
 printf 'kubectl_complete: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
 
 ###########################
@@ -86,4 +86,6 @@ printf 'prompt/theme: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
 
 printf '\n==> Total zshrc load time: %dms\n' $(( ($EPOCHREALTIME - $_zshrc_start) * 1000 ))
 unset _t _zshrc_start
+
+### Below this line was auto appended...
 

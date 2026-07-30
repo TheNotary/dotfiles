@@ -1,0 +1,147 @@
+#!/usr/bin/env bash
+
+
+################
+# Ruby Install #
+################
+
+### RVM (depricated?) 
+if [ -d "$HOME/.rvm/bin" ] ; then
+  PATH="$HOME/.rvm/bin:$PATH"
+fi
+
+# For ruby built from source
+PATH="$HOME/.rubies/ruby-master/bin/:$PATH"
+
+
+################
+# Node Install #
+################
+
+### NodeJS stuff (not used?)
+
+# makes it so you don't need sudo to install npm packages
+export NPM_PACKAGES="$HOME/.npm-packages"
+export NODE_PATH="$HOME/.npm-packages/lib/node_modules:$NODE_PATH"
+export PATH="$PATH:$HOME/.npm-packages/bin"
+
+# fnm
+FNM_PATH="/home/ubuntu/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
+fi
+
+# pnpm
+export PNPM_HOME="/home/ubuntu/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
+
+
+######
+# Go #
+######
+
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+
+##########
+# Python #
+##########
+
+# Prevent .pyc files from being generated
+export PYTHONDONTWRITEBYTECODE=1
+
+# Install pyenv, python version manager
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - ${SHELL_NAME})"
+eval "$(pyenv virtualenv-init -)"
+
+
+###########
+# VS Code #
+###########
+
+# Path on arch...
+
+# In cases not listed, code-oss should already be in path
+vscode_locations=(
+  "$HOME/VSCode/bin"
+  "/mnt/c/l/code-oss-win32/bin"
+)
+for loc in "${vscode_locations[@]}"; do
+  if [[ -d "$loc" ]]; then
+    vscode_bin_path="$loc"
+    PATH="$PATH:$vscode_bin_path"
+    break
+  fi
+done
+
+#
+# Install code-oss and alias
+#
+
+if [[ -z "$TERM_PROGRAM" ]]; then
+  export HUMAN=true
+else
+  unset HUMAN
+  unset bash_display_style
+fi
+
+# This isn't needed anymore
+# if [[ -e "$(which code-oss)" ]]; then
+#   code-oss() {
+#     code-oss $@
+#   }
+# fi
+
+# https://code.visualstudio.com/docs/terminal/shell-integration
+[[ "$TERM_PROGRAM" == "vscode" ]] && \
+  [[ "$SHELL" == "$(which zsh)" ]] && \
+  [[ "$?" == "0" ]] && \
+  . "$(code-oss --locate-shell-integration-path zsh)"
+
+alias code='echo "code is depricated, use code-oss"'
+
+
+
+
+##########
+# Basher #
+##########
+# TODO: Clean this up, do I want basher still?
+
+# this lets use use a separate user, IRobL, for the gists
+export GISTER_USE_HTTPS=true
+export GISTER_AUTO_COMMIT=true
+
+#
+# Setup Basher, https://github.com/basherpm/basher
+#
+#export PATH="$HOME/.basher/bin:$PATH"
+#export BASHER_SHELL=bash
+#export BASHER_ROOT=/Users/john/.basher
+#export BASHER_PREFIX=/Users/john/.basher/cellar
+#export BASHER_PACKAGES_PATH=/Users/john/.basher/cellar/packages
+#export PATH="$BASHER_ROOT/cellar/bin:$PATH"
+#. "$BASHER_ROOT/lib/include.bash"
+#. "$BASHER_ROOT/completions/basher.bash"
+#for f in $(command ls "$BASHER_ROOT/cellar/completions/bash"); do source "$BASHER_ROOT/cellar/completions/bash/$f"; done
+
+
+########
+# Misc #
+########
+
+# Packer stuff
+PACKER_CACHE_DIR=~/packer_cache
+
+# This let's me boot my fork of zed
+#export PATH=$PATH:$HOME/dev/open_source/zed/target/release
+
