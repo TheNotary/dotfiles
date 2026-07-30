@@ -25,6 +25,8 @@ printf 'kubectl_complete: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
 ###########################
 # Start in last directory #
 ###########################
+# This can easily screw up systems that use the terminal such as 
+# VS Code unless a SKIP_RESTORE_LAST_DIR=true is exported into that environment
 
 ZSH_LAST_DIR="$HOME/.zsh_last_dir"
 
@@ -35,12 +37,12 @@ autoload -U add-zsh-hook
 add-zsh-hook chpwd save_pwd
 
 # Restore last directory if it exists
-if [[ -z "$ZSHRC_HAS_RUN" && -f "$ZSH_LAST_DIR" ]]; then
+if [[ -z "$SKIP_RESTORE_LAST_DIR" && -f "$ZSH_LAST_DIR" ]]; then
   last_dir=$(cat "$ZSH_LAST_DIR")
   [[ -d "$last_dir" ]] && cd "$last_dir"
 fi
 
-ZSHRC_HAS_RUN=true
+export SKIP_RESTORE_LAST_DIR=true
 
 
 
