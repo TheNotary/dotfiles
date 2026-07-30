@@ -31,6 +31,9 @@
     "editor.inlineSuggest.fontFamily": "'Monaspace Krypton', monospace",
     "editor.fontLigatures": "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09'",
 
+    // Prevents billboarding
+    "git.addAICoAuthor":"off",
+
     // Copilot, Changes daily
     // "chat.advanced.omitBaseAgentInstructions": true,
     // "chat.omitBaseAgentInstructions": true,
@@ -45,6 +48,11 @@
     "chat.tools.edits.autoApprove": {
 		"*MY_PLAN.md": false
 	},
+    "chat.copilotIgnore": [
+        "fang.md",
+        ".MY_PLAN.md",
+        "*MY_PLAN.md",
+    ],
     "chat.useAgentSkills": true,
     "chat.mcp.gallery.enabled": true,
     "chat.agent.maxRequests": 99999,
@@ -79,6 +87,8 @@
     "github.copilot.nextEditSuggestions.eagerness": "low",
     "github.copilot.nextEditSuggestions.enabled": true,
     "github.copilot.chat.agentDebugLog.fileLogging.enabled": true,
+    "chat.agentHost.agentDebugLog.enabled": true,
+    // "chat.agentHost.ahpJsonlLogging": true, // wasn't able to see what this did
 
     // Misc...
     "editor.renderLineHighlight": "none",
@@ -259,5 +269,6 @@
 
     "bottom_of_config": "Anything below this line should be organized above",
     "@azure.argTenant": "",
+    "window.title": "${rootNameShort}",
     "chat.viewSessions.orientation": "stacked"
 }
