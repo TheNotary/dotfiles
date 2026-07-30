@@ -18,7 +18,7 @@
     "command": "workbench.action.previousEditor"
   },
 
-  // global find is find and replace by default
+  // global find can at least minimize on second press...
   {
     "key": "ctrl+shift+f",
     "command": "-workbench.action.findInFiles"
@@ -30,9 +30,15 @@
   },
   {
     "key": "ctrl+shift+f",
-    "command": "workbench.action.replaceInFiles",
+    "command": "workbench.action.findInFiles",
     "when": "!isSessionsWindow && !searchViewletFocus"
   },
+  {
+    "key": "ctrl+shift+f",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "!isSessionsWindow && searchViewletFocus"
+  },
+
 
   // fuzzy find with ctrl + t
   {
