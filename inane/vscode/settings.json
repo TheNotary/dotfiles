@@ -49,7 +49,6 @@
 		"*MY_PLAN.md": false
 	},
     "chat.copilotIgnore": [
-        "fang.md",
         ".MY_PLAN.md",
         "*MY_PLAN.md",
     ],
@@ -149,7 +148,7 @@
         "editor.wordWrap": "on"
     },
     "[ruby]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
     },
     "[html]": {
         "editor.tabSize": 2,
@@ -162,7 +161,9 @@
         "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
         "editor.wordWrap": "on",
         "editor.tabSize": 2,
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "editor.semanticHighlighting.enabled": false,
+        "editor.bracketPairColorization.enabled": false,
     },
     "[go.mod]": {
         "editor.tabSize": 2,
@@ -194,6 +195,7 @@
     "cmake.configureOnOpen": false,
     "debug.openDebug": "neverOpen",
     "window.zoomLevel": 1,
+    "window.title": "${rootNameShort}",
     "jest.disabledWorkspaceFolders": [],
 
     "window.autoDetectHighContrast": false,
@@ -259,6 +261,7 @@
     "editor.tokenColorCustomizations": {
     "textMateRules": [
             {
+            "name": "Example syntax highlighting override",
             "scope": "text.html.markdown-plus markdownplus.squiglywiggly",
                 "settings": {
                     "foreground": "#53bac3"
@@ -268,7 +271,4 @@
     },
 
     "bottom_of_config": "Anything below this line should be organized above",
-    "@azure.argTenant": "",
-    "window.title": "${rootNameShort}",
-    "chat.viewSessions.orientation": "stacked"
 }
