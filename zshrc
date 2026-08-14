@@ -3,10 +3,11 @@ export SHELL_NAME=zsh
 
 zmodload zsh/datetime
 _zshrc_start=$EPOCHREALTIME
+# SHOW_PERFORMANCE=true   # Comment out to disable
 
 # Zsh-specific completions (must run before sourcing aliases that use compdef)
 autoload -Uz compinit && compinit
-_t=$EPOCHREALTIME; printf 'compinit: %dms\n' $(( ($_t - $_zshrc_start) * 1000 ))
+_t=$EPOCHREALTIME; [[ -n $SHOW_PERFORMANCE ]] && printf 'compinit: %dms\n' $(( ($_t - $_zshrc_start) * 1000 ))
 
 setopt INTERACTIVE_COMMENTS
 setopt AUTO_CD
@@ -17,10 +18,10 @@ bindkey '^U' backward-kill-line
 zstyle ':completion:*' menu no
 _t=$EPOCHREALTIME
 #source ~/zsh_plugins/fzf-tab/fzf-tab.plugin.zsh
-printf 'fzf-tab: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
+[[ -n $SHOW_PERFORMANCE ]] && printf 'fzf-tab: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
 _t=$EPOCHREALTIME
 #source ~/zsh_plugins/kubectl_complete
-printf 'kubectl_complete: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
+[[ -n $SHOW_PERFORMANCE ]] && printf 'kubectl_complete: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
 
 ###########################
 # Start in last directory #
@@ -49,7 +50,7 @@ export SKIP_RESTORE_LAST_DIR=true
 # Source common configuration
 _t=$EPOCHREALTIME
 source ${HOME}/.commonrc
-printf 'commonrc: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
+[[ -n $SHOW_PERFORMANCE ]] && printf 'commonrc: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
 
 # If not running interactively, don't do anything
 [[ -o interactive ]] || return
@@ -84,9 +85,9 @@ elif [ "$bash_display_style" = "prototype" ]; then
 else
     PROMPT='%B%F{green}%n@%m%f %F{blue}%~ %(#.#.$)%f%b '
 fi
-printf 'prompt/theme: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
+[[ -n $SHOW_PERFORMANCE ]] && printf 'prompt/theme: %dms\n' $(( ($EPOCHREALTIME - $_t) * 1000 ))
 
-printf '\n==> Total zshrc load time: %dms\n' $(( ($EPOCHREALTIME - $_zshrc_start) * 1000 ))
+[[ -n $SHOW_PERFORMANCE ]] && printf '\n==> Total zshrc load time: %dms\n' $(( ($EPOCHREALTIME - $_zshrc_start) * 1000 ))
 unset _t _zshrc_start
 
 ### Below this line was auto appended...
