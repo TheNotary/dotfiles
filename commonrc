@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Common shell configuration sourced by both bashrc and zshrc
 
 # Change this to 'server' to get the prompt to look different

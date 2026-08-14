@@ -37,10 +37,10 @@ autoload -U add-zsh-hook
 add-zsh-hook chpwd save_pwd
 
 # Restore last directory if it exists
-if [[ -z "$SKIP_RESTORE_LAST_DIR" && -f "$ZSH_LAST_DIR" ]]; then
-  last_dir=$(cat "$ZSH_LAST_DIR")
-  [[ -d "$last_dir" ]] && cd "$last_dir"
-fi
+#if [[ -z "$SKIP_RESTORE_LAST_DIR" && -f "$ZSH_LAST_DIR" ]]; then
+#  last_dir=$(cat "$ZSH_LAST_DIR")
+#  [[ -d "$last_dir" ]] && cd "$last_dir"
+#fi
 
 export SKIP_RESTORE_LAST_DIR=true
 

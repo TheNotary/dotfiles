@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Cache git-completion availability once (bash-only, avoids repeated `type` forks)
+if [[ -n "$BASH_VERSION" ]] && type __git_complete >/dev/null 2>&1; then
+  _has_git_complete=1
+fi
+
 # Source all *.sh in ~/.aliases (alphabetical)
 for f in "${HOME}/.aliases/"*.sh; do
   [[ -r "$f" ]] && source "$f"
@@ -11,8 +16,12 @@ done
 ##############################
 
 # How have a not been using this my whole life?!?
+# get history of file over it's life
 alias ghist='git log --follow -p -- ' # arg: path/to/file
 
+# Beautify JSON objects
+# $  curl -s http://localhost:3000/publishing_houses | pj
+alias pj="python -m json.tool | jq '.'"
 
 #git worktree add -b testing-opus-48 \
 #  ../testing-opus-48 \
@@ -112,6 +121,16 @@ alias kga="kubectl get all"
 alias kgall="kubectl get service,ingress,pod,deployment,daemonset,networkpolicy,pvc,secret,configmap,persistentvolumeclaim"
 alias kgp="kubectl get pods --show-kind"
 alias kd="kubectl describe"
+function kport { 
+  namespace=$1
+  service_name=$2
+  ports=$3
+
+  kubectl port-forward -n $namespace $service_name $ports
+}
+
+# kport svc-npm-proxy svc/svc-npm-proxy-verdaccio 4873:4873
+
 # Filter logs through this for slight improvements: sed 's/^[^\w]*\]//' 
 alias kl="kubectl logs"
 # Switch kubectl namespace context
@@ -146,9 +165,6 @@ alias vm-list-hdds="vboxmanage list hdds | awk '/^Location:  / || /^Capacity: / 
 alias vm-start="vboxmanage startvm --type headless"
 
 
-# Beautify JSON objects
-# $  curl -s http://localhost:3000/publishing_houses | pj
-alias pj="python -m json.tool | jq '.'"
 
 # Use json syntax highlighting in vim
 #   :set syntax=json
@@ -297,14 +313,10 @@ s() {
 
 
 alias c="git checkout"
-if type __git_complete >/dev/null 2>&1; then
-  __git_complete c _git_checkout  # auto-completion
-fi
+[[ -n "$_has_git_complete" ]] && __git_complete c _git_checkout
 
 alias d="LESS='-+F -R -S -X' git diff"
-if type __git_complete >/dev/null 2>&1; then
-  __git_complete d _git_diff  # auto-completion
-fi
+[[ -n "$_has_git_complete" ]] && __git_complete d _git_diff
 
 # There's one for work handles defined elsewhere ^.<
 alias git_setup_author="git config --local user.email no@email.plz && git config --local user.name TheNotary"
@@ -355,6 +367,8 @@ alias gir="git rebase" # puts all your commits (in your current branch) ontop of
 alias gmr="git merge" # merges the specified branch onto the current branch.. creating a mrege commit
 # This will delete any locally tracked remote branches if they're removed from origin
 alias gbc="git fetch origin --prune"
+
+
 
 # Multi-Repo Helpers:
 function git_subdir_fetch() {
@@ -432,9 +446,7 @@ function git_subdir_commit() {
 # git_diff_follow
 # do a head follow on the /tmp/diff file to watch the diff go
 alias git_diff_follow="watch -c -n 1 git diff" #harken_develop-rob jruby-normalizing config/secrets.yml
-if type __git_complete >/dev/null 2>&1; then
-  __git_complete git_diff_follow _git_diff  # auto-completion
-fi
+[[ -n "$_has_git_complete" ]] && __git_complete git_diff_follow _git_diff
 
 # Ignoring Files
 
