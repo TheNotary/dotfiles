@@ -271,4 +271,6 @@
     },
 
     "bottom_of_config": "Anything below this line should be organized above",
+    "@azure.argTenant": "",
+    "rubyLsp.rubyExecutablePath": "c:\\Ruby40-arm\\bin\\ruby.exe",
 }
