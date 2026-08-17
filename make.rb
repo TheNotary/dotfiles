@@ -256,6 +256,13 @@ inane_mappings = [
     }
   },
   {
+    source_dir: File.join(DOTFILES_DIR, "inane", "windows_terminal"),
+    backup_dir: File.join(BACKUP_DIR, "inane_windows_terminal"),
+    dest_dir: {
+      windows: File.join(ENV.fetch("LOCALAPPDATA", File.join(Dir.home, "AppData", "Local")), "Packages", "Microsoft.WindowsTerminal_8wekyb3d8bbwe", "LocalState"),
+    }
+  },
+  {
     source_dir: File.join(DOTFILES_DIR, "inane", "zed"),
     backup_dir: File.join(BACKUP_DIR, "inane_zed"),
     dest_dir: {
