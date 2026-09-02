@@ -50,7 +50,7 @@ function ugwk {
     return 1
   fi
   branch_name=$1
-  git workgree remove "worktrees/$branch_name"
+  git worktree remove "worktrees/$branch_name"
 }
 
 
@@ -460,7 +460,7 @@ alias git-ignore-awesome="git config --global core.excludesfile ~/.gitignore_glo
 
 # THIS is very dangerous!  It will change the history of a repository to correct the email addresses for
 # committers...
-# git_correct_email incorrect_email correct_name correct_email
+# git_correct_email old_email new_name new_email
 git_correct_email() {
   if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
     echo "You must specify all three inputs"
