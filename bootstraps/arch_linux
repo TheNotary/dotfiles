@@ -32,9 +32,18 @@ fnm install v24
 # pnpm
 curl -fsSL https://get.pnpm.io/install.sh | sh -
 
+# Install tk environment along with a python tk lib that isn't needed? 
+#sudo apt-get install python3-tk tk-dev tcl-dev pkg-config
+
+#
+# Python
+#
 
 # Install Py
 curl -fsSL https://pyenv.run | bash
+
+# Install UV
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 
 
