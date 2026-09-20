@@ -58,7 +58,10 @@ function ugwk {
 # Developer #
 #############
 
-alias vi="vim"
+# aliase vi to nvim or vim if available
+command -v vim >/dev/null && alias vi="vim"
+command -v nvim >/dev/null && alias vi="nvim"
+
 alias dc="docker-compose"
 #alias tf="terraform"
 alias g="git"

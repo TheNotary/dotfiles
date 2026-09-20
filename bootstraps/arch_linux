@@ -19,6 +19,14 @@ pacman -S github-cli
 curl -fsSL https://gh.io/copilot-install | bash
 
 
+# Install neovim
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-arm64.tar.gz
+sudo rm -rf /opt/nvim-linux-arm64
+sudo tar -C /opt -xzf nvim-linux-arm64.tar.gz
+
+
+
+
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install cargo-binstall

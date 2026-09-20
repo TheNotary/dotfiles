@@ -64,6 +64,13 @@ eval "$(pyenv init - ${SHELL_NAME})"
 eval "$(pyenv virtualenv-init -)"
 
 
+########
+# Nvim #
+########
+
+export PATH="$PATH:/opt/nvim-linux-arm64/bin"
+
+
 ###########
 # VS Code #
 ###########
