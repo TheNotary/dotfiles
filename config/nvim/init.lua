@@ -1,8 +1,24 @@
 --[[
 Cheat Sheet:
 
+  -- Plugin: Nvim Tree --
 Space - e   -> Toggle Tree View
-^o          -> Go to previously opened location
+g?          -> Toggle Tree View hotkeys
+enter       -> Open file from tree view
+tab         -> Open file from tree view without focusing
+
+  -- Plugin: telescope --
+  
+
+  -- Pane Navigation --
+^w - Dir    -> Change focus to pane in specified direction
+^w - w      -> Cycle through panes
+
+  -- Find / Replace --
+:v/error/d  -> Delete all lines that don't container 'error' (for light weight log grepping)
+
+  -- Misc. Amazing --
+^o          -> Go to previous location... survives restarts
 mf          -> Create a bookmark at the current location, useful for navigating your todo list (m = mark, f = focus)
 'f          -> Go to bookmark `f`,
 .           -> Repeat command
@@ -11,6 +27,8 @@ mf          -> Create a bookmark at the current location, useful for navigating 
 
 vim.pack.add({
   'https://github.com/nvim-tree/nvim-tree.lua',
+  'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/nvim-telescope/telescope.nvim',
 --  'https://github.com/nvim-mini/mini.nvim',
 --  'https://github.com/nvim-treesitter/nvim-treesitter',
 })
@@ -27,16 +45,14 @@ vim.opt.tabstop = 2      -- Display existing literal tabs as 2 columns
 
 
 -- Visually render literal tab characters
-  vim.opt.list = true
-  vim.opt.listchars = {
+vim.opt.list = true
+vim.opt.listchars = {
   tab = "» ",
 }
 
 
--- Space + e toggles nvim-tree
-vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", {
-  desc = "Toggle file explorer",
-})
+-- Define Ffs for grepping the current file for matches
+
 
 
 
@@ -72,7 +88,40 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 -- empty setup using defaults
-require("nvim-tree").setup()
+-- require("nvim-tree").setup()
+
+
+---------------
+-- nvim-tree --
+---------------
+
+-- Space + e toggles nvim-tree
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", {
+  desc = "Toggle file explorer",
+})
+
+require("nvim-tree").setup({
+  view = {
+    adaptive_size = true, -- Auto-resize to fit file/folder names
+    side = "left",        -- Position of the tree
+  },
+   actions = {
+    open_file = {
+      resize_window = true, -- Resize tree after opening a file
+    },
+  },
+})
+
+
+---------------
+-- telescope --
+---------------
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
 -- END Setup nvim-tree
 
