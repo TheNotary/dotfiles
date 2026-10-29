@@ -29,13 +29,25 @@ vim.pack.add({
   'https://github.com/nvim-tree/nvim-tree.lua',
   'https://github.com/nvim-lua/plenary.nvim',
   'https://github.com/nvim-telescope/telescope.nvim',
+  'https://github.com/nvim-treesitter/nvim-treesitter',
+  'https://github.com/lewis6991/gitsigns.nvim',
 --  'https://github.com/nvim-mini/mini.nvim',
---  'https://github.com/nvim-treesitter/nvim-treesitter',
 })
 
 
 -- Space as leader
 vim.g.mapleader = " "
+
+-- tab / shift + tab in normal mode switches active panes
+vim.keymap.set("n", "<Tab>", "<C-w>w", {
+    desc = "Next window",
+})
+
+vim.keymap.set("n", "<CR>", "<C-w>w", {
+    desc = "Next window",
+})
+
+
 
 
 vim.opt.expandtab = true -- Use spaces instead of actual tab characters
@@ -59,14 +71,6 @@ vim.opt.listchars = {
 
 vim.opt.mouse = ""
 
-vim.g.markdown_fenced_languages = {
-  "bash",
-  "sh=bash",
-  "python",
-  "lua",
-  "json",
-  "yaml",
-}
 
 vim.cmd.colorscheme("slate")
 
@@ -91,6 +95,113 @@ vim.opt.termguicolors = true
 -- require("nvim-tree").setup()
 
 
+--------------
+-- gitsigns --
+--------------
+
+local last_move = nil
+
+local function repeatable(action, opposite, repeat_key)
+  return function()
+    last_move = { next = action, prev = opposite }
+    vim.fn['repeat#set'](vim.keycode(repeat_key))
+    action()
+  end
+end
+
+
+require('gitsigns').setup{
+  on_attach = function(bufnr)
+    local gitsigns = require('gitsigns')
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Navigation
+    local next_hunk = repeatable(function()
+      if vim.wo.diff then
+        vim.cmd.normal({']c', bang = true})
+      else
+        gitsigns.nav_hunk('next')
+      end
+    end, function()
+      if vim.wo.diff then
+        vim.cmd.normal({'[c', bang = true})
+      else
+        gitsigns.nav_hunk('prev')
+      end
+    end, ']c')
+
+    local prev_hunk = repeatable(function()
+      if vim.wo.diff then
+        vim.cmd.normal({'[c', bang = true})
+      else
+        gitsigns.nav_hunk('prev')
+      end
+    end, function()
+      if vim.wo.diff then
+        vim.cmd.normal({']c', bang = true})
+      else
+        gitsigns.nav_hunk('next')
+      end
+    end, '[c')
+
+    map('n', ']c', next_hunk)
+    map('n', '[c', prev_hunk)
+    map('n', ';', function()
+      if last_move then
+        last_move.next()
+      end
+    end)
+    map('n', ',', function()
+      if last_move then
+        last_move.prev()
+      end
+    end)
+
+    -- Actions
+    map('n', '<leader>hs', gitsigns.stage_hunk)
+    map('n', '<leader>hr', gitsigns.reset_hunk)
+
+    map('v', '<leader>hs', function()
+      gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+    end)
+
+    map('v', '<leader>hr', function()
+      gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+    end)
+
+    map('n', '<leader>hS', gitsigns.stage_buffer)
+    map('n', '<leader>hR', gitsigns.reset_buffer)
+    map('n', '<leader>hp', gitsigns.preview_hunk)
+    map('n', '<leader>hi', gitsigns.preview_hunk_inline)
+
+    map('n', '<leader>hb', function()
+      gitsigns.blame_line({ full = true })
+    end)
+
+    map('n', '<leader>hd', gitsigns.diffthis)
+
+    map('n', '<leader>hD', function()
+      gitsigns.diffthis('~')
+    end)
+
+    map('n', '<leader>hQ', function() gitsigns.setqflist('all') end)
+    map('n', '<leader>hq', gitsigns.setqflist)
+
+    -- Toggles
+    map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+    map('n', '<leader>tw', gitsigns.toggle_word_diff)
+
+    -- Text object
+    map({'o', 'x'}, 'ih', gitsigns.select_hunk)
+  end
+}
+
+
 ---------------
 -- nvim-tree --
 ---------------
@@ -110,7 +221,30 @@ require("nvim-tree").setup({
       resize_window = true, -- Resize tree after opening a file
     },
   },
+  filters = {
+    exclude = { "logs" },
+  },
 })
+
+
+----------------
+-- treesitter --
+----------------
+
+require('nvim-treesitter').setup {
+  -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+  install_dir = vim.fn.stdpath('data') .. '/site'
+}
+
+require('nvim-treesitter').install { 
+  'rust', 
+  'javascript', 
+  'zig',
+  'yaml',
+  'bash',
+  'ruby',
+  'typescript',
+}
 
 
 ---------------
@@ -276,5 +410,4 @@ vim.api.nvim_exec([[
   au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.short()
   augroup END
 ]], false)
-
 

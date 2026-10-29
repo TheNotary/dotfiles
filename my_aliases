@@ -23,6 +23,9 @@ alias ghist='git log --follow -p -- ' # arg: path/to/file
 # $  curl -s http://localhost:3000/publishing_houses | pj
 alias pj="python -m json.tool | jq '.'"
 
+# Rebuild dev container
+alias devcontainer-rebuild='devcontainer up --workspace-folder . --remove-existing-container --build-no-cache'
+
 #git worktree add -b testing-opus-48 \
 #  ../testing-opus-48 \
 #  'HEAD'

@@ -24,8 +24,8 @@ export PATH="/$HOME/bin:$PATH"
 # export GIT_COMMITTER_EMAIL=$MY_FULL_NAME
 
 ## setup git to use vim and not NANO
-export VISUAL=vim
-export EDITOR=vim
+export VISUAL=nvim
+export EDITOR=nvim
 
 
 # If not running interactively, don't do anything
